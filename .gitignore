@@ -1,0 +1,15 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.env
+
+# MkDocs
+site/
+
+# System
+.DS_Store
+
+# Local deploy keys
+.deploy-keys/
