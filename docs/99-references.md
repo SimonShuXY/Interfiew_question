@@ -1,6 +1,6 @@
 # 参考资料
 
-资料核验日期：2026-08-07。以下链接优先选择官方文档和论文。框架 API、模型名和协议版本会变化，实践时请再次核对。
+资料核验日期：2026-08-12。以下链接优先选择官方文档和论文。框架 API、模型名和协议版本会变化，实践时请再次核对。
 
 ## 官方指南与工程实践
 
@@ -14,11 +14,12 @@
 - LangChain, [LangGraph v1 release notes](https://docs.langchain.com/oss/python/releases/langgraph-v1)：图执行、持久化、checkpoint、人机协作。
 - LlamaIndex, [Agents use case documentation](https://developers.llamaindex.ai/python/framework/use_cases/agents/)：Agentic RAG、工具、工作流和数据增强 Agent。
 - Microsoft, [Agent Framework overview](https://learn.microsoft.com/en-us/agent-framework/overview/)：Agents、Harness、Workflows、MCP、多 provider 和企业工程能力。
+- Microsoft, [Agent Harness](https://learn.microsoft.com/en-us/agent-framework/concepts/harness)：Harness 作为运行时脚手架，负责工具调用、上下文、审批、观测和长任务进度。
 - Microsoft, [Agent Framework Workflows](https://learn.microsoft.com/en-us/agent-framework/workflows/)：函数式工作流、图工作流、checkpoint、人机协作和多 Agent 编排。
 
 ## 协议
 
-- Model Context Protocol, [latest specification](https://modelcontextprotocol.io/specification/latest)：MCP 规范、tools、resources、prompts、安全原则。
+- Model Context Protocol, [latest specification](https://modelcontextprotocol.io/specification/latest)：MCP 规范、tools、resources、prompts、authorization、安全原则和扩展。
 - Model Context Protocol, [architecture overview](https://modelcontextprotocol.io/docs/learn/architecture)：Host、Client、Server、数据层和传输层。
 - A2A Protocol, [latest specification](https://a2a-protocol.org/latest/specification/)：Agent Card、Message、Task、Artifact、版本协商和协议绑定。
 - A2A Protocol, [Life of a Task](https://a2a-protocol.org/latest/topics/life-of-a-task/)：任务生命周期、上下文 ID、任务 ID、artifact 更新。
@@ -32,6 +33,7 @@
 ## 评测与观测
 
 - LangSmith, [Evaluation concepts](https://docs.langchain.com/langsmith/evaluation-concepts)：离线评测、线上评测、runs、threads、human/code/LLM-as-judge/pairwise evaluator。
+- LangChain, [Agent trajectory evaluations](https://docs.langchain.com/langsmith/trajectory-evals)：按工具调用序列和轨迹质量评测 Agent 行为。
 - OpenAI, [Evals](https://evals.openai.com/)：面向模型和 Agent 能力的评测研究与数据集。
 
 ## 维护建议

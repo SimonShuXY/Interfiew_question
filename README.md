@@ -1,8 +1,8 @@
 # Agent 从入门到精通手册
 
-这是一套面向 0 基础学习者的 Agent 技术手册。它从“什么是 Agent”讲起，逐步过渡到工具调用、RAG、记忆、规划、工作流、多 Agent、协议、评测、观测、安全和生产化工程，目标是帮助读者从能理解概念，走到能设计、实现、评测并上线 Agent 系统。
+这是一套面向 0 基础学习者和 Agent 方向求职者的技术手册。它从“什么是 Agent”讲起，逐步过渡到工具调用、RAG、记忆、规划、工作流、多 Agent、协议、评测、观测、安全和生产化工程，目标是帮助读者从能理解概念，走到能设计、实现、评测并上线 Agent 系统。
 
-资料核验日期：2026-08-07。Agent 生态变化很快，涉及框架 API、模型能力和协议版本时，请以官方文档为准。
+资料核验日期：2026-08-12。Agent 生态变化很快，涉及框架 API、模型能力和协议版本时，请以官方文档为准。
 
 ## 适合谁
 
@@ -10,6 +10,7 @@
 - 已会一点提示词或 RAG，想补齐工程知识的人。
 - 准备做 Agent 项目、课程、分享、团队培训或 GitHub 开源手册的人。
 - 想从“会调 API”提升到“能设计生产级 Agent 系统”的工程师。
+- 正在准备 Agent、AI Engineer、LLM Engineer、RAG Engineer、Agentic Workflow Engineer 面试的人。
 
 ## 学习目标
 
@@ -31,6 +32,7 @@
 | 架构 | 07-08 | 设计工作流、多 Agent 协作和协议边界 |
 | 工程 | 09-11 | 做评测、观测、安全和生产化落地 |
 | 精通 | 12-13 | 选型框架，完成可展示的综合项目 |
+| 面试 | interview-prep | 按 40 天路线准备 92 道题和系统设计 |
 | 附录 | 14, 99 | 查询术语和参考资料 |
 
 ## 快速开始
@@ -40,6 +42,12 @@
 1. [如何使用本手册](docs/00-how-to-use.md)
 2. [Agent 是什么](docs/01-what-is-agent.md)
 3. [LLM 基础](docs/02-llm-foundations.md)
+
+准备面试：
+
+1. [Agent 面试准备总览](docs/interview-prep/00-overview.md)
+2. [40 天学习计划](docs/interview-prep/01-40-day-plan.md)
+3. [92 道 Agent 面试题](docs/interview-prep/02-question-bank-92.md)
 
 运行最小示例：
 
@@ -64,6 +72,10 @@ mkdocs serve
 ├── docs/
 │   ├── 00-how-to-use.md
 │   ├── 01-what-is-agent.md
+│   ├── interview-prep/
+│   │   ├── 00-overview.md
+│   │   ├── 01-40-day-plan.md
+│   │   └── 02-question-bank-92.md
 │   └── ...
 ├── roadmaps/
 │   ├── 00-zero-to-one.md

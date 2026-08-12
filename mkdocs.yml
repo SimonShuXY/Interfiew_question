@@ -23,6 +23,14 @@ nav:
   - 精通篇:
       - 12 框架选型: 12-framework-selection.md
       - 13 综合项目路线: 13-capstone-projects.md
+  - 面试准备:
+      - 总览: interview-prep/00-overview.md
+      - 40 天学习计划: interview-prep/01-40-day-plan.md
+      - 92 道面试题: interview-prep/02-question-bank-92.md
+      - 系统设计题: interview-prep/03-system-design.md
+      - 回答框架: interview-prep/04-answer-frameworks.md
+      - 项目与简历表达: interview-prep/05-project-and-resume.md
+      - 模拟面试: interview-prep/06-mock-interview.md
   - 附录:
       - 14 术语表: 14-glossary.md
       - 参考资料: 99-references.md
