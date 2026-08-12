@@ -30,6 +30,17 @@
 - Schick et al., [Toolformer: Language Models Can Teach Themselves to Use Tools](https://doi.org/10.48550/arXiv.2302.04761)：模型学习工具使用的早期代表工作。
 - Shinn et al., [Reflexion: Language Agents with Verbal Reinforcement Learning](https://doi.org/10.48550/arXiv.2303.11366)：通过语言反思和情景记忆改进 Agent 后续尝试。
 
+## 多模态与感知
+
+- OpenAI, [CLIP: Connecting text and images](https://openai.com/index/clip/)：图文对比学习、自然语言监督和 zero-shot 视觉分类。
+- Meta AI, [DINOv2](https://dinov2.metademolab.com/)：自监督视觉特征、ViT backbone 和跨任务迁移。
+- Meta AI, [Segment Anything](https://ai.meta.com/research/publications/segment-anything/)：promptable segmentation、SAM 和 SA-1B 数据集。
+- Meta AI, [SAM 2](https://ai.meta.com/research/publications/sam-2-segment-anything-in-images-and-videos/)：图像和视频中的 promptable segmentation、streaming memory。
+- MMMU Team, [MMMU benchmark](https://mmmu-benchmark.github.io/)：跨学科、多图形类型、专家级多模态理解与推理评测。
+- Video-MME Team, [Video-MME](https://video-mme.github.io/home_page.html)：长短视频、多领域、字幕和音频辅助的视频理解评测。
+- Waymo, [Open Dataset Perception](https://waymo.com/open/data/perception/)：自动驾驶感知数据、2D/3D 标注、跟踪、分割和传感器数据。
+- nuScenes, [nuScenes dataset](https://www.nuscenes.org/)：自动驾驶多传感器数据集，覆盖 camera、LiDAR、radar、IMU、GPS 和 3D 标注。
+
 ## 评测与观测
 
 - LangSmith, [Evaluation concepts](https://docs.langchain.com/langsmith/evaluation-concepts)：离线评测、线上评测、runs、threads、human/code/LLM-as-judge/pairwise evaluator。
