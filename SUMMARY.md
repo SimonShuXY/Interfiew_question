@@ -24,6 +24,7 @@
 - [项目与简历表达](docs/interview-prep/05-project-and-resume.md)
 - [模拟面试](docs/interview-prep/06-mock-interview.md)
 - [多模态与感知高频面试题](docs/interview-prep/07-multimodal-perception-questions.md)
+- [Agent 面试问题扩写与常见度排序](docs/interview-prep/08-agent-interview-expanded-from-doc.md)
 - [参考资料](docs/99-references.md)
 - [0 到 1 学习路线](roadmaps/00-zero-to-one.md)
 - [工程师到专家路线](roadmaps/01-engineer-to-expert.md)

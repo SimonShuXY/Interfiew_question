@@ -20,6 +20,7 @@
 5. 用 [项目与简历表达](05-project-and-resume.md) 把学习结果沉淀成 GitHub 项目和简历 bullet。
 6. 用 [模拟面试](06-mock-interview.md) 做最后冲刺。
 7. 如果准备多模态、视觉感知或视觉 Agent 方向，补充练习 [多模态与感知高频面试题](07-multimodal-perception-questions.md)。
+8. 如果你想按真实笔记查漏补缺，阅读 [Agent 面试问题扩写与常见度排序](08-agent-interview-expanded-from-doc.md)。
 
 ## 面试知识地图
 
@@ -75,4 +76,5 @@
 - 覆盖 10 个 Agent 面试核心模块。
 - 包含 92 道题和 40 天准备节奏。
 - 补充多模态与感知方向高频题，覆盖 VLM、检测、分割、视频和 3D 感知。
+- 包含从真实面试笔记扩写的问题、完整回答和常见度排序。
 - 强调工程落地：eval、trace、安全、成本、生产化。

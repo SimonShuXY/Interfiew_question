@@ -47,6 +47,14 @@
 - LangChain, [Agent trajectory evaluations](https://docs.langchain.com/langsmith/trajectory-evals)：按工具调用序列和轨迹质量评测 Agent 行为。
 - OpenAI, [Evals](https://evals.openai.com/)：面向模型和 Agent 能力的评测研究与数据集。
 
+## 推理、训练与长上下文优化
+
+- DSPy, [Optimizers documentation](https://github.com/stanfordnlp/dspy/blob/main/docs/docs/learn/optimization/optimizers.md)：用指标优化 LLM 程序的 prompt、few-shot 示例或模型权重。
+- DeepSpeed, [ZeRO documentation](https://deepspeed.readthedocs.io/en/stable/zero3.html)：通过分片优化器状态、梯度和参数降低大模型训练显存冗余。
+- Madaan et al., [Self-Refine](https://selfrefine.info/)：通过生成、反馈、改写循环在推理时改进输出。
+- Shazeer, [Fast Transformer Decoding: One Write-Head is All You Need](https://arxiv.org/abs/1911.02150)：Multi-Query Attention 通过共享 key/value 降低解码时 KV cache 和内存带宽压力。
+- Dao et al., [FlashAttention](https://arxiv.org/abs/2205.14135)：IO-aware exact attention，通过分块计算减少高带宽显存访问和中间 attention 矩阵存储。
+
 ## 维护建议
 
 每次更新手册时，建议检查：

@@ -49,6 +49,7 @@
 2. [40 天学习计划](docs/interview-prep/01-40-day-plan.md)
 3. [92 道 Agent 面试题](docs/interview-prep/02-question-bank-92.md)
 4. [多模态与感知高频面试题](docs/interview-prep/07-multimodal-perception-questions.md)
+5. [Agent 面试问题扩写与常见度排序](docs/interview-prep/08-agent-interview-expanded-from-doc.md)
 
 运行最小示例：
 
@@ -77,7 +78,8 @@ mkdocs serve
 │   │   ├── 00-overview.md
 │   │   ├── 01-40-day-plan.md
 │   │   ├── 02-question-bank-92.md
-│   │   └── 07-multimodal-perception-questions.md
+│   │   ├── 07-multimodal-perception-questions.md
+│   │   └── 08-agent-interview-expanded-from-doc.md
 │   └── ...
 ├── roadmaps/
 │   ├── 00-zero-to-one.md
