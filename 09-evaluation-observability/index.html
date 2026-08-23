@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>09 评测与可观测性 - Agent 从入门到精通手册</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "09 \u8bc4\u6d4b\u4e0e\u53ef\u89c2\u6d4b\u6027";
+        var mkdocs_page_input_path = "09-evaluation-observability.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Agent 从入门到精通手册
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">首页</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../00-how-to-use/">使用指南</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">基础篇</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../01-what-is-agent/">01 Agent 是什么</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../02-llm-foundations/">02 LLM 基础</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../03-prompt-context/">03 提示词与上下文工程</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">核心篇</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../04-tools-function-calling/">04 工具调用与 MCP</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../05-rag-memory/">05 RAG 与记忆</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../06-agent-loop-planning/">06 Agent 循环与规划</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">架构篇</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../07-workflows-orchestration/">07 工作流与编排</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../08-multi-agent-protocols/">08 多 Agent 与协议</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">工程篇</span></p>
+              <ul class="current">
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">09 评测与可观测性</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#agent">为什么 Agent 更需要评测</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_1">评测分层</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_2">离线评测集</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#rubric">Rubric</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_3">轨迹评测</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_4">可观测性</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#llm-as-judge">LLM-as-judge 的注意事项</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#ci">CI 中的回归门禁</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_5">本章练习</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../10-safety-security/">10 安全、权限与护栏</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../11-production-engineering/">11 生产化工程</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">精通篇</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../12-framework-selection/">12 框架选型</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../13-capstone-projects/">13 综合项目路线</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">面试准备</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../interview-prep/00-overview/">总览</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../interview-prep/01-40-day-plan/">40 天学习计划</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../interview-prep/02-question-bank-92/">92 道面试题</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../interview-prep/03-system-design/">系统设计题</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../interview-prep/04-answer-frameworks/">回答框架</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../interview-prep/05-project-and-resume/">项目与简历表达</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../interview-prep/06-mock-interview/">模拟面试</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../interview-prep/07-multimodal-perception-questions/">多模态与感知高频题</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../interview-prep/08-agent-interview-expanded-from-doc/">附件问题扩写与排序</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">附录</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../14-glossary/">14 术语表</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../99-references/">参考资料</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Agent 从入门到精通手册</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">工程篇</li>
+      <li class="breadcrumb-item active">09 评测与可观测性</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="09">09. 评测与可观测性<a class="headerlink" href="#09" title="Permanent link">&para;</a></h1>
+<p>前面几章讨论了如何构建 Agent。现在进入更关键的问题：你怎么知道它真的好用、稳定、安全，并且改动后没有退化？</p>
+<p>本章目标：建立 Agent 评测、追踪和线上监控体系。
+下一章：在可观测基础上进一步讨论安全、权限与护栏。</p>
+<h2 id="agent">为什么 Agent 更需要评测<a class="headerlink" href="#agent" title="Permanent link">&para;</a></h2>
+<p>普通函数可以用确定性单元测试。Agent 不同：</p>
+<ul>
+<li>模型输出可能变化。</li>
+<li>工具调用路径可能变化。</li>
+<li>同一个问题可能有多种正确答案。</li>
+<li>最终答案正确，但中间可能调用了危险工具。</li>
+<li>线上数据分布会变化。</li>
+</ul>
+<p>因此 Agent 评测不只看 final answer，还要看执行轨迹。</p>
+<h2 id="_1">评测分层<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>层级</th>
+<th>评测对象</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>单步</td>
+<td>单个 prompt、工具参数、结构化输出</td>
+<td>分类是否正确</td>
+</tr>
+<tr>
+<td>检索</td>
+<td>RAG 召回和引用</td>
+<td>是否找到正确政策段落</td>
+</tr>
+<tr>
+<td>工具</td>
+<td>工具选择和参数</td>
+<td>是否调用正确 API</td>
+</tr>
+<tr>
+<td>轨迹</td>
+<td>多步执行过程</td>
+<td>是否先查订单再判断退款</td>
+</tr>
+<tr>
+<td>结果</td>
+<td>最终答案或产物</td>
+<td>报告是否准确完整</td>
+</tr>
+<tr>
+<td>系统</td>
+<td>成本、延迟、安全、人工介入率</td>
+<td>P95 延迟、失败率</td>
+</tr>
+</tbody>
+</table>
+<p>成熟 Agent 必须覆盖多层评测。</p>
+<h2 id="_2">离线评测集<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>离线评测集用于开发和回归。每条样例建议包含：</p>
+<pre><code class="language-yaml">id: refund_001
+input: 用户说想退款但没有提供订单号
+expected_behavior:
+  - 不调用 issue_refund
+  - 询问订单号
+  - 说明需要订单信息
+tags:
+  - missing_info
+  - refund
+  - safety
+</code></pre>
+<p>Agent 评测不一定要求唯一标准答案。很多时候更应该写 expected behavior 和禁止行为。</p>
+<h2 id="rubric">Rubric<a class="headerlink" href="#rubric" title="Permanent link">&para;</a></h2>
+<p>Rubric 是评分标准。一个研究报告 Agent 的 rubric 可以包括：</p>
+<ul>
+<li>是否回答了用户问题。</li>
+<li>是否引用了资料来源。</li>
+<li>是否区分事实、推断和建议。</li>
+<li>是否遗漏关键反例。</li>
+<li>是否没有编造引用。</li>
+<li>是否遵守输出格式。</li>
+</ul>
+<p>Rubric 越具体，自动评测和人工评审越稳定。</p>
+<h2 id="_3">轨迹评测<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p>只看最终答案会漏掉重要问题：</p>
+<ul>
+<li>Agent 答对了，但调用了不该调用的敏感工具。</li>
+<li>Agent 多做了 8 次无意义搜索，成本过高。</li>
+<li>Agent 用旧资料回答，但最终文本看起来合理。</li>
+<li>Agent 在中间泄露了隐私字段，最终答案没有显示。</li>
+</ul>
+<p>轨迹评测要记录：</p>
+<ul>
+<li>每次模型调用。</li>
+<li>工具名称和参数摘要。</li>
+<li>工具返回状态。</li>
+<li>handoff 事件。</li>
+<li>guardrail 触发情况。</li>
+<li>token、耗时、成本。</li>
+</ul>
+<h2 id="_4">可观测性<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<p>可观测性要回答三个问题：</p>
+<ol>
+<li>发生了什么？</li>
+<li>为什么发生？</li>
+<li>下次如何复现和改进？</li>
+</ol>
+<p>至少记录：</p>
+<table>
+<thead>
+<tr>
+<th>数据</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Trace ID</td>
+<td>串联一次完整运行</td>
+</tr>
+<tr>
+<td>Span</td>
+<td>模型调用、工具调用、检索、审批</td>
+</tr>
+<tr>
+<td>输入输出摘要</td>
+<td>调试和评审</td>
+</tr>
+<tr>
+<td>工具参数</td>
+<td>审计和重放，敏感字段要脱敏</td>
+</tr>
+<tr>
+<td>错误类型</td>
+<td>统计失败模式</td>
+</tr>
+<tr>
+<td>用户反馈</td>
+<td>线上质量信号</td>
+</tr>
+<tr>
+<td>版本信息</td>
+<td>prompt、模型、工具、代码版本</td>
+</tr>
+</tbody>
+</table>
+<p>没有 trace 的 Agent 很难生产化。</p>
+<h2 id="llm-as-judge">LLM-as-judge 的注意事项<a class="headerlink" href="#llm-as-judge" title="Permanent link">&para;</a></h2>
+<p>LLM-as-judge 可以扩展评测，但不能盲信。</p>
+<p>建议：</p>
+<ul>
+<li>用清晰 rubric。</li>
+<li>用少量人工标注校准。</li>
+<li>对高风险项使用规则或人工审核。</li>
+<li>记录 judge 的模型版本和 prompt。</li>
+<li>定期抽样复查。</li>
+<li>不要让同一个模型既生成又无约束地给自己打分。</li>
+</ul>
+<h2 id="ci">CI 中的回归门禁<a class="headerlink" href="#ci" title="Permanent link">&para;</a></h2>
+<p>每次改 prompt、工具、检索参数或模型，都可能影响行为。建议在 CI 中跑：</p>
+<ul>
+<li>结构化输出格式测试。</li>
+<li>关键工具调用路径测试。</li>
+<li>禁止行为测试。</li>
+<li>RAG 引用测试。</li>
+<li>成本和轮数上限测试。</li>
+</ul>
+<p>不需要一开始就做几千条评测。先做 20 到 50 条高质量样例，覆盖核心路径和危险路径。</p>
+<h2 id="_5">本章练习<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<p>为“内部知识库 Agent”写 15 条评测样例：</p>
+<ul>
+<li>5 条正常问题。</li>
+<li>3 条资料不存在。</li>
+<li>3 条提示注入。</li>
+<li>2 条权限不足。</li>
+<li>2 条多轮追问。</li>
+</ul>
+<p>每条写 expected behavior，而不是只写标准答案。</p>
+<p>下一章会讨论如何把风险控制嵌入 Agent 系统：安全、权限与护栏。</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../08-multi-agent-protocols/" class="btn btn-neutral float-left" title="08 多 Agent 与协议"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../10-safety-security/" class="btn btn-neutral float-right" title="10 安全、权限与护栏">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../08-multi-agent-protocols/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../10-safety-security/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

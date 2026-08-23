@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>回答框架 - Agent 从入门到精通手册</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "\u56de\u7b54\u6846\u67b6";
+        var mkdocs_page_input_path = "interview-prep/04-answer-frameworks.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> Agent 从入门到精通手册
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">首页</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../00-how-to-use/">使用指南</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">基础篇</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../01-what-is-agent/">01 Agent 是什么</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../02-llm-foundations/">02 LLM 基础</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../03-prompt-context/">03 提示词与上下文工程</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">核心篇</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../04-tools-function-calling/">04 工具调用与 MCP</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../05-rag-memory/">05 RAG 与记忆</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../06-agent-loop-planning/">06 Agent 循环与规划</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">架构篇</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../07-workflows-orchestration/">07 工作流与编排</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../08-multi-agent-protocols/">08 多 Agent 与协议</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">工程篇</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../09-evaluation-observability/">09 评测与可观测性</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../10-safety-security/">10 安全、权限与护栏</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../11-production-engineering/">11 生产化工程</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">精通篇</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../12-framework-selection/">12 框架选型</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../13-capstone-projects/">13 综合项目路线</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">面试准备</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../00-overview/">总览</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../01-40-day-plan/">40 天学习计划</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../02-question-bank-92/">92 道面试题</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../03-system-design/">系统设计题</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">回答框架</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#_2">概念题回答框架</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_3">对比题回答框架</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_4">系统设计题回答框架</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_5">失败排查题回答框架</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#star">项目题 STAR+</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_6">高频对比答案</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#agent-vs-workflow">Agent vs Workflow</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#agent-vs-chatbot">Agent vs Chatbot</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#rag-vs-memory">RAG vs Memory</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#function-calling-vs-mcp">Function Calling vs MCP</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#tool-vs-skill">Tool vs Skill</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#react-vs-plan-and-execute">ReAct vs Plan-and-Execute</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#reflection-vs-eval">Reflection vs Eval</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#single-agent-vs-multi-agent">Single-Agent vs Multi-Agent</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#harness-vs-framework">Harness vs Framework</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#offline-eval-vs-online-eval">Offline Eval vs Online Eval</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#guardrail-vs-human-in-the-loop">Guardrail vs Human-in-the-Loop</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#prompt-optimization-vs-system-optimization">Prompt Optimization vs System Optimization</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../05-project-and-resume/">项目与简历表达</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../06-mock-interview/">模拟面试</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../07-multimodal-perception-questions/">多模态与感知高频题</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../08-agent-interview-expanded-from-doc/">附件问题扩写与排序</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">附录</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../14-glossary/">14 术语表</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../99-references/">参考资料</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Agent 从入门到精通手册</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">面试准备</li>
+      <li class="breadcrumb-item active">回答框架</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="_1">面试回答框架<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<p>Agent 面试最怕两个极端：只背概念，或者一上来就堆框架名。好的回答通常是“定义清楚、边界明确、机制具体、风险可控、指标可评估”。</p>
+<h2 id="_2">概念题回答框架<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>适合回答“什么是 Agent”“什么是 MCP”“什么是 RAG 评测”这类题。</p>
+<pre><code class="language-text">1. 一句话定义
+2. 它解决的问题
+3. 核心组成或机制
+4. 和相近概念的区别
+5. 常见失败模式
+6. 工程上如何落地
+7. 用什么指标评估
+</code></pre>
+<p>示例：</p>
+<pre><code class="language-text">Agent 是一个围绕 LLM 构建的可行动系统，它不只是生成文本，而是能在目标、状态、工具和反馈循环中多步完成任务。和普通 chatbot 相比，Agent 更强调工具调用、状态更新和终止条件；和 workflow 相比，Agent 的路径更动态。生产中要关注工具权限、循环失控、上下文污染和 eval/trace。
+</code></pre>
+<h2 id="_3">对比题回答框架<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p>适合回答“Agent vs workflow”“MCP vs function calling”“RAG vs memory”。</p>
+<pre><code class="language-text">1. 先分别定义两个概念
+2. 对比输入、输出、控制流、适用场景、风险
+3. 给一个适合 A 的例子
+4. 给一个适合 B 的例子
+5. 说明工程中常常如何组合使用
+</code></pre>
+<h2 id="_4">系统设计题回答框架<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<p>适合回答智能客服 Agent、代码 Agent、数据分析 Agent。</p>
+<pre><code class="language-text">1. 澄清需求和约束
+2. 定义成功指标和风险动作
+3. 画主链路
+4. 拆模块：router、planner、tools、RAG、memory、policy、eval、trace
+5. 说明关键数据结构和工具 schema
+6. 说明失败恢复和人工介入
+7. 说明性能、成本、扩展性和灰度发布
+8. 总结权衡
+</code></pre>
+<h2 id="_5">失败排查题回答框架<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<p>适合回答“Agent 为什么跑偏”“RAG 为什么幻觉”“工具为什么调用错”。</p>
+<pre><code class="language-text">1. 复现：拿到输入、trace、模型版本、prompt 版本、工具版本
+2. 分层定位：输入、prompt、模型、检索、工具、状态、权限、外部系统
+3. 判断影响范围：偶发、特定用户、特定任务、全局回归
+4. 临时止血：降级、禁用工具、提高审批、回滚版本
+5. 根因修复：schema、prompt、retrieval、policy、eval case
+6. 回归验证：离线 eval、线上小流量、监控指标
+</code></pre>
+<h2 id="star">项目题 STAR+<a class="headerlink" href="#star" title="Permanent link">&para;</a></h2>
+<p>传统 STAR 可以用，但 Agent 项目最好多补一层指标和失败复盘。</p>
+<pre><code class="language-text">S: 场景和业务问题
+T: 目标和约束
+A: 架构、工具、RAG、记忆、eval、trace、安全
+R: 结果指标
++: 失败案例、权衡、下一步优化
+</code></pre>
+<h2 id="_6">高频对比答案<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
+<h3 id="agent-vs-workflow">Agent vs Workflow<a class="headerlink" href="#agent-vs-workflow" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Workflow：流程由代码预先定义，适合稳定、可审计、低风险任务。</li>
+<li>Agent：下一步由模型根据状态和工具反馈动态决定，适合开放、多步、信息不完整任务。</li>
+<li>生产中常组合：外层 workflow 控制阶段和权限，内部某些节点使用 Agent。</li>
+</ul>
+<h3 id="agent-vs-chatbot">Agent vs Chatbot<a class="headerlink" href="#agent-vs-chatbot" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Chatbot 关注对话体验。</li>
+<li>Agent 关注任务完成和行动能力。</li>
+<li>一个客服 chatbot 可以没有工具；客服 Agent 通常要查订单、查政策、申请退款和转人工。</li>
+</ul>
+<h3 id="rag-vs-memory">RAG vs Memory<a class="headerlink" href="#rag-vs-memory" title="Permanent link">&para;</a></h3>
+<ul>
+<li>RAG 面向外部知识检索，通常来自文档、网页、数据库。</li>
+<li>Memory 面向会话和用户历史，包括短期任务状态和长期偏好。</li>
+<li>RAG 需要引用和权限过滤；memory 需要写入策略、隐私和遗忘机制。</li>
+</ul>
+<h3 id="function-calling-vs-mcp">Function Calling vs MCP<a class="headerlink" href="#function-calling-vs-mcp" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Function calling 是模型选择函数和参数的调用模式。</li>
+<li>MCP 是标准化连接外部工具、资源和 prompt 的协议。</li>
+<li>可以把 MCP server 暴露的工具交给模型通过 function calling 使用。</li>
+</ul>
+<h3 id="tool-vs-skill">Tool vs Skill<a class="headerlink" href="#tool-vs-skill" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Tool 是可执行动作，例如查询订单、运行 SQL、搜索网页。</li>
+<li>Skill 是可复用的任务知识包，例如什么时候触发、怎么分步骤、有什么限制。</li>
+<li>Skill 可以指导 Agent 如何使用多个工具完成一类任务。</li>
+</ul>
+<h3 id="react-vs-plan-and-execute">ReAct vs Plan-and-Execute<a class="headerlink" href="#react-vs-plan-and-execute" title="Permanent link">&para;</a></h3>
+<ul>
+<li>ReAct 边推理边行动，适合环境反馈强、不确定性高的任务。</li>
+<li>Plan-and-Execute 先拆计划再执行，适合长任务和需要用户确认的任务。</li>
+<li>长任务里常用先规划，再在执行中局部 ReAct。</li>
+</ul>
+<h3 id="reflection-vs-eval">Reflection vs Eval<a class="headerlink" href="#reflection-vs-eval" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Reflection 是 Agent 自己复盘，可能用于下一步修正。</li>
+<li>Eval 是外部评测体系，用于判断行为是否达标。</li>
+<li>Reflection 不能替代 eval，因为它可能自我合理化。</li>
+</ul>
+<h3 id="single-agent-vs-multi-agent">Single-Agent vs Multi-Agent<a class="headerlink" href="#single-agent-vs-multi-agent" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Single-agent 简单、低成本、容易调试。</li>
+<li>Multi-agent 适合角色分工、并行、互审和权限隔离。</li>
+<li>Multi-agent 的问题是协调成本、冲突、重复工作和 trace 复杂度。</li>
+</ul>
+<h3 id="harness-vs-framework">Harness vs Framework<a class="headerlink" href="#harness-vs-framework" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Framework 提供组件，例如模型、工具、图、状态、回调。</li>
+<li>Harness 是更完整的运行时脚手架，负责 loop、工具执行、上下文、审批、观测和进度管理。</li>
+<li>面试中可以把 harness 理解为“让模型持续、可控地完成任务的发动机”。</li>
+</ul>
+<h3 id="offline-eval-vs-online-eval">Offline Eval vs Online Eval<a class="headerlink" href="#offline-eval-vs-online-eval" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Offline eval 用人工整理的测试集做开发和回归。</li>
+<li>Online eval 监控真实流量中的质量、安全和漂移。</li>
+<li>成熟系统会把线上失败样例回流到离线测试集。</li>
+</ul>
+<h3 id="guardrail-vs-human-in-the-loop">Guardrail vs Human-in-the-Loop<a class="headerlink" href="#guardrail-vs-human-in-the-loop" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Guardrail 是自动规则、模型或策略检查。</li>
+<li>Human-in-the-loop 是把高风险或不确定动作交给人确认。</li>
+<li>高风险写操作通常两者都要有。</li>
+</ul>
+<h3 id="prompt-optimization-vs-system-optimization">Prompt Optimization vs System Optimization<a class="headerlink" href="#prompt-optimization-vs-system-optimization" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Prompt optimization 改指令、格式、例子和工具描述。</li>
+<li>System optimization 改工具 schema、检索、状态、模型路由、缓存、eval 和权限。</li>
+<li>生产问题通常不能只靠改 prompt 解决。</li>
+</ul>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../03-system-design/" class="btn btn-neutral float-left" title="系统设计题"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../05-project-and-resume/" class="btn btn-neutral float-right" title="项目与简历表达">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../03-system-design/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../05-project-and-resume/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

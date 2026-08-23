@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>附件问题扩写与排序 - Agent 从入门到精通手册</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "\u9644\u4ef6\u95ee\u9898\u6269\u5199\u4e0e\u6392\u5e8f";
+        var mkdocs_page_input_path = "interview-prep/08-agent-interview-expanded-from-doc.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> Agent 从入门到精通手册
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">首页</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../00-how-to-use/">使用指南</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">基础篇</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../01-what-is-agent/">01 Agent 是什么</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../02-llm-foundations/">02 LLM 基础</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../03-prompt-context/">03 提示词与上下文工程</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">核心篇</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../04-tools-function-calling/">04 工具调用与 MCP</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../05-rag-memory/">05 RAG 与记忆</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../06-agent-loop-planning/">06 Agent 循环与规划</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">架构篇</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../07-workflows-orchestration/">07 工作流与编排</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../08-multi-agent-protocols/">08 多 Agent 与协议</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">工程篇</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../09-evaluation-observability/">09 评测与可观测性</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../10-safety-security/">10 安全、权限与护栏</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../11-production-engineering/">11 生产化工程</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">精通篇</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../12-framework-selection/">12 框架选型</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../13-capstone-projects/">13 综合项目路线</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">面试准备</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../00-overview/">总览</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../01-40-day-plan/">40 天学习计划</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../02-question-bank-92/">92 道面试题</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../03-system-design/">系统设计题</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../04-answer-frameworks/">回答框架</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../05-project-and-resume/">项目与简历表达</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../06-mock-interview/">模拟面试</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../07-multimodal-perception-questions/">多模态与感知高频题</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">附件问题扩写与排序</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#_1">排序总览</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#1-rag-query-rewrite">1. RAG 召回率低时，如何做 query rewrite 和检索链路优化</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#2-agent">2. Agent 调用工具如何保证可靠性</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#3">3. 长任务如何防止跑偏、绕路和死循环</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#4-agent">4. 生产级 Agent 架构应该怎么分层</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#5-agent">5. Agent 记忆系统如何设计，如何防止记忆污染</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#6-json">6. 大模型如何稳定输出 JSON 或结构化结果</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#7-agent-rag-pdf">7. Agent 的 RAG 遇到 PDF、表格和版式文档怎么处理</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#8">8. 知识库权限隔离怎么做</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#9">9. 多轮对话状态爆炸和上下文溢出怎么办</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#10-agent">10. 如何量化一个 Agent 的性能，如何做轨迹感知评测</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#11">11. 智能体意图识别怎么做，如何提升准确率</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#12-rag">12. RAG 检索到矛盾片段时怎么处理</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#13">13. 增删改写库时如何避免模型把错误直接写入数据库</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#14-agent">14. 模型服务卡死或超时时，Agent 后端怎么兜底</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#15-skill">15. skill 数量变多后，如何保证命中率和边界</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#16-agent">16. Agent 架构如何选型</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#17-mcp-skill">17. MCP 和 Skill 分别适合什么场景</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#18-agent-demo">18. Agent 开发流程如何从 demo 走到上线闭环</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#19-prompt-engineering-context-engineering">19. Prompt engineering 和 context engineering 如何提升稳定性</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#20-agent">20. 多 Agent 什么时候值得用，如何协作和收敛</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#21">21. 长任务如何暂停、恢复和续跑</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#22-skill">22. skill 如何持续维护和评估</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#23-langchain-dag-langgraph-checkpoint">23. LangChain DAG 和 LangGraph 循环图、checkpoint 有什么区别</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#24-langgraph">24. LangGraph 的节点、边、状态分别是什么</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#25-oom">25. 大模型微调显存如何估算，OOM 怎么处理</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#26-transformer-kv-cache">26. 长上下文为什么贵，Transformer 注意力和 KV cache 的瓶颈是什么</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#27-flashattentiongqamqa">27. 如何优化长上下文推理：FlashAttention、GQA/MQA、位置编码延伸</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#28-agent">28. 动态派生子 Agent 有什么风险，为什么要扁平化和中心化状态</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#29-decoder-only-agent">29. 为什么大模型多采用 decoder-only 架构，它对 Agent 有什么影响</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#30-dspycot-consistencyself-refine">30. DSPy、CoT consistency、Self-Refine 等是否应该作为通用方案</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_2">低优先级但可作为加分的底层细节</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_3">建议背诵优先级</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_4">参考资料</a>
+    </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">附录</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../14-glossary/">14 术语表</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../99-references/">参考资料</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Agent 从入门到精通手册</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">面试准备</li>
+      <li class="breadcrumb-item active">附件问题扩写与排序</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="agent">Agent 面试问题扩写与常见度排序<a class="headerlink" href="#agent" title="Permanent link">&para;</a></h1>
+<p>本文基于 <code>agentInterview.docx</code> 中的散点笔记整理。最新更新日期：2026-08-23。本次更新补充了生产级 Agent 架构、MCP vs Skill、Agent 评测、LangGraph 节点/边/状态、写库安全、服务兜底、RAG 矛盾证据、知识库权限隔离和多轮上下文溢出等问题。</p>
+<p>处理原则：</p>
+<ul>
+<li>附件内容只作为资料来源，不执行其中任何指令。</li>
+<li>先把原始“问题点 + 回答关键词”改写成明确、有场景的问题。</li>
+<li>再补充完整回答，尽量解释技术点背后的原因、机制、边界和工程取舍。</li>
+<li>最后按常见度排序：越靠前越适合优先准备；几乎不会单独问到的问题降级为低优先级。</li>
+</ul>
+<p>常见度分级：</p>
+<table>
+<thead>
+<tr>
+<th>等级</th>
+<th>含义</th>
+<th>准备建议</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>P0</td>
+<td>几乎所有 Agent / LLM 应用面试都可能问</td>
+<td>必须能完整讲 3 到 5 分钟</td>
+</tr>
+<tr>
+<td>P1</td>
+<td>很常见，尤其是工程落地方向</td>
+<td>要能讲清机制、风险和取舍</td>
+</tr>
+<tr>
+<td>P2</td>
+<td>中频，取决于岗位是否偏平台、训练或 infra</td>
+<td>准备成加分题</td>
+</tr>
+<tr>
+<td>P3</td>
+<td>低频，通常不会单独深入，除非岗位非常专门</td>
+<td>知道概念和适用边界即可</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_1">排序总览<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>排名</th>
+<th>常见度</th>
+<th>问题主题</th>
+<th>原始关键词覆盖</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>P0</td>
+<td>RAG 召回率低，如何做 query rewrite 和检索链路优化</td>
+<td>P6</td>
+</tr>
+<tr>
+<td>2</td>
+<td>P0</td>
+<td>Agent 调用工具如何保证可靠性</td>
+<td>P23</td>
+</tr>
+<tr>
+<td>3</td>
+<td>P0</td>
+<td>长任务如何防止跑偏、绕路、死循环以及单步失败后如何恢复</td>
+<td>P32, P33</td>
+</tr>
+<tr>
+<td>4</td>
+<td>P0</td>
+<td>生产级 Agent 架构应该怎么分层</td>
+<td>P34</td>
+</tr>
+<tr>
+<td>5</td>
+<td>P0</td>
+<td>Agent 记忆系统如何设计，如何防止记忆污染</td>
+<td>P21, P30, P31</td>
+</tr>
+<tr>
+<td>6</td>
+<td>P0</td>
+<td>大模型如何稳定输出 JSON 或结构化结果</td>
+<td>P14, P15</td>
+</tr>
+<tr>
+<td>7</td>
+<td>P0</td>
+<td>Agent 的 RAG 遇到 PDF、表格和版式文档怎么处理</td>
+<td>P12, P13</td>
+</tr>
+<tr>
+<td>8</td>
+<td>P0</td>
+<td>知识库权限隔离怎么做</td>
+<td>P44</td>
+</tr>
+<tr>
+<td>9</td>
+<td>P0</td>
+<td>多轮对话状态爆炸和上下文溢出怎么办</td>
+<td>P45</td>
+</tr>
+<tr>
+<td>10</td>
+<td>P0</td>
+<td>如何量化一个 Agent 的性能，如何做轨迹感知评测</td>
+<td>P22, P37</td>
+</tr>
+<tr>
+<td>11</td>
+<td>P0</td>
+<td>智能体意图识别怎么做，如何提升准确率</td>
+<td>P24, P26</td>
+</tr>
+<tr>
+<td>12</td>
+<td>P1</td>
+<td>RAG 检索到矛盾片段时怎么处理</td>
+<td>P43</td>
+</tr>
+<tr>
+<td>13</td>
+<td>P1</td>
+<td>增删改写库时如何避免模型把错误直接写入数据库</td>
+<td>P41</td>
+</tr>
+<tr>
+<td>14</td>
+<td>P1</td>
+<td>模型服务卡死或超时时，Agent 后端怎么兜底</td>
+<td>P42</td>
+</tr>
+<tr>
+<td>15</td>
+<td>P1</td>
+<td>skill 数量变多后，如何保证命中率和边界</td>
+<td>P9, P10</td>
+</tr>
+<tr>
+<td>16</td>
+<td>P1</td>
+<td>Agent 架构如何选型：single-agent、ReAct、Plan-Execute、Graph、多 Agent</td>
+<td>P18, P20</td>
+</tr>
+<tr>
+<td>17</td>
+<td>P1</td>
+<td>MCP 和 Skill 分别适合什么场景</td>
+<td>P36</td>
+</tr>
+<tr>
+<td>18</td>
+<td>P1</td>
+<td>Agent 开发流程如何从 demo 走到上线闭环</td>
+<td>P39</td>
+</tr>
+<tr>
+<td>19</td>
+<td>P1</td>
+<td>Prompt engineering 和 context engineering 如何提升稳定性</td>
+<td>P1, P2, P3</td>
+</tr>
+<tr>
+<td>20</td>
+<td>P1</td>
+<td>多 Agent 什么时候值得用，如何协作和收敛</td>
+<td>P19, P25, P29</td>
+</tr>
+<tr>
+<td>21</td>
+<td>P1</td>
+<td>长任务如何暂停、恢复和续跑</td>
+<td>P27, P28</td>
+</tr>
+<tr>
+<td>22</td>
+<td>P1</td>
+<td>skill 如何持续维护和评估</td>
+<td>P16, P17</td>
+</tr>
+<tr>
+<td>23</td>
+<td>P2</td>
+<td>LangChain DAG 和 LangGraph 循环图、checkpoint 有什么区别</td>
+<td>P20</td>
+</tr>
+<tr>
+<td>24</td>
+<td>P2</td>
+<td>LangGraph 的节点、边、状态分别是什么</td>
+<td>P40</td>
+</tr>
+<tr>
+<td>25</td>
+<td>P2</td>
+<td>大模型微调显存如何估算，OOM 怎么处理</td>
+<td>P7, P8</td>
+</tr>
+<tr>
+<td>26</td>
+<td>P2</td>
+<td>长上下文为什么贵，Transformer 注意力和 KV cache 的瓶颈是什么</td>
+<td>P4</td>
+</tr>
+<tr>
+<td>27</td>
+<td>P2</td>
+<td>如何优化长上下文推理：FlashAttention、GQA/MQA、位置编码延伸</td>
+<td>P5</td>
+</tr>
+<tr>
+<td>28</td>
+<td>P2</td>
+<td>动态派生子 Agent 有什么风险，为什么要扁平化和中心化状态</td>
+<td>P19</td>
+</tr>
+<tr>
+<td>29</td>
+<td>P3</td>
+<td>为什么大模型多采用 decoder-only 架构，它对 Agent 有什么影响</td>
+<td>P38</td>
+</tr>
+<tr>
+<td>30</td>
+<td>P3</td>
+<td>DSPy、CoT consistency、Self-Refine 等是否应该作为通用方案</td>
+<td>P2, P3</td>
+</tr>
+</tbody>
+</table>
+<h2 id="1-rag-query-rewrite">1. RAG 召回率低时，如何做 query rewrite 和检索链路优化<a class="headerlink" href="#1-rag-query-rewrite" title="Permanent link">&para;</a></h2>
+<p><strong>常见度：P0</strong></p>
+<p><strong>具体面试问题：</strong><br />
+你负责一个企业知识库 Agent。用户经常用很口语化的问题提问，例如“这个能不能报销”“上次那个项目的验收标准是什么”。系统直接拿原始问题做向量检索时，经常找不到正确文档，或者召回一堆相似但不相关的内容。你会如何分析 RAG 召回率低的原因，并设计 query rewrite、混合检索和 rerank 方案？</p>
+<p><strong>完整回答：</strong></p>
+<p>RAG 召回率低，本质上是“用户表达”和“知识库表达”之间没有对齐。用户说的是自然语言里的真实意图，文档里写的是制度、术语、项目名、字段名或流程标题。query rewrite 的作用不是美化问题，而是把用户的模糊表达改写成更适合检索系统理解的查询。</p>
+<p>第一步要先判断召回低的原因。常见原因有三类。第一类是语义鸿沟，用户说“能不能报销”，文档里叫“差旅费用 reimbursement policy”；第二类是意图模糊，用户说“上次那个项目”但没有补项目名；第三类是上下文缺失，多轮对话里用户省略了前文已经出现的实体、时间和约束。</p>
+<p>query rewrite 可以分层做。简单问题不需要复杂改写，直接检索即可；复杂问题才进入高阶改写。常见策略包括：</p>
+<ul>
+<li>语义增强：把口语表达补成更标准的业务术语，例如“报销”补成“费用报销、差旅政策、审批流程、发票要求”。</li>
+<li>上下文补全：把历史对话中的项目名、部门、时间范围补回查询，避免单轮 query 过短。</li>
+<li>任务分解：如果用户问“这个合同有没有风险，能不能签”，要拆成合同条款检索、风险条款检索、签署流程检索。</li>
+<li>多查询检索：生成几个不同角度的 query，同时查标题、正文、关键词和实体字段。</li>
+</ul>
+<p>但是 query rewrite 也有风险。第一个风险是查询漂移，也就是改写后的 query 看起来更完整，但偏离了用户真实问题。解决办法是保留原始 query，与改写 query 一起做混合检索；同时用 embedding 相似度、实体一致性和关键词覆盖做过滤。第二个风险是延迟增加。可以用小模型或规则模型做专项改写，并行执行原始 query 检索和改写 query 检索。第三个风险是成本变高。可以先做意图路由，只对模糊、多轮、跨文档、低置信度问题开启高阶改写。</p>
+<p>完整链路通常是：用户问题进入意图识别，判断是否需要改写；生成一个或多个检索 query；同时走 BM25 和向量检索；用 metadata 做权限、时间、文档类型过滤；候选片段进入 reranker；最后由生成模型只基于高置信证据回答。如果检索证据不足，要拒答或请求用户补充信息，而不是让模型猜。</p>
+<p>面试里要强调，query rewrite 的目标不是“让问题更长”，而是提高检索召回、减少歧义、保留用户原意，并且要有评测闭环。可以用 recall@k、answer correctness、citation precision、no-answer accuracy、平均延迟和单次查询成本来衡量。</p>
+<h2 id="2-agent">2. Agent 调用工具如何保证可靠性<a class="headerlink" href="#2-agent" title="Permanent link">&para;</a></h2>
+<p><strong>常见度：P0</strong></p>
+<p><strong>具体面试问题：</strong><br />
+你设计了一个 Agent，它可以调用订单查询、退款申请、数据库查询、文件写入和邮件发送等工具。上线后发现模型有时会选错工具、参数填错、重复调用，甚至在信息不足时调用写操作。你会如何从工具定义、推理策略、执行护栏和失败恢复四层保证工具调用可靠？</p>
+<p><strong>完整回答：</strong></p>
+<p>Agent 调用工具的可靠性不能只靠 prompt。模型负责“选择工具和生成参数”，但真正执行工具的是系统代码，所以可靠性要分层设计。</p>
+<p>第一层是结构化定义层。工具名称要清晰，描述要具体，参数 schema 要严格。例如 <code>issue_refund</code> 不能只写“处理退款”，而要写明“仅在订单存在、用户身份已验证、退款金额已确认、用户二次确认后调用”。参数要定义类型、枚举、必填字段、范围和示例。工具返回也要结构化，明确成功、失败、可重试、需要用户补信息、权限不足等状态。</p>
+<p>第二层是推理策略层。模型需要知道什么时候该调用工具，什么时候该先问用户。可以用 few-shot 展示正确轨迹，例如“缺订单号时先询问，不调用退款工具”。对于复杂任务，可以让 Agent 先生成计划，再逐步执行，避免一上来就调用高风险工具。这里的 CoT 不一定要暴露给用户，重点是让系统内部有可检查的行动理由和状态。</p>
+<p>第三层是执行护栏层。系统在工具真正执行前要做校验。读工具和写工具要分开，写工具需要更严格权限。高风险动作要有 dry-run、审批、幂等键和审计日志。dry-run 的意思是先模拟执行，返回将要影响的对象和结果，让用户或策略引擎确认。幂等键可以避免网络重试导致重复退款、重复发邮件。</p>
+<p>第四层是失败恢复层。工具失败要先分类：是参数错误、权限不足、外部系统超时、数据不存在，还是业务规则不允许。参数错误可以让模型修正一次；权限不足不能反复尝试；超时可以重试或降级；数据不存在要请求用户补充信息；写操作失败要清楚告诉用户当前状态，避免误以为已经完成。</p>
+<p>最后要做轨迹评测。只看最终回复不够，因为 Agent 可能最终答对了，但中间调用了危险工具。评测要记录工具选择是否正确、参数是否完整、是否遵守审批、是否重复调用、失败后是否恢复、单任务成本和延迟。</p>
+<h2 id="3">3. 长任务如何防止跑偏、绕路和死循环<a class="headerlink" href="#3" title="Permanent link">&para;</a></h2>
+<p><strong>常见度：P0</strong></p>
+<p><strong>具体面试问题：</strong><br />
+一个 Agent 要完成长任务，例如“读完整个代码仓库，修复 issue，运行测试，提交 PR”或者“研究一个行业并生成报告”。它经常出现目标遗忘、任务拆得过碎、反复搜索、工具失败后继续盲目执行、一直循环不结束。你如何设计长任务控制机制？</p>
+<p><strong>完整回答：</strong></p>
+<p>长任务失控通常不是单个 prompt 问题，而是目标、状态、计划、停止条件和反馈机制没有设计好。</p>
+<p>首先要有显式目标和验收标准。Agent 不应该只拿到“帮我修 bug”这种模糊目标，而要转换成可检查的目标，例如“定位失败测试原因，修改最小必要代码，相关测试通过，不修改无关文件，生成变更摘要”。目标越可验证，越容易判断什么时候该停止。</p>
+<p>其次要有计划，但计划不能变成无限展开。Plan-and-Execute 适合长任务：先拆成少量阶段，例如理解任务、收集证据、执行修改、验证结果、总结输出。每个阶段有输入、输出和完成条件。不要让模型自由地把任务拆成几十个微步骤，否则很容易绕路。</p>
+<p>第三是状态管理。系统要维护结构化状态，而不是只靠聊天历史。状态里应该包括当前阶段、已完成步骤、关键证据、工具结果、失败次数、剩余预算、下一步指针和待用户确认项。这样模型每次决策时看到的是压缩后的任务事实，而不是长长的对话噪声。</p>
+<p>第四是主动纠偏和熔断。可以设置最大步数、最大工具调用次数、最大无进展轮数、重复工具参数检测、连续失败上限和成本预算。如果 Agent 连续几步没有产生新证据，就应该触发重新规划或请求人工介入。熔断不是失败，而是防止系统把错误越滚越大。</p>
+<p>第五是 trace 和日志。长任务必须能回放：模型看到了什么、调用了什么工具、工具返回了什么、为什么进入下一步。如果没有 trace，就很难区分是模型误判、工具 schema 不清、检索错误、外部系统失败还是状态污染。</p>
+<p>如果多步任务中某一步失败，应该先判断失败类型。显性失败是工具直接返回错误，例如工具超时、参数格式出错、权限不足、测试失败、外部 API 返回 5xx。显性失败通常可以按错误码恢复：参数错就修参数，超时就有限重试，权限不足就停止并请求授权。</p>
+<p>更麻烦的是隐性失败。隐性失败是工具表面成功，但 Agent 的推理方向错了，或者调用了不合适的工具。例如 RAG 检索到了不相关文档但模型继续写答案；代码 Agent 修改了文件但没有真正修复测试；浏览器 Agent 点到了相似按钮但状态没有变化。隐性失败必须靠环境验证器发现，不能只看工具返回 <code>success</code>。</p>
+<p>恢复策略包括重试、换工具、回滚上一步、重新规划、缩小任务范围或请求用户确认。高风险写操作要有事务、幂等键和回滚记录；低风险读操作可以自动重试。面试里可以总结为：显性失败靠错误处理，隐性失败靠状态验证，连续失败靠熔断和人工介入。</p>
+<h2 id="4-agent">4. 生产级 Agent 架构应该怎么分层<a class="headerlink" href="#4-agent" title="Permanent link">&para;</a></h2>
+<p><strong>常见度：P0</strong></p>
+<p><strong>具体面试问题：</strong><br />
+面试官让你设计一个可以上线的企业 Agent 平台，而不是一个 demo。用户从 Web 或 API 入口发起任务，Agent 要调用模型、工具、知识库、记忆和审批系统，并且要支持灰度、监控和失败恢复。你会如何拆分生产级 Agent 架构？</p>
+<p><strong>完整回答：</strong></p>
+<p>生产级 Agent 架构可以按责任分成六层。</p>
+<p>第一层是入口网关层。它负责认证、租户识别、限流、请求规范化、权限上下文注入和审计 ID 生成。Agent 不能直接拿匿名请求去访问所有工具，必须先知道“谁在请求、属于哪个租户、有什么权限、这次任务的风险等级是什么”。</p>
+<p>第二层是编排层。编排层负责决定任务走哪个流程：是普通 RAG、工具调用、长任务 graph、人工审批，还是转人工。它维护任务状态、执行计划、下一步指针、重试策略和终止条件。模型不应该完全自由决定系统流程，开放决策要被放进可控的编排框架里。</p>
+<p>第三层是模型层。模型层不只是调用一个大模型，而是 model gateway：根据任务难度、风险、成本和延迟选择模型。简单分类可以用小模型，复杂推理用强模型，结构化输出可以用支持 schema 的模型，高风险动作前可以加 verifier。</p>
+<p>第四层是工具层。工具层暴露搜索、数据库、文件、浏览器、业务 API 等能力，但每个工具都要有 schema、权限、参数校验、超时、重试、幂等和审计。读工具和写工具要分开，写操作必须经过策略和审批。</p>
+<p>第五层是记忆层。它包括 session state、短期任务状态、长期用户记忆、项目记忆、引用记忆和 RAG 索引。记忆层要支持权限隔离、来源追踪、过期策略和污染回滚。</p>
+<p>第六层是汇聚层。汇聚层负责把工具结果、检索证据、审批状态和模型输出汇总成最终答案或 artifact。它还要做引用校验、格式校验、敏感信息过滤和用户可读解释。</p>
+<p>横向能力包括 eval、trace、监控、成本预算、灰度发布和回滚。没有这些横向能力，Agent demo 即使能跑，也很难成为生产系统。</p>
+<h2 id="5-agent">5. Agent 记忆系统如何设计，如何防止记忆污染<a class="headerlink" href="#5-agent" title="Permanent link">&para;</a></h2>
+<p><strong>常见度：P0</strong></p>
+<p><strong>具体面试问题：</strong><br />
+你要为一个长期使用的 Agent 设计记忆系统。它需要记住用户偏好、项目事实、历史反馈和引用来源，但不能把临时任务状态、错误推断、敏感信息或被攻击内容永久写入。你会如何分类记忆，并防止记忆污染？</p>
+<p><strong>完整回答：</strong></p>
+<p>Agent 记忆不能简单理解为“把历史对话存进向量库”。记忆首先要分类，因为不同类型的信息有不同的写入条件、检索方式、过期策略和隐私要求。</p>
+<p>短期记忆服务当前任务，通常是 session state。它记录当前目标、任务阶段、已确认事实、工具结果摘要和下一步指针。短期记忆随着任务结束可以归档或删除。</p>
+<p>长期记忆服务跨会话使用，可以再细分。用户记忆包括偏好、称呼、常用格式和授权范围；项目记忆包括项目背景、技术栈、目录结构和长期约束；反馈记忆包括用户对结果的评价、常见修改意见；引用记忆包括某个结论来自哪份文档、哪个链接、哪个代码位置。</p>
+<p>长期记忆的写入必须谨慎。不能把模型自己的推断直接写成事实。一个事实最好有来源、时间、置信度和适用范围。比如“用户喜欢简洁回答”可以来自多次反馈；但“这个项目使用 PostgreSQL”必须来自代码或配置证据，而不是模型猜测。</p>
+<p>记忆污染来源主要有三类。第一是自我幻觉，模型把自己生成的错误结论写入记忆。第二是上下文漂移，本来只适用于某个任务的信息被误用到全局。第三是恶意注入，用户上传的文档或网页内容诱导 Agent 写入错误规则。</p>
+<p>防护方法也要分层。首先是索引内容分离：用户资料、项目事实、工具结果、外部文档、模型总结要放在不同 namespace，不能混成一个向量库。其次是写入审核：长期记忆写入要经过规则或模型 judge，必要时让用户确认。第三是容量限制和价值判断：不是每句话都值得存，只存稳定、可复用、有来源的信息。第四是快照隔离和回滚：如果发现某次写入污染了记忆，能定位并撤销。第五是多 Agent 交叉验证：高价值记忆可以由一个 Agent 提议，另一个 verifier 根据来源检查。</p>
+<p>对于代码 Agent，尤其要注意哪些不该存。临时代码路径、一次性调试细节、git 历史片段、配置里的密钥、临时任务状态都不应该进入长期记忆。项目事实可以存，但要带来源和版本，因为代码仓库会变化。</p>
+<h2 id="6-json">6. 大模型如何稳定输出 JSON 或结构化结果<a class="headerlink" href="#6-json" title="Permanent link">&para;</a></h2>
+<p><strong>常见度：P0</strong></p>
+<p><strong>具体面试问题：</strong><br />
+你的 Agent 需要把模型输出解析成 JSON，例如工具参数、任务计划、评分结果或数据库查询条件。但线上经常出现字段缺失、类型错误、多输出一段解释、JSON 不合法、枚举值不在范围内。你如何让大模型稳定输出结构化结果？</p>
+<p><strong>完整回答：</strong></p>
+<p>结构化输出的核心目标是让模型输出可以被程序可靠消费。面试时要强调：稳定 JSON 不是一个 prompt 技巧，而是一套“模型约束 + 生成控制 + 工程校验 + 失败恢复”的组合。</p>
+<p>第一步是 schema 设计。JSON schema 要定义字段名、类型、必填项、枚举范围、嵌套结构和字段含义。字段越模糊，模型越容易自由发挥。例如 <code>action</code> 应该限制为 <code>ask_user</code>、<code>call_tool</code>、<code>finish</code>，而不是让模型随便写自然语言。</p>
+<p>第二步是提示词规约。prompt 里要明确“只输出 JSON，不输出解释”，并给出 few-shot 示例。few-shot 的价值不是让模型背答案，而是展示边界：缺信息时如何填 <code>needs_clarification</code>，工具失败时如何填 <code>retryable</code>。要注意 recency effect，也就是模型更容易模仿离它最近的示例，所以最后一个示例最好覆盖最重要的格式。</p>
+<p>第三步是使用模型或 API 提供的结构化输出能力。如果闭源 API 支持严格 schema、tool calling 或 response format，就优先用这些能力；如果是开源模型私有部署，可以用 constrained decoding、grammar decoding 或 logits processor 限制生成空间。</p>
+<p>第四步是工程校验。模型输出后必须经过 JSON parse 和 schema validation。校验失败不能直接报错给用户，而要进入修复流程。修复流程可以把错误信息反馈给模型，让它只修 JSON；也可以用确定性代码修复轻微问题，例如去掉 markdown fence。但严重字段缺失、业务规则不满足时，应该重新生成或请求用户补充信息。</p>
+<p>第五步是业务级校验。JSON 语法正确不代表业务正确。例如退款金额是数字，但不能超过订单金额；日期格式正确，但不能早于订单创建时间。这类约束必须由代码和业务规则检查。</p>
+<p>如果同一类结构化任务非常高频且稳定，可以考虑 SFT 或小模型专项训练，但这通常是后期优化。早期最重要的是 schema、严格校验和失败恢复。</p>
+<h2 id="7-agent-rag-pdf">7. Agent 的 RAG 遇到 PDF、表格和版式文档怎么处理<a class="headerlink" href="#7-agent-rag-pdf" title="Permanent link">&para;</a></h2>
+<p><strong>常见度：P0</strong></p>
+<p><strong>具体面试问题：</strong><br />
+你要做一个企业知识库 Agent，文档主要是 PDF、扫描件、合同、产品手册和带表格的制度文件。普通文本抽取会丢页码、标题层级、表格结构和图片说明，导致回答无法溯源。你会如何设计 PDF RAG 链路？</p>
+<p><strong>完整回答：</strong></p>
+<p>PDF RAG 的难点在于 PDF 不是天然的纯文本格式。它包含页、段落、标题、页眉页脚、表格、图片、脚注、扫描 OCR 和空间布局。如果只把 PDF 全部转成一长串文本，很容易丢失结构，检索到的片段也很难引用。</p>
+<p>第一步是多模态解析。对于文本型 PDF，可以提取文字、坐标、字号、标题层级和页码；对于扫描件，需要 OCR；对于表格，需要做表格结构识别，保留行列、表头、合并单元格和单位；对于图片和图表，可以生成 caption 或保留截图 crop。</p>
+<p>第二步是文档结构还原。标题、章节、页眉页脚、表格和列表要尽量保留。页眉页脚通常是重复噪声，可以单独标记或过滤；标题层级要进入 metadata；表格不能简单按行打散，否则用户问“某个条件对应的金额”时会丢掉列关系。</p>
+<p>第三步是切片和索引。切片不要只按固定 token 长度。正文可以按标题层级和语义段落切，表格可以按整表、行组或关键字段切，图片可以按页面区域切。每个 chunk 都要带 metadata：文档名、页码、章节、表格 ID、坐标、版本、权限和更新时间。</p>
+<p>第四步是 Agent 工具链按需加载。Agent 不应该一次性把整份 PDF 塞进上下文。它可以先检索相关页和段落，再在需要时调用工具加载页面截图、表格原始结构或附近上下文。这样既减少 token，也能降低幻觉。</p>
+<p>第五步是强制溯源。回答中关键结论必须引用页码、章节或表格位置。前端最好能点开引用，展示原文片段或页面 crop。所谓“基于证据的闭口逻辑”，意思是没有证据就不要编造；如果证据不足，要说明“文档中未找到明确依据”。</p>
+<p>评测上要覆盖正文问答、跨页表格、扫描 OCR、找不到答案、权限不足、过期版本和引用错位。指标包括检索召回、引用准确率、答案正确率、拒答正确率和页面定位准确率。</p>
+<h2 id="8">8. 知识库权限隔离怎么做<a class="headerlink" href="#8" title="Permanent link">&para;</a></h2>
+<p><strong>常见度：P0</strong></p>
+<p><strong>具体面试问题：</strong><br />
+你做企业知识库 Agent，不同员工、部门和项目有不同文档权限。如何保证 Agent 不会通过 RAG、引用、总结或多轮记忆泄露用户无权访问的内容？</p>
+<p><strong>完整回答：</strong></p>
+<p>权限隔离必须放在检索和生成之前，不能只靠最终回答过滤。因为一旦无权内容进入模型上下文，就已经产生泄露风险，即使最终没有直接输出，也可能影响答案。</p>
+<p>第一步是文档摄取时保存 ACL。每个文档、页面、chunk 都要有权限 metadata，例如租户、部门、项目、角色、用户组、保密等级。权限粒度越粗，越容易误放；粒度太细，系统复杂度和查询成本会升高，需要按业务风险取舍。</p>
+<p>第二步是查询时先做身份解析和权限过滤。用户请求进入系统后，网关要解析用户身份、租户、角色和项目上下文。检索阶段只在用户可访问的文档集合里召回，不能先全库召回再过滤。</p>
+<p>第三步是引用和上下文也要带权限。答案中的引用必须来自用户有权限的 chunk；长期记忆里如果保存了项目事实，也要带权限标签，不能把 A 项目的事实在 B 项目用户面前检索出来。</p>
+<p>第四步是工具层权限一致。RAG 只是一个入口，Agent 还可能调用文件、数据库、搜索、邮件工具。所有工具都要使用同一套权限上下文，不能 RAG 有权限隔离，文件工具却能任意读。</p>
+<p>第五步是审计和测试。要记录用户查询了什么、检索到了哪些文档 ID、哪些被权限过滤、最终引用了什么。测试要覆盖跨租户、跨部门、历史对话、缓存、摘要记忆和 prompt injection 场景。</p>
+<p>面试里可以强调：权限隔离的核心是“检索前过滤、上下文不进模型、引用可审计、记忆带 ACL”。</p>
+<h2 id="9">9. 多轮对话状态爆炸和上下文溢出怎么办<a class="headerlink" href="#9" title="Permanent link">&para;</a></h2>
+<p><strong>常见度：P0</strong></p>
+<p><strong>具体面试问题：</strong><br />
+一个 Agent 和用户聊了很多轮，还调用了多个工具。上下文越来越长，模型开始遗漏早期约束、重复询问、引用过期信息，甚至超过上下文窗口。你如何设计多轮状态管理？</p>
+<p><strong>完整回答：</strong></p>
+<p>多轮对话不能靠完整聊天历史无限增长。正确做法是把“对话记录”和“任务状态”分开。</p>
+<p>对话记录是原始日志，用于审计和回放，不一定每次都塞给模型。任务状态是结构化摘要，记录当前目标、已确认事实、未解决问题、工具结果摘要、用户偏好、风险动作、下一步指针和版本信息。模型每轮主要读取任务状态，而不是全部历史。</p>
+<p>上下文管理可以分层。最近几轮原文保留，用于保持对话自然；稳定事实进入 session state；可复用事实进入长期记忆；外部知识通过 RAG 按需检索；过长工具结果只存摘要和引用 ID，必要时再按需加载全文。</p>
+<p>还要做过期和冲突处理。用户可能中途改变目标，旧状态就不能继续生效。每个状态字段最好带来源、更新时间和适用范围。如果用户说“不是这个项目，是另一个项目”，系统要更新项目上下文，并清理依赖旧项目的检索结果。</p>
+<p>避免上下文溢出的技术包括：滑动窗口、摘要压缩、结构化 state、检索式记忆、工具结果外置存储、按需加载和上下文预算管理。上下文预算管理的意思是给系统指令、用户目标、状态、证据、工具结果分别分配 token 预算，不能让某一类内容挤占全部窗口。</p>
+<h2 id="10-agent">10. 如何量化一个 Agent 的性能，如何做轨迹感知评测<a class="headerlink" href="#10-agent" title="Permanent link">&para;</a></h2>
+<p><strong>常见度：P0</strong></p>
+<p><strong>具体面试问题：</strong><br />
+你做了一个 Agent demo，看起来能完成任务。面试官问：“你怎么证明它真的变好了？怎么量化 Agent 性能？如果最终答案正确，但中间工具调用路径很危险或很浪费，你怎么评估？”你会如何设计指标体系？</p>
+<p><strong>完整回答：</strong></p>
+<p>Agent 评估要分三层：结果、过程和系统。只看最终答案会漏掉很多问题，因为 Agent 可能最终答对，但中间调用了危险工具、浪费很多成本，或者依赖错误证据。</p>
+<p>结果维度关注任务是否完成。比如任务成功率、最终答案正确率、环境终态匹配度。环境终态匹配度适合工具型 Agent，例如代码 Agent 的测试是否通过、客服 Agent 的订单状态是否正确、浏览器 Agent 是否真的提交了表单。</p>
+<p>过程维度关注执行轨迹。包括工具调用准确率、参数正确率、无效调用次数、自我纠错率、重复步骤比例、是否遵守审批流程。所谓轨迹感知评测，就是不只看最后一句话，而是检查 Agent 在每一步是否做了正确动作。例如客服 Agent 必须先验证身份再查订单，退款前必须 dry-run 和用户确认；代码 Agent 必须先定位相关文件，再修改，再运行测试。</p>
+<p>系统维度关注成本和稳定性。包括 token 消耗、平均交互轮数、平均工具调用数、P50/P95 延迟、失败率、超时率、人工介入率和单任务成本。生产系统还要看限流、降级和回滚指标。</p>
+<p>判断方法可以结合四类 evaluator。第一是代码或规则 evaluator，适合格式、工具参数、安全规则、数据库状态。第二是环境状态机，适合多步任务，例如浏览器页面状态、订单状态、文件 diff。第三是 LLM-as-judge，适合开放文本质量，但要有明确 rubric，并用人工样本校准。第四是探针测试，也就是专门构造一些容易出错的 case，例如缺少订单号、文档互相矛盾、工具超时、恶意 prompt injection，用来测试 Agent 是否会犯关键错误。</p>
+<p>为了降低评测成本，可以做低成本裁判分层。简单格式和状态用代码判；中等复杂度用小模型或规则判；只有开放文本质量、复杂事实核查才用大模型 judge。这样既控制成本，也减少 judge 本身不稳定带来的噪声。</p>
+<p>好的评估集要覆盖正常任务、边界任务、信息缺失、工具失败、攻击样例和高风险动作。每次改 prompt、模型、工具 schema 或检索参数，都要跑回归测试。</p>
+<h2 id="11">11. 智能体意图识别怎么做，如何提升准确率<a class="headerlink" href="#11" title="Permanent link">&para;</a></h2>
+<p><strong>常见度：P0</strong></p>
+<p><strong>具体面试问题：</strong><br />
+你要做一个客服或办公 Agent，用户输入可能是“查订单”“帮我总结这个文件”“这个能报销吗”“把结果发给同事”。系统需要判断意图并路由到不同工具或子流程。你如何设计意图识别系统，并提升准确率？</p>
+<p><strong>完整回答：</strong></p>
+<p>意图识别不是简单让大模型分类。生产系统里更常见的是分层路由，因为不同意图的频率、风险和模糊程度不同。</p>
+<p>第一层可以用规则引擎处理高频、确定、低成本的指令。例如用户明确说“查询订单 12345”，规则可以直接识别为订单查询。规则的优点是快、便宜、稳定；缺点是不擅长处理模糊表达和复杂语义。</p>
+<p>第二层可以用小模型或微调分类模型处理常见但表达多样的意图。小模型适合高吞吐场景，比如客服意图分类、工单分类、邮件分类。它比大模型便宜，也更容易控制输出标签。</p>
+<p>第三层才使用大模型语义理解。当规则和小模型置信度低、用户表达模糊或涉及多意图任务时，用大模型分析上下文。大模型可以处理“我上周买的那个东西坏了，能不能换”这种需要补全实体和意图的问题。</p>
+<p>多轮对话里要支持动态纠错。第一次可能识别为售后咨询，但用户补充订单号后应切到订单售后流程；用户否认系统理解时，应更新 session state，而不是继续沿错误路线执行。</p>
+<p>提升准确率要从数据和系统两边做。数据上要收集真实用户表达，按意图、子意图、缺失字段、风险等级标注。系统上要引入置信度阈值、二级确认和 fallback。高风险意图不能只靠分类结果直接执行，例如“退款”“删除”“发送邮件”都需要确认。</p>
+<p>指标包括 intent accuracy、top-k accuracy、clarification rate、wrong-route rate、handoff success rate 和高风险误触发率。</p>
+<h2 id="12-rag">12. RAG 检索到矛盾片段时怎么处理<a class="headerlink" href="#12-rag" title="Permanent link">&para;</a></h2>
+<p><strong>常见度：P1</strong></p>
+<p><strong>具体面试问题：</strong><br />
+企业知识库里经常有旧制度和新制度、不同部门文档、草稿和正式版。RAG 检索时可能同时找到互相矛盾的片段。Agent 应该直接综合回答，还是提示冲突？你会怎么设计？</p>
+<p><strong>完整回答：</strong></p>
+<p>RAG 检索到矛盾片段时，最危险的做法是让模型自己“平均一下”并给出看似确定的答案。正确做法是先识别冲突，再按证据优先级和业务规则处理。</p>
+<p>首先，文档摄取阶段就要保留 metadata：文档版本、发布时间、更新时间、发布部门、状态是草稿还是正式、适用范围、权限和来源可靠性。没有 metadata，冲突处理会非常困难。</p>
+<p>其次，检索后要做冲突检测。可以让模型或规则比较候选片段是否对同一实体、同一条件、同一时间范围给出了不同结论。例如一个片段说“报销上限 500”，另一个说“报销上限 800”，就必须识别为冲突。</p>
+<p>处理冲突时要有优先级。常见规则是：正式版高于草稿，新版本高于旧版本，总部制度高于部门草案，用户所在地区/部门适用范围优先，权限内文档优先。如果规则能决策，就说明依据并引用高优先级证据。</p>
+<p>如果规则不能决策，Agent 应该显式告诉用户存在冲突，并列出冲突来源，而不是给一个强行确定的答案。高风险场景要转人工或建议用户咨询制度 owner。</p>
+<p>评测上要专门构造冲突 case，看系统是否能发现冲突、引用双方证据、按规则处理或拒绝确定回答。</p>
+<h2 id="13">13. 增删改写库时如何避免模型把错误直接写入数据库<a class="headerlink" href="#13" title="Permanent link">&para;</a></h2>
+<p><strong>常见度：P1</strong></p>
+<p><strong>具体面试问题：</strong><br />
+Agent 可以帮用户修改订单、更新客户资料、写数据库或发起退款。你如何避免模型因为幻觉、误解或 prompt injection 把错误直接写进生产库？</p>
+<p><strong>完整回答：</strong></p>
+<p>核心原则是：模型不能直接写库，模型只能提出结构化意图和参数，真正写入必须由确定性系统执行并校验。</p>
+<p>第一步是把写操作封装成受控工具，而不是让模型生成 SQL 或直接调用数据库。工具 schema 要明确可写字段、字段类型、业务约束和风险等级。例如更新地址工具只能改地址字段，不能顺手改订单金额。</p>
+<p>第二步是模型只输出结构化参数。比如 <code>{"order_id": "...", "new_address": "...", "reason": "...", "confidence": 0.92}</code>。系统对这些参数做 schema 校验和业务校验：订单是否存在、用户是否有权限、订单状态是否允许修改、地址是否完整。</p>
+<p>第三步是 dry-run。真正写入前，工具先返回“将要修改什么、当前值是什么、新值是什么、影响范围是什么”。用户或审批系统确认后才执行。</p>
+<p>第四步是高风险动作人工审批。删除、退款、付款、发送外部消息、修改权限、批量更新都应该 human-in-the-loop。低风险动作可以自动执行，但也要审计。</p>
+<p>第五步是事务、幂等和回滚。写操作要有 transaction，失败不能写一半；幂等键防止重复提交；回滚记录支持撤销或补偿。</p>
+<p>面试里可以说，Agent 写库安全不是“让模型更聪明”，而是把模型降级为建议者，把数据库写入放在权限、规则、审批和审计控制之下。</p>
+<h2 id="14-agent">14. 模型服务卡死或超时时，Agent 后端怎么兜底<a class="headerlink" href="#14-agent" title="Permanent link">&para;</a></h2>
+<p><strong>常见度：P1</strong></p>
+<p><strong>具体面试问题：</strong><br />
+线上 Agent 调模型时，模型服务偶尔卡死、超时、返回不完整结果，或者依赖的外部 API 慢。用户不能一直等。你会如何在 Agent 后端设计兜底机制？</p>
+<p><strong>完整回答：</strong></p>
+<p>首先要把“模型调用”当作不可靠外部依赖，而不是本地函数。每次调用都要有超时、重试、熔断和 fallback。</p>
+<p>超时要分阶段设置。连接超时、首 token 超时、总生成超时可以不同。流式输出场景下，如果首 token 很久不来，用户体验会很差；如果已经开始输出但中途停住，要能终止并给出可恢复状态。</p>
+<p>重试不能无脑做。幂等的读任务可以有限重试；高成本长任务要先判断是否值得重试；写操作不能因为模型超时而重复执行工具。模型生成失败时，可以换模型、降低上下文长度、关闭非必要工具、请求用户稍后继续。</p>
+<p>熔断用于保护系统。如果某个模型服务错误率持续升高，应该临时切换到备用模型或降级模式，而不是让所有请求继续打过去。降级模式可以是只做检索不做复杂 Agent、只返回已有证据摘要、转人工、排队异步处理。</p>
+<p>长任务要支持恢复。模型卡死时，系统应保留当前 checkpoint：任务目标、已完成步骤、工具结果、下一步状态。用户刷新页面后可以继续，而不是重头开始。</p>
+<p>监控指标包括模型超时率、首 token 延迟、总延迟、重试次数、fallback 触发率、熔断次数和用户中断率。</p>
+<h2 id="15-skill">15. skill 数量变多后，如何保证命中率和边界<a class="headerlink" href="#15-skill" title="Permanent link">&para;</a></h2>
+<p><strong>常见度：P1</strong></p>
+<p><strong>具体面试问题：</strong><br />
+你的 Agent 平台有几十个甚至上百个 skill，例如写代码、查文档、操作浏览器、生成报告、跑测试、发邮件。模型经常选错 skill，或者在一个 skill 里做另一个 skill 的事。你如何设计 skill router 和 skill 管理机制？</p>
+<p><strong>完整回答：</strong></p>
+<p>skill 多了以后，问题很像 RAG：用户请求是 query，skill 描述是文档，router 要把请求召回到正确 skill。区别是召回错 skill 会导致错误行动，所以边界比普通检索更重要。</p>
+<p>不要把所有 skill 的完整 prompt 都塞给模型。这样会造成上下文过载，模型也难以比较边界。更好的方式是建立 skill tree：先按大类分层，例如代码、文档、浏览器、数据分析、沟通；再在类目下选择具体 skill。</p>
+<p>每个 skill 描述要聚焦触发场景，而不是堆内部 prompt。描述里要写清楚：适合什么任务、需要什么输入、会产出什么、不能做什么、风险动作是什么。负面描述很重要，例如“这个 skill 不用于发送外部邮件”“这个 skill 不负责修改生产数据库”。</p>
+<p>router 可以分两段。第一段召回候选 skill，可以用关键词、embedding 或规则；第二段 rerank，让模型或分类器比较候选 skill 的适配度。高风险 skill 需要更高阈值和二次确认。</p>
+<p>还要监控触发边界。看 skill 的命中率、误触发率、漏召回率、fallback 率、用户纠正率和执行成功率。skill 不是写完就不管，它需要持续维护：新增 skill 时检查是否和旧 skill 重叠；修改 skill 时跑回归测试；长期不用或误触发高的 skill 要降权、合并或下线。</p>
+<h2 id="16-agent">16. Agent 架构如何选型<a class="headerlink" href="#16-agent" title="Permanent link">&para;</a></h2>
+<p><strong>常见度：P1</strong></p>
+<p><strong>具体面试问题：</strong><br />
+面试官让你设计一个 Agent 系统，并追问：“你为什么不用单 Agent？为什么不用固定 workflow？什么时候用 ReAct、Plan-and-Execute、Graph 或 Multi-Agent？”你如何回答架构选型？</p>
+<p><strong>完整回答：</strong></p>
+<p>Agent 架构选型要从任务不确定性、风险、可验证性和流程稳定性出发，而不是一上来就套框架。</p>
+<p>单 Agent 适合任务范围窄、工具少、步骤短的场景。例如一个文档问答 Agent 只需要检索和回答，单 Agent 就足够。单 Agent 的优点是简单、成本低、容易调试。</p>
+<p>ReAct 适合需要边观察边行动的任务。模型先推理下一步，再调用工具，再根据工具结果继续决策。例如查资料、搜索网页、排查错误。它的优点是灵活，缺点是容易循环，所以需要步数限制和状态检查。</p>
+<p>Plan-and-Execute 适合长任务。先生成计划，再按阶段执行。它能让用户或系统先审核计划，也方便中途检查。但计划不能一次写死，环境变化时要允许局部重新规划。</p>
+<p>Router + Skill 适合任务类型多但每类有清晰能力边界的系统。router 负责选择 skill，skill 负责完成具体任务。它降低了单个 Agent 的上下文压力。</p>
+<p>Graph 或 workflow 适合有循环、条件分支、人工审批、checkpoint 和回溯需求的生产系统。图结构把关键流程固定下来，让模型只在某些节点做开放决策。</p>
+<p>Multi-Agent 适合任务能自然分工，例如研究、写作、事实核查、编辑；或者需要权限隔离和互相审核。但 multi-agent 会带来通信成本和冲突，不应该为了显得复杂而使用。</p>
+<p>一个成熟回答通常是：外层用 workflow 或 graph 控制阶段、权限和终止条件，内部在需要开放推理的节点使用 Agent；能确定化的逻辑尽量用代码，不能确定化的部分才交给模型。</p>
+<h2 id="17-mcp-skill">17. MCP 和 Skill 分别适合什么场景<a class="headerlink" href="#17-mcp-skill" title="Permanent link">&para;</a></h2>
+<p><strong>常见度：P1</strong></p>
+<p><strong>具体面试问题：</strong><br />
+文档里写“需要用外部用 MCP，内部复用用 skill”。面试官追问：MCP 和 Skill 到底有什么区别？什么时候该把能力做成 MCP server，什么时候该写成 Skill？</p>
+<p><strong>完整回答：</strong></p>
+<p>MCP 和 Skill 解决的是不同层面的问题。</p>
+<p>MCP 更偏“外部能力连接协议”。它让一个 Agent 应用用标准方式发现和调用外部工具、资源和 prompt，例如 GitHub、数据库、文件系统、浏览器、公司内部 API。MCP 的关键价值是标准化：工具能力在哪里、输入 schema 是什么、返回什么、权限如何管理，都可以通过协议暴露给 Agent host。</p>
+<p>Skill 更偏“内部任务知识和流程复用”。它不一定是一个远程工具，更多时候是一段可复用的操作说明：什么时候触发、怎么拆步骤、应该读哪些上下文、有哪些约束、输出什么格式、什么情况不要用。Skill 可以指导 Agent 如何组合多个工具完成一类任务。</p>
+<p>简单判断是：如果你要连接外部系统，让 Agent 能访问一个真实服务或资源，优先考虑 MCP；如果你要沉淀一类任务的经验、流程和触发边界，优先考虑 Skill。</p>
+<p>举例来说，“查询 Jira 工单”适合做 MCP 工具，因为它连接外部系统；“如何根据 bug report 定位代码并写修复计划”适合做 Skill，因为它是任务流程知识。实际系统里二者常组合：Skill 负责告诉 Agent 怎么做代码修复，MCP server 提供 GitHub、文件、测试执行等工具。</p>
+<h2 id="18-agent-demo">18. Agent 开发流程如何从 demo 走到上线闭环<a class="headerlink" href="#18-agent-demo" title="Permanent link">&para;</a></h2>
+<p><strong>常见度：P1</strong></p>
+<p><strong>具体面试问题：</strong><br />
+如果从 0 开始开发一个 Agent，文档里提到“评测驱动、先做好自动化评测脚本、有通过率、架构选择、加工具和记忆、上线灰度闭环迭代”。你会如何组织完整开发流程？</p>
+<p><strong>完整回答：</strong></p>
+<p>Agent 开发最容易犯的错误是先做一个看起来很酷的 demo，然后才发现无法评估、无法复现、无法上线。更稳的方式是评测驱动。</p>
+<p>第一步是定义任务和评测集。先写清楚 Agent 要完成什么任务、哪些动作不能做、成功标准是什么。然后准备 20 到 50 条高质量样例，覆盖正常路径、边界路径、信息缺失、工具失败和安全攻击。哪怕早期评测集很小，也比完全靠手试强。</p>
+<p>第二步是搭最小架构。根据任务选择简单 chain、ReAct、graph/workflow 或 router + skill。早期不要一上来多 Agent，除非任务天然需要分工。最小架构的目标是跑通输入、状态、工具、输出和 trace。</p>
+<p>第三步是加工具和记忆。先接只读工具，再接写工具。写工具要有 dry-run、审批和审计。记忆要从 session state 做起，长期记忆晚一点再加，因为长期记忆污染很难清理。</p>
+<p>第四步是跑评测和 trace 分析。每次失败要归因：prompt、模型能力、检索、工具 schema、权限、状态、外部系统还是业务规则。修复后把失败 case 加入回归集。</p>
+<p>第五步是灰度上线。先给小流量或内部用户，监控成功率、人工介入率、成本、延迟、安全阻断、用户反馈。出现问题可以回滚 prompt、模型、工具版本或检索参数。</p>
+<p>第六步是闭环迭代。线上失败样例回流到离线 eval，用户反馈进入数据集，常见需求沉淀成 skill 或 workflow。这样 Agent 才会从 demo 变成工程系统。</p>
+<h2 id="19-prompt-engineering-context-engineering">19. Prompt engineering 和 context engineering 如何提升稳定性<a class="headerlink" href="#19-prompt-engineering-context-engineering" title="Permanent link">&para;</a></h2>
+<p><strong>常见度：P1</strong></p>
+<p><strong>具体面试问题：</strong><br />
+你的 Agent 在同一个任务上有时回答正确，有时格式不稳定，有时遗漏上下文，有时被无关历史影响。文档里提到 prompt 稳定性、DSPy、CoT consistency、context 质量、reranking 和 Self-Refine。你会如何系统性提升稳定性？</p>
+<p><strong>完整回答：</strong></p>
+<p>Prompt engineering 关注“怎么向模型表达任务”，context engineering 关注“给模型什么信息，以及信息如何组织”。稳定性问题通常不是某一句 prompt 写得不够漂亮，而是指令、示例、上下文、输出约束和验证机制共同决定的。</p>
+<p>prompt 层面要先明确任务目标、角色边界、输出格式、工具使用规则和失败处理。few-shot 可以提升稳定性，因为它给模型展示了输入到输出的映射。但 few-shot 也会占上下文，而且示例不当会诱导错误模式，所以要通过评测选择示例。</p>
+<p>CoT consistency 的思想是让模型通过多条推理路径或多次采样得到更稳定结果，再用一致性投票或 verifier 选择答案。它适合数学、推理和分类，但会增加成本和延迟，也不适合高风险动作直接执行。</p>
+<p>context 层面要保证上下文相关、可信、不过期。Reranking 的作用是从初步召回的一堆候选中重新排序，把真正相关的信息放到前面。Self-Refine 的思想是让模型先生成，再对自己的输出提出反馈并修正。它适合写作、总结、代码解释等可迭代改进任务，但不能替代外部事实校验。</p>
+<p>更工程化的方式是把稳定性问题变成 eval。准备一组固定样例，比较不同 prompt、不同示例、不同上下文组织方式的成功率、格式错误率、幻觉率和成本。对于格式稳定，用结构化输出和 schema 校验；对于事实稳定，用 RAG 引用和证据校验；对于行动稳定，用状态机和工具护栏。</p>
+<h2 id="20-agent">20. 多 Agent 什么时候值得用，如何协作和收敛<a class="headerlink" href="#20-agent" title="Permanent link">&para;</a></h2>
+<p><strong>常见度：P1</strong></p>
+<p><strong>具体面试问题：</strong><br />
+你要设计一个复杂研究系统，可能包含 researcher、writer、critic、fact-checker、editor。面试官问：“为什么不用一个 Agent？多 Agent 如何通信？意见冲突怎么办？如何防止越分越散？”你怎么回答？</p>
+<p><strong>完整回答：</strong></p>
+<p>Multi-Agent 不是越多越好。只有当任务可以自然拆成不同专业角色、可以并行、需要互相审核，或者需要权限隔离时，多 Agent 才有价值。单任务、短流程、工具少的场景没有必要拆。</p>
+<p>常见协作模式有四种。层级式是 supervisor 拆任务、分配给 worker，再汇总结果；平行式是多个 Agent 对同一问题独立求解，再投票或比较；流水线是前一个 Agent 的输出成为下一个 Agent 的输入；blackboard 是多个 Agent 读写共享工作区。</p>
+<p>多 Agent 的核心风险是发散。每个 Agent 都会产生中间结果，如果没有中心化状态和收敛机制，系统会越来越乱。因此要强制收敛：supervisor 要定义最终目标、子任务边界、输出 artifact 格式和截止条件。子 Agent 最好不要再动态创建子 Agent，除非有非常强的治理机制。扁平结构通常比深层嵌套更容易调试。</p>
+<p>通信机制要结构化。不要让 Agent 之间自由聊天，而是传递任务、证据、结论、置信度、未解决问题和引用。共享状态要有写入规则，避免互相覆盖。</p>
+<p>冲突处理可以用证据优先原则：谁的结论有更强来源、更新证据和更明确推理，谁优先。也可以引入 verifier 或 LLM-as-judge，但 judge 也需要 rubric。高风险结论最终应让人审。</p>
+<p>评估 multi-agent 不只看最终结果，还要看协作成本、冲突率、重复工作比例、handoff 成功率、子任务成功率和最终任务完成率。</p>
+<h2 id="21">21. 长任务如何暂停、恢复和续跑<a class="headerlink" href="#21" title="Permanent link">&para;</a></h2>
+<p><strong>常见度：P1</strong></p>
+<p><strong>具体面试问题：</strong><br />
+一个 Agent 运行时间很长，可能中途等待用户审批、外部工具返回、机器重启或成本预算暂停。你如何设计暂停、恢复和续跑，而不是简单杀进程后重跑？</p>
+<p><strong>完整回答：</strong></p>
+<p>长任务暂停恢复的关键是把“执行进程”和“任务状态”分离。不能依赖内存里的 Python 对象或某个正在运行的进程，因为进程可能挂掉，用户也可能隔天才回来。</p>
+<p>需要持久化的内容包括：任务目标、执行计划、当前阶段、下一步指针、已完成步骤、工具输入输出摘要、中间产物、审批状态、失败记录、模型和 prompt 版本、剩余预算。恢复时 Agent 读取这些状态，从最后一个安全 checkpoint 继续。</p>
+<p>checkpoint 应该放在关键节点，而不是每个 token 都存。关键节点包括计划生成后、工具调用前后、写操作前、人工审批前后、阶段完成后。每个 checkpoint 要有 TTL 和版本信息。TTL 用来清理过期任务，版本信息用于判断 prompt、工具或代码变更后是否还能安全恢复。</p>
+<p>暂停不是暴力杀进程，而是把状态标记为 <code>paused</code>，停止新动作，保留 pending work。如果某个工具已经执行成功，恢复时不能重复执行高风险写操作，所以需要幂等键和执行记录。</p>
+<p>恢复策略要检查环境是否变化。例如订单状态可能已经变了，代码仓库可能有新提交，文档可能更新。恢复前要验证关键前提，必要时重新规划。</p>
+<h2 id="22-skill">22. skill 如何持续维护和评估<a class="headerlink" href="#22-skill" title="Permanent link">&para;</a></h2>
+<p><strong>常见度：P1</strong></p>
+<p><strong>具体面试问题：</strong><br />
+你的团队把很多常见任务做成 skill。上线后发现有些 skill 很少被触发，有些经常误触发，有些结果风格不稳定。你如何维护 skill，让它长期可用？</p>
+<p><strong>完整回答：</strong></p>
+<p>skill 维护要同时看结果、过程、风格和效率。</p>
+<p>结果目标是 skill 是否完成任务，例如代码修复是否通过测试，文档总结是否覆盖关键点。过程目标是触发和执行是否正确，例如是否在正确场景触发，是否调用了正确工具，是否遵守审批。风格目标是输出是否符合用户或团队标准，例如格式、语气、引用方式。效率目标是成本、延迟、工具调用次数和失败重试次数。</p>
+<p>维护流程可以分为新增、运行、回归和下线。新增 skill 时要写清触发场景、非触发场景、输入输出、工具权限和评测样例。运行时要记录命中率、误触发率、用户反馈和失败 trace。修改 skill 时要跑回归测试，确保旧场景没有坏。长期低价值或高误触发 skill 要合并、降权或下线。</p>
+<p>skill 的边界要持续调整。业务变化后，旧描述可能不准确；新 skill 加入后，可能和旧 skill 重叠。维护的重点不是不断优化内部 prompt，而是让触发边界、工具权限和评测集保持清晰。</p>
+<h2 id="23-langchain-dag-langgraph-checkpoint">23. LangChain DAG 和 LangGraph 循环图、checkpoint 有什么区别<a class="headerlink" href="#23-langchain-dag-langgraph-checkpoint" title="Permanent link">&para;</a></h2>
+<p><strong>常见度：P2</strong></p>
+<p><strong>具体面试问题：</strong><br />
+面试官问你：为什么很多 Agent 项目会从简单链式调用转向 LangGraph 这类图执行框架？DAG、循环图、全局状态、checkpoint 和 human-in-the-loop 分别解决什么问题？</p>
+<p><strong>完整回答：</strong></p>
+<p>传统 chain 或 DAG 更像固定流水线：节点按确定顺序执行，数据从上游流到下游。它适合简单任务，例如检索、生成、格式化。如果流程没有循环、没有人工中断、没有复杂状态，DAG 足够。</p>
+<p>Agent 任务常常不是 DAG，因为它需要根据工具结果回到前面步骤。例如检索不足要重新改写 query，测试失败要回到修改代码，审批拒绝要重新规划。这类流程需要循环图。</p>
+<p>图执行框架的价值是把状态显式化。每个节点读写共享 state，边定义下一步走向。这样系统可以把开放的模型决策限制在图的结构里，而不是让模型随便跳。</p>
+<p>checkpoint 是图状态在某个时间点的快照。它支持暂停恢复、错误回放、人工审批和 time travel debugging。human-in-the-loop 场景尤其需要 checkpoint，因为人要看到当前状态，批准或修改后系统从这个状态继续执行。</p>
+<p>所以选型可以这么说：简单确定流程用 chain 或 workflow；需要循环、状态持久化、人工干预、失败恢复和可回放时，用 graph。</p>
+<h2 id="24-langgraph">24. LangGraph 的节点、边、状态分别是什么<a class="headerlink" href="#24-langgraph" title="Permanent link">&para;</a></h2>
+<p><strong>常见度：P2</strong></p>
+<p><strong>具体面试问题：</strong><br />
+面试官问你 LangGraph 或类似 graph-based Agent framework 的基本抽象：节点、边、状态分别是什么？为什么说状态是全局信息黑板？如何避免状态里存太多全文导致内存爆炸？</p>
+<p><strong>完整回答：</strong></p>
+<p>节点是可维护的执行单元。一个节点可以是意图识别、query rewrite、混合检索、结果重排、工具调用、人工审批、答案生成或验证器。节点的好处是把复杂 Agent 拆成可测试、可替换的小块。</p>
+<p>边决定执行流向。普通边表示固定下一步，条件边根据状态决定去哪里。例如检索置信度高就进入答案生成，置信度低就重新改写 query；写操作风险高就进入人工审批，风险低就自动执行。边本质上把 Agent 的动态决策收进一个可控状态机。</p>
+<p>状态是多个节点之间共享的上下文，可以理解为全局信息黑板。它记录用户目标、当前阶段、检索结果 ID、工具输出摘要、审批状态、错误信息和下一步建议。每个节点只读写自己需要的部分，而不是把所有聊天历史自由传来传去。</p>
+<p>为了避免内存爆炸，状态里不要存大段全文。大文档、长工具输出、页面截图、代码文件应该外置存储，状态里只存引用 ID、摘要、页码、chunk id 或文件路径。节点需要详细内容时，再按需加载。</p>
+<p>良好的 state schema 是 graph Agent 可维护性的核心。如果状态字段混乱，节点之间就会产生隐式依赖，系统会很难调试。</p>
+<h2 id="25-oom">25. 大模型微调显存如何估算，OOM 怎么处理<a class="headerlink" href="#25-oom" title="Permanent link">&para;</a></h2>
+<p><strong>常见度：P2</strong></p>
+<p><strong>具体面试问题：</strong><br />
+如果岗位涉及模型微调，面试官可能问：训练或微调大模型时显存主要花在哪里？为什么会 OOM？gradient checkpointing、ZeRO 和 FlashAttention 分别缓解什么问题？</p>
+<p><strong>完整回答：</strong></p>
+<p>训练显存可以粗略分成静态部分和动态部分。</p>
+<p>静态部分和模型大小相关，主要包括参数权重、梯度和优化器状态。以 Adam 为例，优化器通常要保存一阶矩和二阶矩，所以优化器状态可能比参数本身还占显存。全量微调时，参数、梯度、优化器状态都要存；LoRA 这类参数高效微调只训练少量 adapter 参数，因此显存压力小很多。</p>
+<p>动态部分和 batch size、sequence length、层数相关，主要是激活值。前向传播时每层会产生中间激活，反向传播需要用它们计算梯度。sequence length 越长，激活越大；attention 又和长度平方相关，所以长上下文训练特别容易 OOM。</p>
+<p>OOM 处理要先判断瓶颈。gradient checkpointing 通过不保存所有激活，反向时重新计算部分激活，节省显存但增加计算时间。ZeRO 通过多卡分片参数、梯度和优化器状态，减少每张卡保存的冗余状态。FlashAttention 优化 attention 的内存访问和中间矩阵存储，尤其对长序列有帮助。</p>
+<p>其他常见手段包括减小 batch size、梯度累积、混合精度、量化训练、LoRA/QLoRA、CPU/NVMe offload、缩短序列、packing 数据和清理显存碎片。面试回答里要说明，没有万能方案：checkpointing 用时间换显存，ZeRO 用通信复杂度换显存，FlashAttention 主要优化 attention，不会减少所有显存来源。</p>
+<h2 id="26-transformer-kv-cache">26. 长上下文为什么贵，Transformer 注意力和 KV cache 的瓶颈是什么<a class="headerlink" href="#26-transformer-kv-cache" title="Permanent link">&para;</a></h2>
+<p><strong>常见度：P2</strong></p>
+<p><strong>具体面试问题：</strong><br />
+文档中提到 self-attention 时间和空间复杂度是 O(n²)，输入长度翻倍计算和显存可能接近四倍，KV cache 会撑爆 GPU。请解释长上下文为什么贵，训练和推理阶段的瓶颈分别是什么？</p>
+<p><strong>完整回答：</strong></p>
+<p>Transformer 的自注意力会让每个 token 和其他 token 交互。对于长度为 n 的序列，注意力分数矩阵大小是 n 乘 n，所以训练或 prefilling 阶段的标准 attention 计算和显存会随序列长度平方增长。输入长度翻倍，注意力矩阵规模大约变成四倍。</p>
+<p>推理阶段要区分 prefill 和 decode。prefill 是把已有 prompt 一次性送入模型，需要处理整段上下文，仍然受长序列 attention 影响。decode 是逐 token 生成，每次新 token 只需要和历史 token 交互。为了避免每一步重复计算历史 token 的 key 和 value，系统会保存 KV cache。</p>
+<p>KV cache 的大小和层数、batch size、序列长度、KV head 数、head 维度和数据类型有关。上下文越长、batch 越大，KV cache 越大。长上下文服务常常不是算力不够，而是显存和内存带宽不够。</p>
+<p>超过模型训练时习惯的长度，还可能出现位置编码泛化问题。即使系统允许更长输入，模型也可能困惑，表现为困惑度升高、注意力错位、遗漏中间信息或回答质量下降。因此长上下文不能只靠“窗口变大”，还要做检索、压缩、分段处理和评测。</p>
+<h2 id="27-flashattentiongqamqa">27. 如何优化长上下文推理：FlashAttention、GQA/MQA、位置编码延伸<a class="headerlink" href="#27-flashattentiongqamqa" title="Permanent link">&para;</a></h2>
+<p><strong>常见度：P2</strong></p>
+<p><strong>具体面试问题：</strong><br />
+如果你要优化一个长上下文 Agent 的推理成本和延迟，文档里提到 FlashAttention、GQA/MQA、显存碎片管理和位置编码延伸。它们分别解决什么问题？哪些适合应用工程师重点掌握？</p>
+<p><strong>完整回答：</strong></p>
+<p>FlashAttention 解决的是 attention 计算中的内存访问效率问题。普通 attention 会产生很大的中间注意力矩阵，并频繁在 GPU 的高带宽显存和更快但更小的片上存储之间搬运数据。FlashAttention 通过 tiling，把 attention 分块计算，让中间结果尽量留在更快的片上存储里，并避免完整物化 n 乘 n attention 矩阵。它减少显存访问和中间存储，提升长序列训练和推理效率。</p>
+<p>MQA 和 GQA 解决的是 KV cache 问题。标准多头注意力里，每个 query head 都有自己的 key/value head，KV cache 很大。MQA 让所有 query head 共享一组 key/value，显著减少缓存；GQA 是折中方案，把 query head 分组，每组共享一组 key/value。这样可以在速度、显存和质量之间取得平衡。</p>
+<p>显存碎片管理是工程问题。长时间服务、多 batch、多请求长度混合时，即使理论上显存够，也可能因为碎片导致分配失败。可以通过连续缓存管理、paged attention、合理 batch 调度和服务重启策略缓解。</p>
+<p>位置编码延伸解决模型能否处理更长位置的问题，例如 RoPE scaling、插值或专门长上下文继续训练。但它不能保证模型真正会利用长上下文，也不能解决上下文噪声问题。</p>
+<p>应用工程师最该掌握的是：长上下文优化不只是扩大窗口。实际系统通常组合使用检索、rerank、上下文压缩、prompt cache、模型路由和长上下文模型。FlashAttention、GQA/MQA 是底层模型和推理框架能力，知道原理和影响即可；真正落地时要通过延迟、吞吐、显存、回答质量和成本评测来判断。</p>
+<h2 id="28-agent">28. 动态派生子 Agent 有什么风险，为什么要扁平化和中心化状态<a class="headerlink" href="#28-agent" title="Permanent link">&para;</a></h2>
+<p><strong>常见度：P2</strong></p>
+<p><strong>具体面试问题：</strong><br />
+有些 multi-agent 系统允许一个 Agent 动态创建新的子 Agent 来完成任务。文档里提到 orchestrator、强制收敛、扁平优于嵌套、状态必须中心化。请解释为什么。</p>
+<p><strong>完整回答：</strong></p>
+<p>动态派生子 Agent 听起来灵活，但风险很高。第一是任务发散：子 Agent 继续创建子 Agent，系统会产生很多分支，最后没人负责收敛。第二是成本失控：每个子 Agent 都会消耗模型调用和工具调用。第三是状态混乱：不同 Agent 各自维护上下文，容易产生冲突和重复。第四是调试困难：失败时很难知道是哪一层 Agent 做错了。</p>
+<p>orchestrator 的作用是集中管理任务拆解、角色分配、状态更新和最终收敛。它不一定比 worker 更聪明，但它拥有全局视角，知道当前目标、预算、完成条件和哪些分支还没解决。</p>
+<p>扁平优于嵌套，是因为扁平结构更可观测。supervisor 直接管理多个 worker，worker 只完成被分配的任务，不再创建新的 Agent。这样 trace 清晰，预算可控，输出格式统一。</p>
+<p>状态必须中心化，不代表所有信息都塞进一个 prompt，而是所有关键 artifact、证据、结论、冲突和任务状态都写入统一的 state store。Agent 可以读自己需要的部分，但不能各自保存不可见的私有状态。这样才能做冲突解决、恢复和审计。</p>
+<h2 id="29-decoder-only-agent">29. 为什么大模型多采用 decoder-only 架构，它对 Agent 有什么影响<a class="headerlink" href="#29-decoder-only-agent" title="Permanent link">&para;</a></h2>
+<p><strong>常见度：P3</strong></p>
+<p><strong>具体面试问题：</strong><br />
+文档里提到“为什么都是 decoder-only”，以及逐 token 生成延迟、KV cache 显存、长上下文复杂度和双向语境感知缺失。这个问题在 Agent 面试里常见吗？如果被问到，你怎么回答？</p>
+<p><strong>完整回答：</strong></p>
+<p>这个问题通常偏模型基础或 infra，不是普通 Agent 应用岗位的高频核心题。但理解它有助于解释 Agent 为什么会有延迟和上下文成本。</p>
+<p>decoder-only 模型的目标是自回归生成，也就是根据前面的 token 预测下一个 token。聊天、代码生成、工具参数生成、计划生成都天然是“继续写下去”的任务，所以 decoder-only 架构很适合统一成一个生成接口。</p>
+<p>它的优点是训练和推理形式统一，适合大规模语言建模，也容易扩展到 instruction tuning 和 tool calling。缺点是生成必须逐 token 进行，后一个 token 依赖前一个 token，所以输出越长延迟越高。</p>
+<p>KV cache 是 decoder-only 推理效率的关键。模型每生成一个新 token，都需要关注前面历史 token。为了避免重复计算历史 token 的 key/value，系统缓存 KV。但上下文越长、batch 越大、层数越多，KV cache 占用显存越大。</p>
+<p>长上下文还带来 prefill 成本。用户输入很长时，模型要先处理整段 prompt，attention 复杂度和显存压力会增加。即使 decode 阶段有 KV cache，prefill 仍然可能很慢。</p>
+<p>所谓“双向语境感知缺失”，是相对 encoder 或 masked language model 来说的。decoder-only 在训练目标上主要看左侧上下文，不过在实际问答中，整段 prompt 都作为已知前缀输入，模型生成答案时可以利用 prompt 中所有已提供内容。面试时不要把它误解成“模型完全不能理解前文中的双向关系”，更准确地说，它不是专门为双向编码和判别任务设计的。</p>
+<p>对 Agent 的影响是：要控制输出长度、减少无效轮数、压缩上下文、复用 KV cache、使用流式输出和模型路由。架构上不能让 Agent 无限自言自语，因为每一步都是真实成本。</p>
+<h2 id="30-dspycot-consistencyself-refine">30. DSPy、CoT consistency、Self-Refine 等是否应该作为通用方案<a class="headerlink" href="#30-dspycot-consistencyself-refine" title="Permanent link">&para;</a></h2>
+<p><strong>常见度：P3</strong></p>
+<p><strong>具体面试问题：</strong><br />
+文档里提到 DSPy、CoT + consistency、Self-Refine。面试官问：这些方法是不是应该默认用于所有 Agent？你如何判断它们的适用场景？</p>
+<p><strong>完整回答：</strong></p>
+<p>这些方法都是提升模型输出质量的工具，但不应该默认套在所有任务上。</p>
+<p>DSPy 更像一个“用数据和指标优化 LLM 程序”的框架。它可以自动搜索 prompt、few-shot 示例或部分模型参数，让程序在指定 metric 上表现更好。它适合你已经有明确任务、训练样例和评估指标的场景。不适合没有评测集、需求还在变化、或者只需要快速上线的简单功能。</p>
+<p>CoT consistency 适合推理类任务。让模型多次推理或用不同路径推理，再选择一致答案，可以降低偶然错误。但它会增加成本和延迟，而且对于工具写操作不能直接用多数投票决定执行。</p>
+<p>Self-Refine 适合可迭代改进的生成任务，例如写作、总结、代码优化和解释。模型先生成，再批评，再修改。但它有两个风险：第一，模型可能用错误标准批评自己；第二，它无法补充外部事实。因此 Self-Refine 应该配合外部证据、rubric 和停止条件。</p>
+<p>面试时可以总结为：这些方法是质量增强层，不是可靠性基础层。可靠性基础仍然是清晰任务定义、结构化输出、工具护栏、RAG 证据、eval 和 trace。</p>
+<h2 id="_2">低优先级但可作为加分的底层细节<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>以下问题通常不会在 Agent 应用岗位中单独深挖，但如果岗位偏 LLM infra、模型训练或推理优化，可能会追问：</p>
+<ul>
+<li>FlashAttention 的 tiling 如何减少 HBM 访问。</li>
+<li>GQA 和 MQA 对 KV cache 大小、吞吐和质量的影响。</li>
+<li>ZeRO Stage 1/2/3 分别分片优化器状态、梯度和参数。</li>
+<li>位置编码延伸为什么不能等同于模型真正掌握长上下文。</li>
+<li>DSPy optimizer 如何用 metric 搜索 prompt 和 few-shot 示例。</li>
+<li>Decoder-only 架构为什么天然适合生成式接口，但会带来逐 token 延迟和 KV cache 压力。</li>
+</ul>
+<p>准备策略是：能用自己的话解释“解决什么瓶颈、牺牲什么、适合什么岗位”，不需要背论文推导。</p>
+<h2 id="_3">建议背诵优先级<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p>第一优先级：P0 问题，尤其是排序总览中的 1 到 11。<br />
+这些是 Agent / LLM 应用工程面试中最常见的工程问题，必须能讲清完整方案。</p>
+<p>第二优先级：P1 问题，尤其是排序总览中的 12 到 22。<br />
+这些偏平台化和复杂 Agent 系统，适合展示你不只是会做 demo，而是理解长期维护。</p>
+<p>第三优先级：P2 问题，尤其是排序总览中的 23 到 28。<br />
+这些取决于岗位技术栈和深度，适合做加分项。</p>
+<p>第四优先级：P3 问题和底层细节。<br />
+这些几乎不会作为普通 Agent 应用岗位的核心题，但能证明你了解前沿方法和底层约束。</p>
+<h2 id="_4">参考资料<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<ul>
+<li>DSPy, <a href="https://github.com/stanfordnlp/dspy/blob/main/docs/docs/learn/optimization/optimizers.md">Optimizers documentation</a></li>
+<li>LangGraph, <a href="https://langchain-ai.github.io/langgraph/concepts/time-travel/">Persistence documentation</a></li>
+<li>DeepSpeed, <a href="https://deepspeed.readthedocs.io/en/stable/zero3.html">ZeRO documentation</a></li>
+<li>Madaan et al., <a href="https://selfrefine.info/">Self-Refine</a></li>
+<li>Shazeer, <a href="https://arxiv.org/abs/1911.02150">Fast Transformer Decoding: One Write-Head is All You Need</a></li>
+<li>Dao et al., <a href="https://arxiv.org/abs/2205.14135">FlashAttention: Fast and Memory-Efficient Exact Attention with IO-Awareness</a></li>
+</ul>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../07-multimodal-perception-questions/" class="btn btn-neutral float-left" title="多模态与感知高频题"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../../14-glossary/" class="btn btn-neutral float-right" title="14 术语表">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../07-multimodal-perception-questions/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../../14-glossary/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

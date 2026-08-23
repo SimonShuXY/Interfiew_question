@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>多模态与感知高频题 - Agent 从入门到精通手册</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "\u591a\u6a21\u6001\u4e0e\u611f\u77e5\u9ad8\u9891\u9898";
+        var mkdocs_page_input_path = "interview-prep/07-multimodal-perception-questions.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> Agent 从入门到精通手册
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">首页</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../00-how-to-use/">使用指南</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">基础篇</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../01-what-is-agent/">01 Agent 是什么</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../02-llm-foundations/">02 LLM 基础</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../03-prompt-context/">03 提示词与上下文工程</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">核心篇</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../04-tools-function-calling/">04 工具调用与 MCP</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../05-rag-memory/">05 RAG 与记忆</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../06-agent-loop-planning/">06 Agent 循环与规划</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">架构篇</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../07-workflows-orchestration/">07 工作流与编排</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../08-multi-agent-protocols/">08 多 Agent 与协议</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">工程篇</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../09-evaluation-observability/">09 评测与可观测性</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../10-safety-security/">10 安全、权限与护栏</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../11-production-engineering/">11 生产化工程</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">精通篇</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../12-framework-selection/">12 框架选型</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../13-capstone-projects/">13 综合项目路线</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">面试准备</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../00-overview/">总览</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../01-40-day-plan/">40 天学习计划</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../02-question-bank-92/">92 道面试题</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../03-system-design/">系统设计题</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../04-answer-frameworks/">回答框架</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../05-project-and-resume/">项目与简历表达</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../06-mock-interview/">模拟面试</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">多模态与感知高频题</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#_2">准备重点</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_3">一、基础概念与任务边界</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_4">二、视觉基础模型与表征学习</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_5">三、图文多模态模型架构</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_6">四、训练、微调与数据</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#grounding">五、检测、分割与 Grounding</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_7">六、视频理解与时序感知</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#3d">七、3D 感知、传感器融合与自动驾驶</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#agent">八、文档、界面与视觉 Agent 感知</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#benchmark">九、评估指标与 Benchmark</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_8">十、部署、优化、鲁棒性与安全</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_9">十一、系统设计高频题</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_10">高频追问模板</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_11">口述答案结构</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_12">推荐参考资料</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../08-agent-interview-expanded-from-doc/">附件问题扩写与排序</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">附录</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../14-glossary/">14 术语表</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../99-references/">参考资料</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Agent 从入门到精通手册</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">面试准备</li>
+      <li class="breadcrumb-item active">多模态与感知高频题</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="_1">多模态与感知高频面试题<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<p>本文件面向多模态大模型、视觉感知、自动驾驶/机器人感知、视觉 Agent 相关岗位。重点不是背论文名，而是能把视觉任务、模态融合、数据闭环、评估指标和工程部署讲清楚。</p>
+<p>资料核验日期：2026-08-12。多模态模型、视觉 foundation model 和感知 benchmark 更新很快，涉及具体模型排名、API、数据集版本和 SOTA 时，请以官方页面为准。</p>
+<h2 id="_2">准备重点<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>多模态与感知方向的面试通常分成 6 类：</p>
+<ul>
+<li>基础视觉能力：分类、检测、分割、跟踪、姿态、深度、3D 检测。</li>
+<li>表征学习：CNN、ViT、自监督、对比学习、视觉 foundation model。</li>
+<li>多模态模型：image-text alignment、VLM 架构、visual grounding、OCR、图表/文档理解、视频理解。</li>
+<li>感知工程：数据采集、标注、长尾、域迁移、传感器融合、实时部署。</li>
+<li>评估指标：mAP、IoU、mIoU、Recall、HOTA/MOTA、EPE、3D AP、grounding accuracy、VQA accuracy。</li>
+<li>系统设计：视觉问答系统、视觉搜索、文档理解、自动驾驶感知、机器人视觉、视觉 Agent。</li>
+</ul>
+<h2 id="_3">一、基础概念与任务边界<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>编号</th>
+<th>面试题</th>
+<th>回答抓手</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>M001</td>
+<td>多模态模型和传统计算机视觉模型有什么区别？</td>
+<td>传统 CV 多面向固定任务和固定标签；多模态模型强调图文/音视频/动作等模态对齐、开放词表、指令跟随和泛化。</td>
+</tr>
+<tr>
+<td>M002</td>
+<td>感知系统和多模态理解系统有什么区别？</td>
+<td>感知偏检测、定位、跟踪、几何和实时性；多模态理解偏语义、推理、语言交互和知识整合。</td>
+</tr>
+<tr>
+<td>M003</td>
+<td>VLM、MLLM、Vision Agent 分别是什么？</td>
+<td>VLM 偏视觉语言模型；MLLM 是多模态大语言模型；Vision Agent 在视觉理解基础上还能规划和执行动作。</td>
+</tr>
+<tr>
+<td>M004</td>
+<td>什么任务适合用 VLM，什么任务仍适合传统 CV pipeline？</td>
+<td>开放语义、图文推理、文档问答适合 VLM；强实时、高精度、固定类别检测常用专用 CV 模型。</td>
+</tr>
+<tr>
+<td>M005</td>
+<td>image-level、region-level、pixel-level、video-level 理解有什么区别？</td>
+<td>分别对应整图语义、区域定位、像素级掩码和跨帧时序理解。</td>
+</tr>
+<tr>
+<td>M006</td>
+<td>开放词表识别和闭集分类有什么区别？</td>
+<td>闭集分类只识别训练标签；开放词表依赖语言对齐识别未显式训练类别，但边界和评估更难。</td>
+</tr>
+<tr>
+<td>M007</td>
+<td>visual grounding 是什么？</td>
+<td>把语言描述映射到图像区域、框、点或 mask，是 VLM 从“会说”走向“能定位”的关键。</td>
+</tr>
+<tr>
+<td>M008</td>
+<td>perception 和 reasoning 哪个更难？</td>
+<td>二者难点不同；感知要求准确定位和鲁棒性，推理要求跨证据、多步逻辑和常识，真实系统通常二者耦合。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_4">二、视觉基础模型与表征学习<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>编号</th>
+<th>面试题</th>
+<th>回答抓手</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>M009</td>
+<td>CNN 和 ViT 的核心差异是什么？</td>
+<td>CNN 有局部卷积归纳偏置；ViT 把图像切成 patch 做全局 attention，更依赖数据规模和预训练。</td>
+</tr>
+<tr>
+<td>M010</td>
+<td>为什么 ViT 需要位置编码？</td>
+<td>patch token 本身不含空间顺序，位置编码提供空间位置信息。</td>
+</tr>
+<tr>
+<td>M011</td>
+<td>patch size 会影响什么？</td>
+<td>小 patch 保留细节但计算更大；大 patch 更快但可能损失小目标和局部纹理。</td>
+</tr>
+<tr>
+<td>M012</td>
+<td>自监督视觉学习解决什么问题？</td>
+<td>减少对人工标签依赖，学习可迁移视觉特征，适合下游检测、分割、深度等任务。</td>
+</tr>
+<tr>
+<td>M013</td>
+<td>DINO/DINOv2 的核心思想是什么？</td>
+<td>用自监督和蒸馏学习通用视觉特征，冻结特征也能迁移到多种图像和像素级任务。</td>
+</tr>
+<tr>
+<td>M014</td>
+<td>CLIP 为什么重要？</td>
+<td>用图文对比学习把图片和自然语言放到同一语义空间，带来 zero-shot 分类和开放词表迁移能力。</td>
+</tr>
+<tr>
+<td>M015</td>
+<td>contrastive learning 的正负样本怎么构造？</td>
+<td>匹配图文或增强视图作为正样本，batch 内其他样本作为负样本；关键是数据质量和负样本难度。</td>
+</tr>
+<tr>
+<td>M016</td>
+<td>对比学习和生成式预训练有什么区别？</td>
+<td>对比学习强调表示对齐和区分；生成式预训练强调恢复、预测或生成内容。</td>
+</tr>
+<tr>
+<td>M017</td>
+<td>为什么视觉 backbone 通常先预训练再微调？</td>
+<td>大规模预训练学通用特征，下游微调适配任务，能减少标注成本并提升泛化。</td>
+</tr>
+<tr>
+<td>M018</td>
+<td>视觉 foundation model 的局限是什么？</td>
+<td>可能缺精细几何、长尾类别、专业域知识、精确计数和可解释性，部署成本也更高。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_5">三、图文多模态模型架构<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>编号</th>
+<th>面试题</th>
+<th>回答抓手</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>M019</td>
+<td>典型 VLM 由哪些模块组成？</td>
+<td>视觉编码器、投影层或 adapter、LLM、tokenizer、融合机制和输出头。</td>
+</tr>
+<tr>
+<td>M020</td>
+<td>为什么需要 visual projector？</td>
+<td>把视觉特征映射到 LLM 可接收的 embedding 空间，缩小视觉编码器和语言模型之间的模态 gap。</td>
+</tr>
+<tr>
+<td>M021</td>
+<td>early fusion、late fusion、cross-attention fusion 有什么区别？</td>
+<td>early 早期拼接模态，late 后期合并决策，cross-attention 在特征层交互，表达强但计算更大。</td>
+</tr>
+<tr>
+<td>M022</td>
+<td>BLIP-2 的 Q-Former 解决什么问题？</td>
+<td>用轻量查询 Transformer 从冻结视觉编码器中抽取少量视觉 token，再连接冻结 LLM，降低训练成本。</td>
+</tr>
+<tr>
+<td>M023</td>
+<td>Flamingo 类模型的 gated cross-attention 思路是什么？</td>
+<td>在语言模型中插入跨模态 attention，让文本 token 按需读取视觉上下文，同时尽量保留原 LLM 能力。</td>
+</tr>
+<tr>
+<td>M024</td>
+<td>LLaVA 类模型常见训练流程是什么？</td>
+<td>先做图文对齐预训练，再用视觉指令数据做 instruction tuning。</td>
+</tr>
+<tr>
+<td>M025</td>
+<td>VLM 为什么会产生视觉幻觉？</td>
+<td>视觉证据弱、语言先验强、训练数据偏差、OCR 错误、grounding 不准或问题本身含误导。</td>
+</tr>
+<tr>
+<td>M026</td>
+<td>如何减少 VLM 视觉幻觉？</td>
+<td>引用视觉证据、局部 crop 检查、检测/分割工具辅助、拒答策略、视觉一致性评测和不确定性提示。</td>
+</tr>
+<tr>
+<td>M027</td>
+<td>图像 token 太多时如何处理？</td>
+<td>降采样、patch pooling、query token 压缩、区域裁剪、多分辨率编码、按任务动态选帧或选区。</td>
+</tr>
+<tr>
+<td>M028</td>
+<td>多图输入和单图输入的难点有什么不同？</td>
+<td>多图需要跨图对应、顺序、记忆、去重、引用和长上下文管理。</td>
+</tr>
+<tr>
+<td>M029</td>
+<td>OCR 能力为什么对 VLM 很关键？</td>
+<td>很多真实图像包含文本，文档、表格、界面、票据、图表理解都依赖文字识别和布局关系。</td>
+</tr>
+<tr>
+<td>M030</td>
+<td>图表理解比普通 VQA 难在哪里？</td>
+<td>需要识别坐标轴、图例、单位、趋势、数值和视觉元素之间的结构关系。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_6">四、训练、微调与数据<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>编号</th>
+<th>面试题</th>
+<th>回答抓手</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>M031</td>
+<td>多模态预训练常见数据有哪些？</td>
+<td>image-caption、interleaved image-text、OCR 文档、视频字幕、instruction data、region-caption、检测/分割标注。</td>
+</tr>
+<tr>
+<td>M032</td>
+<td>图文数据噪声会带来什么问题？</td>
+<td>错配、偏见、短文本弱监督、重复样本和低质量 caption 会降低对齐质量并放大幻觉。</td>
+</tr>
+<tr>
+<td>M033</td>
+<td>如何清洗大规模图文数据？</td>
+<td>去重、NSFW/隐私过滤、语言检测、图文相似度过滤、OCR 质量过滤、caption 长度和实体一致性检查。</td>
+</tr>
+<tr>
+<td>M034</td>
+<td>instruction tuning 对 VLM 有什么作用？</td>
+<td>让模型从图文表征转向按人类指令回答、解释、比较、定位和拒答。</td>
+</tr>
+<tr>
+<td>M035</td>
+<td>LoRA/QLoRA 在多模态微调中常调哪些部分？</td>
+<td>可调 projector、LLM 部分层、cross-attention 或视觉 encoder 后几层，取决于算力和任务。</td>
+</tr>
+<tr>
+<td>M036</td>
+<td>冻结视觉 encoder 有什么优缺点？</td>
+<td>训练便宜且稳定，但专业域和细粒度任务可能适配不足。</td>
+</tr>
+<tr>
+<td>M037</td>
+<td>什么时候需要端到端微调视觉 encoder？</td>
+<td>专业域差异大、细粒度视觉证据关键、检测/分割能力不足或视觉特征明显不适配时。</td>
+</tr>
+<tr>
+<td>M038</td>
+<td>多模态训练如何防止语言模型遗忘？</td>
+<td>小学习率、冻结部分 LLM、混合纯文本数据、adapter 训练和阶段式训练。</td>
+</tr>
+<tr>
+<td>M039</td>
+<td>长尾类别问题怎么处理？</td>
+<td>重采样、难例挖掘、合成数据、开放词表、主动学习和指标按频次分桶。</td>
+</tr>
+<tr>
+<td>M040</td>
+<td>标注成本高时如何做数据闭环？</td>
+<td>主动学习、模型辅助标注、弱监督、伪标签、人工复核和线上失败样例回流。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="grounding">五、检测、分割与 Grounding<a class="headerlink" href="#grounding" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>编号</th>
+<th>面试题</th>
+<th>回答抓手</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>M041</td>
+<td>object detection 输出什么？</td>
+<td>类别、置信度和边界框，常见指标是 AP/mAP 和 IoU。</td>
+</tr>
+<tr>
+<td>M042</td>
+<td>two-stage detector 和 one-stage detector 有什么区别？</td>
+<td>two-stage 先生成候选区域再分类回归，精度强；one-stage 直接预测，速度快。</td>
+</tr>
+<tr>
+<td>M043</td>
+<td>anchor-based 和 anchor-free 检测有什么区别？</td>
+<td>anchor-based 依赖预设框；anchor-free 直接预测中心点或框参数，减少手工先验。</td>
+</tr>
+<tr>
+<td>M044</td>
+<td>NMS 的作用和问题是什么？</td>
+<td>去除重复框；但拥挤场景和小目标可能误删，soft-NMS 或学习式去重可缓解。</td>
+</tr>
+<tr>
+<td>M045</td>
+<td>DETR 为什么有代表性？</td>
+<td>把检测看成集合预测，用 Transformer 和 bipartite matching 避免传统 anchor/NMS 依赖。</td>
+</tr>
+<tr>
+<td>M046</td>
+<td>小目标检测为什么难？</td>
+<td>分辨率低、特征弱、易被下采样丢失、标注噪声影响更大。</td>
+</tr>
+<tr>
+<td>M047</td>
+<td>semantic segmentation、instance segmentation、panoptic segmentation 有什么区别？</td>
+<td>语义分割分每个像素类别，实例分割区分对象实例，全景分割统一 stuff 和 thing。</td>
+</tr>
+<tr>
+<td>M048</td>
+<td>SAM 的 promptable segmentation 思路是什么？</td>
+<td>图像 encoder 预计算 embedding，prompt encoder 接收点/框/mask/text 等提示，mask decoder 输出分割。</td>
+</tr>
+<tr>
+<td>M049</td>
+<td>SAM2 相比 SAM 的关键扩展是什么？</td>
+<td>从图像扩展到图像和视频，加入 streaming memory 支持视频中的对象持续分割。</td>
+</tr>
+<tr>
+<td>M050</td>
+<td>open-vocabulary detection 如何实现？</td>
+<td>通过图文对齐、文本 embedding、region-text matching 或语言引导 query，让检测器识别开放类别。</td>
+</tr>
+<tr>
+<td>M051</td>
+<td>Grounding DINO 解决什么问题？</td>
+<td>用语言引导检测任意文本描述对象，支持开放词表检测和 referring expression grounding。</td>
+</tr>
+<tr>
+<td>M052</td>
+<td>Grounded-SAM 这类组合系统的价值是什么？</td>
+<td>检测模型负责按文本找目标，SAM 负责生成精细 mask，组合实现开放词表实例分割。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_7">六、视频理解与时序感知<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>编号</th>
+<th>面试题</th>
+<th>回答抓手</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>M053</td>
+<td>视频理解和图像理解最大的区别是什么？</td>
+<td>视频需要建模时间、运动、事件顺序、长程依赖和跨帧一致性。</td>
+</tr>
+<tr>
+<td>M054</td>
+<td>视频模型如何选择帧？</td>
+<td>均匀采样、关键帧采样、事件驱动采样、镜头切分、基于问题的自适应采样。</td>
+</tr>
+<tr>
+<td>M055</td>
+<td>长视频理解为什么难？</td>
+<td>帧数多、token 成本高、关键信息稀疏、时序依赖长、字幕/音频/画面需要对齐。</td>
+</tr>
+<tr>
+<td>M056</td>
+<td>optical flow 解决什么问题？</td>
+<td>估计像素级运动，用于动作识别、跟踪、视频插帧、运动分割和自监督学习。</td>
+</tr>
+<tr>
+<td>M057</td>
+<td>tracking-by-detection 的基本流程是什么？</td>
+<td>每帧检测对象，再用外观、位置、运动模型和匈牙利匹配关联轨迹。</td>
+</tr>
+<tr>
+<td>M058</td>
+<td>MOTA、IDF1、HOTA 分别关注什么？</td>
+<td>MOTA 综合误检漏检和 ID switch，IDF1 关注身份保持，HOTA 同时衡量检测和关联。</td>
+</tr>
+<tr>
+<td>M059</td>
+<td>视频 VLM 如何处理音频和字幕？</td>
+<td>将视频帧、字幕和音频特征对齐到时间轴，再做跨模态融合和问答推理。</td>
+</tr>
+<tr>
+<td>M060</td>
+<td>如何评估视频多模态模型？</td>
+<td>按短/中/长视频、字幕/无字幕、时间定位、跨片段推理、事件顺序和幻觉率分层评估。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="3d">七、3D 感知、传感器融合与自动驾驶<a class="headerlink" href="#3d" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>编号</th>
+<th>面试题</th>
+<th>回答抓手</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>M061</td>
+<td>2D 检测和 3D 检测有什么区别？</td>
+<td>2D 输出图像框；3D 输出空间位置、尺寸、朝向和类别，受坐标系和传感器标定影响。</td>
+</tr>
+<tr>
+<td>M062</td>
+<td>camera、LiDAR、radar 各有什么优缺点？</td>
+<td>camera 语义丰富但受光照影响；LiDAR 几何精确但成本高；radar 速度和恶劣天气强但分辨率低。</td>
+</tr>
+<tr>
+<td>M063</td>
+<td>传感器融合常见层级有哪些？</td>
+<td>early fusion 原始数据融合，middle fusion 特征融合，late fusion 决策融合。</td>
+</tr>
+<tr>
+<td>M064</td>
+<td>相机和 LiDAR 标定为什么重要？</td>
+<td>外参和时间同步错误会导致投影错位，影响 2D/3D 对齐、融合和评估。</td>
+</tr>
+<tr>
+<td>M065</td>
+<td>BEV 表示为什么在自动驾驶感知中常见？</td>
+<td>BEV 统一多相机和 LiDAR 到鸟瞰空间，适合检测、地图、占用和规划接口。</td>
+</tr>
+<tr>
+<td>M066</td>
+<td>Occupancy Network 解决什么问题？</td>
+<td>预测空间中每个体素或网格是否被占用，适合表示未知类别、可行驶空间和动态障碍物。</td>
+</tr>
+<tr>
+<td>M067</td>
+<td>点云处理有哪些常见方法？</td>
+<td>PointNet/PointNet++、voxelization、pillar、range view、sparse convolution、point-voxel hybrid。</td>
+</tr>
+<tr>
+<td>M068</td>
+<td>3D 检测常见指标有哪些？</td>
+<td>3D AP、BEV AP、中心距离误差、尺度误差、朝向误差、速度误差和 nuScenes NDS。</td>
+</tr>
+<tr>
+<td>M069</td>
+<td>自动驾驶感知中的 long-tail 问题是什么？</td>
+<td>罕见物体、罕见天气、施工、事故、异常行为和边缘场景样本少但风险高。</td>
+</tr>
+<tr>
+<td>M070</td>
+<td>感知误差如何影响规划？</td>
+<td>漏检导致碰撞风险，误检导致急刹，定位/速度误差影响轨迹预测和决策。</td>
+</tr>
+<tr>
+<td>M071</td>
+<td>机器人视觉和自动驾驶感知有什么不同？</td>
+<td>机器人更关注近距离操作、手眼标定、物体姿态、可抓取性和闭环控制。</td>
+</tr>
+<tr>
+<td>M072</td>
+<td>SLAM 和感知检测是什么关系？</td>
+<td>SLAM 估计自身位姿和地图，检测识别语义对象，二者可结合成语义地图和可交互世界模型。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="agent">八、文档、界面与视觉 Agent 感知<a class="headerlink" href="#agent" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>编号</th>
+<th>面试题</th>
+<th>回答抓手</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>M073</td>
+<td>Document AI 和普通 OCR 有什么区别？</td>
+<td>OCR 只识别文字，Document AI 还要理解版式、表格、字段、层级和跨页关系。</td>
+</tr>
+<tr>
+<td>M074</td>
+<td>表格识别有哪些难点？</td>
+<td>单元格合并、隐形边框、多级表头、跨页、旋转扫描和数值单位。</td>
+</tr>
+<tr>
+<td>M075</td>
+<td>GUI grounding 为什么难？</td>
+<td>UI 元素可能小、动态变化、遮挡、无障碍树不完整，截图和 DOM 信息可能不一致。</td>
+</tr>
+<tr>
+<td>M076</td>
+<td>视觉 Agent 操作网页时为什么不能只看截图？</td>
+<td>截图缺结构化属性和可交互状态；DOM/API 能提供更可靠定位和执行路径。</td>
+</tr>
+<tr>
+<td>M077</td>
+<td>视觉 Agent 为什么也不能只依赖 DOM？</td>
+<td>canvas、图片按钮、布局、颜色、图表和实际可见状态可能不在 DOM 语义中。</td>
+</tr>
+<tr>
+<td>M078</td>
+<td>多模态 RAG 和普通文本 RAG 有什么区别？</td>
+<td>需要处理图片、表格、图表、版式、截图和跨模态引用，检索粒度更复杂。</td>
+</tr>
+<tr>
+<td>M079</td>
+<td>视觉搜索系统怎么做？</td>
+<td>用图像 embedding 或图文 embedding 建索引，支持以图搜图、文本搜图、属性过滤和 rerank。</td>
+</tr>
+<tr>
+<td>M080</td>
+<td>视觉证据如何引用？</td>
+<td>引用图像来源、区域框、页码、时间戳、OCR 片段或 crop，避免只给整图模糊引用。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="benchmark">九、评估指标与 Benchmark<a class="headerlink" href="#benchmark" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>编号</th>
+<th>面试题</th>
+<th>回答抓手</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>M081</td>
+<td>IoU 是什么？</td>
+<td>预测区域和真实区域交并比，用于检测和分割匹配。</td>
+</tr>
+<tr>
+<td>M082</td>
+<td>mAP 怎么理解？</td>
+<td>不同类别和阈值下 AP 的平均，反映 precision-recall 曲线整体质量。</td>
+</tr>
+<tr>
+<td>M083</td>
+<td>AP50 和 AP75 有什么区别？</td>
+<td>AP50 阈值宽松，AP75 更强调定位精度。</td>
+</tr>
+<tr>
+<td>M084</td>
+<td>分割任务常用什么指标？</td>
+<td>mIoU、Dice/F1、mask AP、boundary F-score，按任务选择。</td>
+</tr>
+<tr>
+<td>M085</td>
+<td>分类任务为什么不能只看 accuracy？</td>
+<td>类别不平衡时会误导，需要 precision、recall、F1、AUC、per-class metric。</td>
+</tr>
+<tr>
+<td>M086</td>
+<td>VQA 或 MLLM 评估有什么问题？</td>
+<td>答案形式多样、语言偏差、数据泄漏、视觉幻觉和 judge 不稳定。</td>
+</tr>
+<tr>
+<td>M087</td>
+<td>MMMU 主要评估什么？</td>
+<td>跨学科、多图形类型、专家级感知、知识和推理能力。</td>
+</tr>
+<tr>
+<td>M088</td>
+<td>Video-MME 主要评估什么？</td>
+<td>短到长视频、多领域、字幕/音频辅助和长时序视频理解能力。</td>
+</tr>
+<tr>
+<td>M089</td>
+<td>自动驾驶数据集评估为什么要看场景分桶？</td>
+<td>总体指标可能掩盖夜晚、雨天、小目标、遮挡、远距离和施工场景的问题。</td>
+</tr>
+<tr>
+<td>M090</td>
+<td>线上感知系统该如何监控？</td>
+<td>分布漂移、低置信度、人工接管、误检漏检、延迟、资源、场景覆盖和用户反馈。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_8">十、部署、优化、鲁棒性与安全<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>编号</th>
+<th>面试题</th>
+<th>回答抓手</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>M091</td>
+<td>视觉模型部署常见瓶颈是什么？</td>
+<td>输入分辨率、backbone 计算、attention token 数、后处理、显存、数据拷贝和批处理策略。</td>
+</tr>
+<tr>
+<td>M092</td>
+<td>如何优化视觉模型推理速度？</td>
+<td>模型裁剪、蒸馏、量化、TensorRT/ONNX、降分辨率、多尺度控制、异步 pipeline。</td>
+</tr>
+<tr>
+<td>M093</td>
+<td>多模态系统如何做模型路由？</td>
+<td>OCR/检测用专用模型，开放问答用 VLM，难题升级更强模型，低风险任务用轻量模型。</td>
+</tr>
+<tr>
+<td>M094</td>
+<td>感知模型 domain shift 怎么处理？</td>
+<td>数据增强、域自适应、持续学习、场景分桶评估、少量目标域标注和主动学习。</td>
+</tr>
+<tr>
+<td>M095</td>
+<td>视觉系统有哪些安全风险？</td>
+<td>对抗样本、遮挡、伪造图片、提示注入、隐私泄露、错误定位导致危险动作。</td>
+</tr>
+<tr>
+<td>M096</td>
+<td>多模态 prompt injection 有什么特殊之处？</td>
+<td>恶意指令可以藏在图片、网页截图、二维码、文档 OCR 或视频字幕中。</td>
+</tr>
+<tr>
+<td>M097</td>
+<td>如何处理隐私敏感图像？</td>
+<td>本地处理、脱敏、人脸/车牌模糊、最小化存储、访问控制、日志去标识化。</td>
+</tr>
+<tr>
+<td>M098</td>
+<td>视觉模型上线前需要哪些回归测试？</td>
+<td>标准 benchmark、业务黄金集、长尾场景、攻击样例、性能压测和版本对比。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_9">十一、系统设计高频题<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>编号</th>
+<th>面试题</th>
+<th>回答抓手</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>M099</td>
+<td>设计一个图片问答 VLM 系统。</td>
+<td>图像上传、预处理、OCR/检测辅助、VLM 回答、证据引用、安全过滤、eval 和日志。</td>
+</tr>
+<tr>
+<td>M100</td>
+<td>设计一个文档图表理解系统。</td>
+<td>PDF 解析、OCR、layout、表格结构、图表元素识别、多模态 RAG、引用和拒答。</td>
+</tr>
+<tr>
+<td>M101</td>
+<td>设计一个以图搜图和文本搜图系统。</td>
+<td>图像/文本 embedding、向量索引、metadata filter、rerank、去重、冷启动和反馈学习。</td>
+</tr>
+<tr>
+<td>M102</td>
+<td>设计一个开放词表检测和分割系统。</td>
+<td>Grounding 模型找框，SAM 类模型出 mask，置信度校验、人工修正和数据回流。</td>
+</tr>
+<tr>
+<td>M103</td>
+<td>设计一个自动驾驶多传感器感知系统。</td>
+<td>camera/LiDAR/radar 输入、标定、BEV 融合、3D 检测、跟踪、占用、延迟和安全冗余。</td>
+</tr>
+<tr>
+<td>M104</td>
+<td>设计一个机器人抓取视觉系统。</td>
+<td>相机标定、检测/分割、6D pose、深度、可抓取点、闭环视觉伺服和失败恢复。</td>
+</tr>
+<tr>
+<td>M105</td>
+<td>设计一个视觉 Agent 操作网页的系统。</td>
+<td>screenshot + DOM、grounding、动作执行、状态验证、prompt injection 防御、轨迹回放。</td>
+</tr>
+<tr>
+<td>M106</td>
+<td>设计一个多模态评测 harness。</td>
+<td>数据集、runner、图像/视频输入、rubric、grounding 评分、幻觉检查、成本和延迟报告。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_10">高频追问模板<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h2>
+<p>回答多模态和感知题时，面试官很常追这几类：</p>
+<ul>
+<li>你如何证明模型真的看到了图像证据，而不是靠语言先验猜？</li>
+<li>指标提升 1 个点是否有业务意义？</li>
+<li>模型在小目标、遮挡、夜晚、长尾类别上表现如何？</li>
+<li>失败样例如何回流到数据、训练和 eval？</li>
+<li>为什么选择通用 VLM，而不是专用检测/分割/OCR 模型？</li>
+<li>如何在速度、精度、成本和可解释性之间权衡？</li>
+<li>线上发现分布漂移后，如何定位是数据、模型、阈值还是业务变化？</li>
+<li>如果视觉模型输出会触发真实世界动作，哪些环节必须加安全兜底？</li>
+</ul>
+<h2 id="_11">口述答案结构<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h2>
+<pre><code class="language-text">1. 先定义任务和输入输出
+2. 说明模型或算法核心机制
+3. 讲清指标和评估集
+4. 说出常见失败模式
+5. 给出工程补救手段
+6. 用一个项目或业务场景收尾
+</code></pre>
+<h2 id="_12">推荐参考资料<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h2>
+<ul>
+<li>OpenAI, <a href="https://openai.com/index/clip/">CLIP: Connecting text and images</a></li>
+<li>Meta AI, <a href="https://dinov2.metademolab.com/">DINOv2</a></li>
+<li>Meta AI, <a href="https://ai.meta.com/research/publications/segment-anything/">Segment Anything</a></li>
+<li>Meta AI, <a href="https://ai.meta.com/research/publications/sam-2-segment-anything-in-images-and-videos/">SAM 2</a></li>
+<li>MMMU Team, <a href="https://mmmu-benchmark.github.io/">MMMU benchmark</a></li>
+<li>Video-MME Team, <a href="https://video-mme.github.io/home_page.html">Video-MME</a></li>
+<li>Waymo, <a href="https://waymo.com/open/data/perception/">Open Dataset Perception</a></li>
+<li>nuScenes, <a href="https://www.nuscenes.org/">nuScenes dataset</a></li>
+</ul>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../06-mock-interview/" class="btn btn-neutral float-left" title="模拟面试"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../08-agent-interview-expanded-from-doc/" class="btn btn-neutral float-right" title="附件问题扩写与排序">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../06-mock-interview/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../08-agent-interview-expanded-from-doc/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

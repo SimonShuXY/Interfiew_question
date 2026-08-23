@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>04 工具调用与 MCP - Agent 从入门到精通手册</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "04 \u5de5\u5177\u8c03\u7528\u4e0e MCP";
+        var mkdocs_page_input_path = "04-tools-function-calling.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Agent 从入门到精通手册
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">首页</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../00-how-to-use/">使用指南</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">基础篇</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../01-what-is-agent/">01 Agent 是什么</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../02-llm-foundations/">02 LLM 基础</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../03-prompt-context/">03 提示词与上下文工程</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">核心篇</span></p>
+              <ul class="current">
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">04 工具调用与 MCP</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#_1">工具是什么</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_2">三类工具</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_3">好工具的标准</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_4">工具调用流程</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_5">错误处理</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#mcp">MCP 是什么</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#mcp_1">什么时候用 MCP</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_6">工具设计反模式</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_7">本章练习</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../05-rag-memory/">05 RAG 与记忆</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../06-agent-loop-planning/">06 Agent 循环与规划</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">架构篇</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../07-workflows-orchestration/">07 工作流与编排</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../08-multi-agent-protocols/">08 多 Agent 与协议</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">工程篇</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../09-evaluation-observability/">09 评测与可观测性</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../10-safety-security/">10 安全、权限与护栏</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../11-production-engineering/">11 生产化工程</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">精通篇</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../12-framework-selection/">12 框架选型</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../13-capstone-projects/">13 综合项目路线</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">面试准备</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../interview-prep/00-overview/">总览</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../interview-prep/01-40-day-plan/">40 天学习计划</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../interview-prep/02-question-bank-92/">92 道面试题</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../interview-prep/03-system-design/">系统设计题</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../interview-prep/04-answer-frameworks/">回答框架</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../interview-prep/05-project-and-resume/">项目与简历表达</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../interview-prep/06-mock-interview/">模拟面试</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../interview-prep/07-multimodal-perception-questions/">多模态与感知高频题</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../interview-prep/08-agent-interview-expanded-from-doc/">附件问题扩写与排序</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">附录</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../14-glossary/">14 术语表</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../99-references/">参考资料</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Agent 从入门到精通手册</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">核心篇</li>
+      <li class="breadcrumb-item active">04 工具调用与 MCP</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="04-mcp">04. 工具调用与 MCP<a class="headerlink" href="#04-mcp" title="Permanent link">&para;</a></h1>
+<p>上一章解决了“模型应该看到什么”。但很多任务不能靠上下文完成，因为模型需要实时数据、私有数据、计算能力或外部动作。本章讨论工具调用。</p>
+<p>本章目标：理解工具是 Agent 的行动接口，并学会设计安全、清晰、可测试的工具。
+下一章：学习当工具需要访问大量知识时，如何用 RAG 和记忆组织信息。</p>
+<h2 id="_1">工具是什么<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>工具是 Agent 可以调用的外部能力。它可以是：</p>
+<ul>
+<li>Python 函数。</li>
+<li>HTTP API。</li>
+<li>数据库查询。</li>
+<li>文件读写。</li>
+<li>搜索引擎。</li>
+<li>代码执行环境。</li>
+<li>另一个 Agent。</li>
+<li>人工审批流程。</li>
+</ul>
+<p>从模型视角看，工具是一份 schema：名称、描述、参数和返回值。从工程视角看，工具是一段受控代码，必须有权限、校验、日志和错误处理。</p>
+<h2 id="_2">三类工具<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>作用</th>
+<th>例子</th>
+<th>风险</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>数据工具</td>
+<td>获取上下文</td>
+<td>搜索、读数据库、读文件</td>
+<td>数据泄露、过期数据</td>
+</tr>
+<tr>
+<td>动作工具</td>
+<td>改变外部世界</td>
+<td>发邮件、退款、改配置</td>
+<td>误操作、副作用</td>
+</tr>
+<tr>
+<td>编排工具</td>
+<td>调用其他能力</td>
+<td>调子 Agent、启动任务</td>
+<td>调试困难、成本增加</td>
+</tr>
+</tbody>
+</table>
+<p>数据工具可以相对宽松，动作工具必须严格控制。凡是会产生真实副作用的工具，都要考虑审批、幂等、回滚和审计。</p>
+<h2 id="_3">好工具的标准<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p>一个好工具应该像给初级工程师看的函数文档：</p>
+<ul>
+<li>名称具体：<code>get_order_status</code> 比 <code>query</code> 好。</li>
+<li>描述清楚：说明什么时候用、什么时候不用。</li>
+<li>参数少而明确：避免让模型填写复杂嵌套对象。</li>
+<li>类型严格：用 JSON schema 或类型系统约束。</li>
+<li>返回稳定：返回结构化结果，而不是难解析的长文本。</li>
+<li>错误可恢复：错误信息告诉 Agent 下一步该怎么办。</li>
+<li>权限最小：只给完成任务必需的能力。</li>
+<li>可观测：每次调用有 trace、参数摘要、耗时、结果状态。</li>
+</ul>
+<h2 id="_4">工具调用流程<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<pre><code class="language-text">用户请求
+  -&gt; 模型判断需要工具
+  -&gt; 生成 tool_name + arguments
+  -&gt; Runtime 校验工具是否存在
+  -&gt; 校验参数 schema
+  -&gt; 校验权限和审批策略
+  -&gt; 执行工具
+  -&gt; 记录日志和 trace
+  -&gt; 把 observation 返回给模型
+  -&gt; 模型继续或结束
+</code></pre>
+<p>关键点：模型只“提出调用”，真正执行必须由 runtime 控制。</p>
+<h2 id="_5">错误处理<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<p>工具失败不可避免。要把失败设计成 Agent 能理解的 observation。</p>
+<table>
+<thead>
+<tr>
+<th>错误</th>
+<th>不好的返回</th>
+<th>好的返回</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>参数缺失</td>
+<td><code>Error</code></td>
+<td><code>missing order_id; ask user for order_id</code></td>
+</tr>
+<tr>
+<td>权限不足</td>
+<td><code>403</code></td>
+<td><code>permission_denied; refund requires human approval</code></td>
+</tr>
+<tr>
+<td>暂时不可用</td>
+<td><code>failed</code></td>
+<td><code>temporary_unavailable; retry_after_seconds=30</code></td>
+</tr>
+<tr>
+<td>找不到记录</td>
+<td><code>null</code></td>
+<td><code>not_found; verify identifier or ask user to confirm</code></td>
+</tr>
+</tbody>
+</table>
+<p>对动作工具，失败时不要让 Agent 猜测是否成功。必须返回明确状态。</p>
+<h2 id="mcp">MCP 是什么<a class="headerlink" href="#mcp" title="Permanent link">&para;</a></h2>
+<p>MCP，全称 Model Context Protocol，是一种让 AI 应用连接外部上下文和工具的开放协议。它把“模型需要的资料和能力”标准化成客户端、服务器和协议消息。</p>
+<p>核心参与者：</p>
+<table>
+<thead>
+<tr>
+<th>角色</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MCP Host</td>
+<td>AI 应用本体，例如 IDE、桌面助手、Agent 平台</td>
+</tr>
+<tr>
+<td>MCP Client</td>
+<td>Host 内部连接某个 MCP Server 的客户端</td>
+</tr>
+<tr>
+<td>MCP Server</td>
+<td>暴露工具、资源或提示的服务</td>
+</tr>
+</tbody>
+</table>
+<p>MCP 的核心原语：</p>
+<table>
+<thead>
+<tr>
+<th>原语</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Tools</td>
+<td>可执行函数，让模型采取行动</td>
+</tr>
+<tr>
+<td>Resources</td>
+<td>可读取上下文，例如文件、数据库记录、文档</td>
+</tr>
+<tr>
+<td>Prompts</td>
+<td>可复用提示模板或工作流入口</td>
+</tr>
+</tbody>
+</table>
+<p>MCP 适合解决“工具和上下文接入标准化”的问题。它不替你决定 Agent 如何规划，也不保证工具安全；安全仍由 Host、Server 和应用策略共同负责。</p>
+<h2 id="mcp_1">什么时候用 MCP<a class="headerlink" href="#mcp_1" title="Permanent link">&para;</a></h2>
+<p>适合：</p>
+<ul>
+<li>你要把同一套工具接给多个 Agent 或多个 AI 应用。</li>
+<li>工具来自不同系统，需要标准发现和调用方式。</li>
+<li>你希望把文件、数据库、API 以统一协议暴露给模型。</li>
+<li>你需要本地工具和远程工具都能接入。</li>
+</ul>
+<p>不适合：</p>
+<ul>
+<li>只有一个很小的内部函数，直接函数调用更简单。</li>
+<li>工具权限、安全边界还没设计清楚。</li>
+<li>你只是想让模型多想几步，MCP 不能替代规划。</li>
+</ul>
+<h2 id="_6">工具设计反模式<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
+<ul>
+<li>一个万能 <code>execute(command)</code> 工具暴露全部权限。</li>
+<li>工具描述写得像内部接口文档，模型看不懂使用场景。</li>
+<li>参数里要求模型生成复杂 SQL、shell 或代码，却没有沙箱和审计。</li>
+<li>动作工具没有人工确认。</li>
+<li>工具返回整页 HTML 或超长 JSON，让模型自己找重点。</li>
+<li>多个工具名称相似，边界模糊。</li>
+</ul>
+<h2 id="_7">本章练习<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
+<p>为“差旅预订 Agent”设计工具清单：</p>
+<ul>
+<li>查询航班。</li>
+<li>查询酒店。</li>
+<li>读取公司差旅政策。</li>
+<li>创建预订草稿。</li>
+<li>提交主管审批。</li>
+<li>付款。</li>
+</ul>
+<p>对每个工具写出名称、参数、返回值、权限、失败策略，并标记它是数据工具、动作工具还是编排工具。</p>
+<p>下一章会讨论知识和记忆：Agent 如何可靠使用大量资料，而不是把所有内容塞进 prompt。</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../03-prompt-context/" class="btn btn-neutral float-left" title="03 提示词与上下文工程"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../05-rag-memory/" class="btn btn-neutral float-right" title="05 RAG 与记忆">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../03-prompt-context/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../05-rag-memory/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

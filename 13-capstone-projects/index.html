@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>13 综合项目路线 - Agent 从入门到精通手册</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "13 \u7efc\u5408\u9879\u76ee\u8def\u7ebf";
+        var mkdocs_page_input_path = "13-capstone-projects.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Agent 从入门到精通手册
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">首页</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../00-how-to-use/">使用指南</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">基础篇</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../01-what-is-agent/">01 Agent 是什么</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../02-llm-foundations/">02 LLM 基础</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../03-prompt-context/">03 提示词与上下文工程</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">核心篇</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../04-tools-function-calling/">04 工具调用与 MCP</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../05-rag-memory/">05 RAG 与记忆</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../06-agent-loop-planning/">06 Agent 循环与规划</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">架构篇</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../07-workflows-orchestration/">07 工作流与编排</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../08-multi-agent-protocols/">08 多 Agent 与协议</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">工程篇</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../09-evaluation-observability/">09 评测与可观测性</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../10-safety-security/">10 安全、权限与护栏</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../11-production-engineering/">11 生产化工程</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">精通篇</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../12-framework-selection/">12 框架选型</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">13 综合项目路线</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#1">项目 1：结构化信息抽取器</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#2-agent">项目 2：最小工具调用 Agent</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#3-rag-agent">项目 3：内部知识库 RAG Agent</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#4-agent">项目 4：售后处理工作流 Agent</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#5-agent">项目 5：多 Agent 研究报告系统</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_1">精通级毕业项目</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_2">项目展示建议</a>
+    </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">面试准备</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../interview-prep/00-overview/">总览</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../interview-prep/01-40-day-plan/">40 天学习计划</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../interview-prep/02-question-bank-92/">92 道面试题</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../interview-prep/03-system-design/">系统设计题</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../interview-prep/04-answer-frameworks/">回答框架</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../interview-prep/05-project-and-resume/">项目与简历表达</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../interview-prep/06-mock-interview/">模拟面试</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../interview-prep/07-multimodal-perception-questions/">多模态与感知高频题</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../interview-prep/08-agent-interview-expanded-from-doc/">附件问题扩写与排序</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">附录</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../14-glossary/">14 术语表</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../99-references/">参考资料</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Agent 从入门到精通手册</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">精通篇</li>
+      <li class="breadcrumb-item active">13 综合项目路线</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="13">13. 综合项目路线<a class="headerlink" href="#13" title="Permanent link">&para;</a></h1>
+<p>前面章节已经覆盖概念、核心能力、架构和工程。本章把知识变成项目。项目要从小到大，不要第一个项目就做“全能 Agent 平台”。</p>
+<p>本章目标：通过 5 个项目完成从入门到精通的能力闭环。
+下一章：术语表，方便回查概念。</p>
+<h2 id="1">项目 1：结构化信息抽取器<a class="headerlink" href="#1" title="Permanent link">&para;</a></h2>
+<p>目标：输入一段文本，输出固定 JSON。</p>
+<p>能力点：</p>
+<ul>
+<li>LLM 基础调用。</li>
+<li>指令设计。</li>
+<li>结构化输出。</li>
+<li>基础评测。</li>
+</ul>
+<p>验收：</p>
+<ul>
+<li>至少 20 条样例。</li>
+<li>JSON schema 校验。</li>
+<li>错误输入能返回明确失败原因。</li>
+</ul>
+<p>为什么先做它：这是 Agent 的 L0-L1 基础。如果结构化输出都不稳定，后面工具调用会更不稳。</p>
+<h2 id="2-agent">项目 2：最小工具调用 Agent<a class="headerlink" href="#2-agent" title="Permanent link">&para;</a></h2>
+<p>目标：Agent 根据问题选择计算器、时间查询或本地知识查询工具。</p>
+<p>能力点：</p>
+<ul>
+<li>工具 schema。</li>
+<li>工具参数校验。</li>
+<li>Agent loop。</li>
+<li>最大轮数和错误恢复。</li>
+</ul>
+<p>验收：</p>
+<ul>
+<li>工具调用路径可打印。</li>
+<li>参数错误能重试或询问用户。</li>
+<li>不需要工具的问题直接回答。</li>
+</ul>
+<p>可参考 <code>examples/minimal-agent</code>。</p>
+<h2 id="3-rag-agent">项目 3：内部知识库 RAG Agent<a class="headerlink" href="#3-rag-agent" title="Permanent link">&para;</a></h2>
+<p>目标：基于一组公司制度文档回答问题，并给出引用。</p>
+<p>能力点：</p>
+<ul>
+<li>文档切分。</li>
+<li>metadata。</li>
+<li>检索与重排。</li>
+<li>引用生成。</li>
+<li>提示注入防护。</li>
+</ul>
+<p>验收：</p>
+<ul>
+<li>回答必须带文档引用。</li>
+<li>资料不存在时不能编造。</li>
+<li>用户无权限时不能泄露。</li>
+<li>至少 30 条 RAG 评测样例。</li>
+</ul>
+<h2 id="4-agent">项目 4：售后处理工作流 Agent<a class="headerlink" href="#4-agent" title="Permanent link">&para;</a></h2>
+<p>目标：根据用户诉求、订单状态和售后政策，给出处理建议，并在必要时创建退款草稿。</p>
+<p>能力点：</p>
+<ul>
+<li>工作流与 Agent 混合。</li>
+<li>数据工具和动作工具区分。</li>
+<li>人工审批。</li>
+<li>审计日志。</li>
+<li>轨迹评测。</li>
+</ul>
+<p>验收：</p>
+<ul>
+<li>未查订单前不能退款。</li>
+<li>真实退款必须审批。</li>
+<li>缺信息时先询问。</li>
+<li>每次工具调用有 trace。</li>
+</ul>
+<h2 id="5-agent">项目 5：多 Agent 研究报告系统<a class="headerlink" href="#5-agent" title="Permanent link">&para;</a></h2>
+<p>目标：多个 Agent 协作完成一份带引用的研究报告。</p>
+<p>建议角色：</p>
+<ul>
+<li>Planner：拆解研究问题。</li>
+<li>Researcher：检索和筛选资料。</li>
+<li>Analyst：提取观点和证据。</li>
+<li>Writer：生成报告。</li>
+<li>Reviewer：检查引用、逻辑和遗漏。</li>
+</ul>
+<p>能力点：</p>
+<ul>
+<li>多 Agent 职责隔离。</li>
+<li>结构化交接。</li>
+<li>并行和汇总。</li>
+<li>evaluator-optimizer。</li>
+<li>成本和轮数控制。</li>
+</ul>
+<p>验收：</p>
+<ul>
+<li>每个 Agent 有清晰输入输出 schema。</li>
+<li>最终报告区分事实、推断、建议。</li>
+<li>Reviewer 能指出至少 3 类问题。</li>
+<li>有端到端 trace。</li>
+<li>有回归评测集。</li>
+</ul>
+<h2 id="_1">精通级毕业项目<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>选择一个真实业务场景，完成完整工程包：</p>
+<pre><code class="language-text">docs/
+  product-requirements.md
+  architecture.md
+  threat-model.md
+  eval-plan.md
+  runbook.md
+evals/
+  cases.yaml
+src/
+  agent runtime
+  tool gateway
+  tools
+  rag pipeline
+tests/
+  unit tests
+  eval regression tests
+</code></pre>
+<p>毕业标准：</p>
+<ul>
+<li>能解释为什么需要 Agent。</li>
+<li>能证明比简单方案更好。</li>
+<li>有明确权限边界。</li>
+<li>有离线评测和线上观测计划。</li>
+<li>有失败恢复和人工介入。</li>
+<li>有成本预算。</li>
+<li>能被另一个工程师接手维护。</li>
+</ul>
+<h2 id="_2">项目展示建议<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>GitHub README 应包含：</p>
+<ul>
+<li>问题背景。</li>
+<li>架构图。</li>
+<li>Agent loop 或 workflow 图。</li>
+<li>工具清单。</li>
+<li>安全策略。</li>
+<li>评测结果。</li>
+<li>已知限制。</li>
+<li>运行方式。</li>
+</ul>
+<p>做到这里，你已经不是“会调 Agent 框架”，而是能对 Agent 系统质量负责。</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../12-framework-selection/" class="btn btn-neutral float-left" title="12 框架选型"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../interview-prep/00-overview/" class="btn btn-neutral float-right" title="总览">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../12-framework-selection/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../interview-prep/00-overview/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

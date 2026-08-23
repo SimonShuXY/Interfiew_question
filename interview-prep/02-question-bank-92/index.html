@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>92 道面试题 - Agent 从入门到精通手册</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "92 \u9053\u9762\u8bd5\u9898";
+        var mkdocs_page_input_path = "interview-prep/02-question-bank-92.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> Agent 从入门到精通手册
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">首页</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../00-how-to-use/">使用指南</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">基础篇</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../01-what-is-agent/">01 Agent 是什么</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../02-llm-foundations/">02 LLM 基础</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../03-prompt-context/">03 提示词与上下文工程</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">核心篇</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../04-tools-function-calling/">04 工具调用与 MCP</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../05-rag-memory/">05 RAG 与记忆</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../06-agent-loop-planning/">06 Agent 循环与规划</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">架构篇</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../07-workflows-orchestration/">07 工作流与编排</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../08-multi-agent-protocols/">08 多 Agent 与协议</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">工程篇</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../09-evaluation-observability/">09 评测与可观测性</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../10-safety-security/">10 安全、权限与护栏</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../11-production-engineering/">11 生产化工程</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">精通篇</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../12-framework-selection/">12 框架选型</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../13-capstone-projects/">13 综合项目路线</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">面试准备</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../00-overview/">总览</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../01-40-day-plan/">40 天学习计划</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">92 道面试题</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#agent">Agent 基础</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#llm-prompt">LLM 与 Prompt 基础</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_1">规划与执行</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#mcp-skills">工具、MCP 与 Skills</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#rag">RAG 与知识库</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_2">记忆与上下文工程</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#multi-agent-harness">Multi-Agent 与 Harness</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_3">安全、评测与可观测</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_4">生产架构、性能与成本</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_5">综合系统设计</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_6">自测标准</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../03-system-design/">系统设计题</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../04-answer-frameworks/">回答框架</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../05-project-and-resume/">项目与简历表达</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../06-mock-interview/">模拟面试</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../07-multimodal-perception-questions/">多模态与感知高频题</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../08-agent-interview-expanded-from-doc/">附件问题扩写与排序</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">附录</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../14-glossary/">14 术语表</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../99-references/">参考资料</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Agent 从入门到精通手册</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">面试准备</li>
+      <li class="breadcrumb-item active">92 道面试题</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="92-agent">92 道 Agent 面试题<a class="headerlink" href="#92-agent" title="Permanent link">&para;</a></h1>
+<p>使用方式：</p>
+<ul>
+<li>第一轮：只看题目，口述 2 到 3 分钟。</li>
+<li>第二轮：对照“回答抓手”，补齐定义、边界、机制、风险和指标。</li>
+<li>第三轮：给每题准备一个真实例子，最好来自自己的项目。</li>
+</ul>
+<h2 id="agent">Agent 基础<a class="headerlink" href="#agent" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>编号</th>
+<th>面试题</th>
+<th>回答抓手</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Q001</td>
+<td>你如何定义 Agent？它和普通 LLM 应用有什么区别？</td>
+<td>Agent 有目标、状态、工具、循环和终止条件；普通 LLM 应用多是单轮或固定流程。</td>
+</tr>
+<tr>
+<td>Q002</td>
+<td>Agent、chatbot、workflow、RAG 分别是什么关系？</td>
+<td>chatbot 偏交互界面，workflow 偏确定流程，RAG 偏知识增强，Agent 偏动态决策和行动。</td>
+</tr>
+<tr>
+<td>Q003</td>
+<td>一个 Agent 系统通常由哪些核心组件组成？</td>
+<td>模型、指令、工具、状态、记忆、规划器、执行器、评测、日志、权限。</td>
+</tr>
+<tr>
+<td>Q004</td>
+<td>什么场景适合 Agent，什么场景不适合？</td>
+<td>适合多步、开放、需要工具反馈的任务；不适合强确定、低延迟、高风险且规则清晰的任务。</td>
+</tr>
+<tr>
+<td>Q005</td>
+<td>为什么很多“Agent demo”不能直接生产化？</td>
+<td>缺 eval、trace、权限、失败恢复、成本控制、上下文管理和安全边界。</td>
+</tr>
+<tr>
+<td>Q006</td>
+<td>Agent 的能力边界应该如何定义？</td>
+<td>明确能做什么、不能做什么、需要确认什么、工具能访问什么、何时停止。</td>
+</tr>
+<tr>
+<td>Q007</td>
+<td>Agent 的自主性越高越好吗？</td>
+<td>不一定；自主性要和风险、可验证性、用户信任、成本和权限匹配。</td>
+</tr>
+<tr>
+<td>Q008</td>
+<td>面试中如何判断一个系统该用 Agent 还是 workflow？</td>
+<td>如果路径稳定且规则清晰，用 workflow；如果路径动态、需要探索和工具反馈，考虑 Agent。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="llm-prompt">LLM 与 Prompt 基础<a class="headerlink" href="#llm-prompt" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>编号</th>
+<th>面试题</th>
+<th>回答抓手</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Q009</td>
+<td>Token 是什么？为什么 Agent 设计必须关注 token？</td>
+<td>token 决定上下文容量、成本、延迟和可保留信息量。</td>
+</tr>
+<tr>
+<td>Q010</td>
+<td>temperature、top_p、max tokens 分别影响什么？</td>
+<td>temperature/top_p 影响采样随机性；max tokens 控制输出长度和截断风险。</td>
+</tr>
+<tr>
+<td>Q011</td>
+<td>为什么生产 Agent 通常需要结构化输出？</td>
+<td>便于程序解析、校验、重试、审计和评测。</td>
+</tr>
+<tr>
+<td>Q012</td>
+<td>JSON schema 输出失败时如何处理？</td>
+<td>schema validation、自动修复、重新生成、降级到人工或安全默认值。</td>
+</tr>
+<tr>
+<td>Q013</td>
+<td>System prompt、developer prompt、user prompt 的职责如何划分？</td>
+<td>系统和开发者定义角色、边界、工具策略；用户给任务和上下文。</td>
+</tr>
+<tr>
+<td>Q014</td>
+<td>Few-shot 在 Agent 中有什么作用？</td>
+<td>稳定格式、展示工具选择模式、约束推理风格，但会占上下文。</td>
+</tr>
+<tr>
+<td>Q015</td>
+<td>Prompt cache 的收益和局限是什么？</td>
+<td>重复前缀可降低成本和延迟；动态上下文、个性化内容和频繁变动会降低命中率。</td>
+</tr>
+<tr>
+<td>Q016</td>
+<td>如何避免 prompt 越写越长？</td>
+<td>抽象策略、使用结构化 state、检索相关上下文、压缩历史、把规则下沉到代码。</td>
+</tr>
+<tr>
+<td>Q017</td>
+<td>为什么只靠 prompt 很难保证 Agent 安全？</td>
+<td>模型是概率系统，工具权限、校验、审批、沙箱和审计必须由系统层兜底。</td>
+</tr>
+<tr>
+<td>Q018</td>
+<td>如何设计一个可维护的 Agent prompt？</td>
+<td>分层组织：目标、边界、工具策略、输出格式、失败处理、例子和禁止行为。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_1">规划与执行<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>编号</th>
+<th>面试题</th>
+<th>回答抓手</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Q019</td>
+<td>什么是 Agent loop？</td>
+<td>循环进行观察、推理、行动、接收工具结果，直到完成或触发停止条件。</td>
+</tr>
+<tr>
+<td>Q020</td>
+<td>ReAct 的核心思想是什么？</td>
+<td>推理和行动交替，模型根据观察动态选择下一步。</td>
+</tr>
+<tr>
+<td>Q021</td>
+<td>Plan-and-Execute 和 ReAct 的区别是什么？</td>
+<td>前者先规划再执行，适合长任务；后者边看反馈边行动，适合不确定环境。</td>
+</tr>
+<tr>
+<td>Q022</td>
+<td>Reflection 在 Agent 中解决什么问题？</td>
+<td>复盘失败、更新策略、改善下一次尝试；需要防止自我确认和成本膨胀。</td>
+</tr>
+<tr>
+<td>Q023</td>
+<td>如何设计 Agent 的终止条件？</td>
+<td>目标完成、最大步数、超时、无进展检测、重复动作检测、风险触发。</td>
+</tr>
+<tr>
+<td>Q024</td>
+<td>Agent 跑偏通常有哪些原因？</td>
+<td>目标不清、工具描述误导、上下文污染、缺少状态、缺少 eval、停止条件弱。</td>
+</tr>
+<tr>
+<td>Q025</td>
+<td>如何避免 Agent 死循环？</td>
+<td>步数预算、状态去重、工具调用去重、progress evaluator、强制总结和人工介入。</td>
+</tr>
+<tr>
+<td>Q026</td>
+<td>状态机和 LLM planner 如何结合？</td>
+<td>状态机管硬约束和阶段迁移，LLM 处理开放决策和文本理解。</td>
+</tr>
+<tr>
+<td>Q027</td>
+<td>什么时候应该让模型重新规划？</td>
+<td>工具失败、环境变化、计划步骤不可执行、用户目标变化、成本超预算。</td>
+</tr>
+<tr>
+<td>Q028</td>
+<td>如何评估一个规划器好不好？</td>
+<td>计划可执行性、步骤冗余率、工具选择正确率、完成率、平均步数和失败恢复率。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="mcp-skills">工具、MCP 与 Skills<a class="headerlink" href="#mcp-skills" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>编号</th>
+<th>面试题</th>
+<th>回答抓手</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Q029</td>
+<td>Function calling 的本质是什么？</td>
+<td>模型选择函数和参数，实际执行由代码完成。</td>
+</tr>
+<tr>
+<td>Q030</td>
+<td>一个好的工具 schema 应该包含什么？</td>
+<td>清晰名称、用途边界、参数类型、必填字段、枚举、约束、错误语义。</td>
+</tr>
+<tr>
+<td>Q031</td>
+<td>为什么工具描述不能写得过于宽泛？</td>
+<td>模型会误用工具；宽泛描述会导致权限扩大、参数错误和不可评测。</td>
+</tr>
+<tr>
+<td>Q032</td>
+<td>读工具和写工具的设计有什么区别？</td>
+<td>写工具风险更高，需要权限、dry-run、审批、幂等、回滚和审计。</td>
+</tr>
+<tr>
+<td>Q033</td>
+<td>工具调用失败时应该如何恢复？</td>
+<td>分类错误、重试、修正参数、换工具、请求用户补信息、停止并解释。</td>
+</tr>
+<tr>
+<td>Q034</td>
+<td>MCP 解决什么问题？</td>
+<td>用标准协议连接 LLM 应用和外部工具、资源、提示模板，降低集成碎片化。</td>
+</tr>
+<tr>
+<td>Q035</td>
+<td>MCP 中 Host、Client、Server 分别是什么？</td>
+<td>Host 是 LLM 应用，Client 是连接器，Server 暴露工具、资源和 prompts。</td>
+</tr>
+<tr>
+<td>Q036</td>
+<td>MCP 和普通 function calling 有什么区别？</td>
+<td>function calling 是模型调用函数的接口模式；MCP 是外部能力发现和通信协议。</td>
+</tr>
+<tr>
+<td>Q037</td>
+<td>Skill 和 tool 的区别是什么？</td>
+<td>tool 是可执行能力；skill 更像可渐进加载的任务说明、流程知识和能力包。</td>
+</tr>
+<tr>
+<td>Q038</td>
+<td>如何防止 Agent 通过工具做危险动作？</td>
+<td>最小权限、参数校验、审批、沙箱、策略引擎、审计日志、危险动作默认阻断。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="rag">RAG 与知识库<a class="headerlink" href="#rag" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>编号</th>
+<th>面试题</th>
+<th>回答抓手</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Q039</td>
+<td>RAG 解决什么问题？不能解决什么问题？</td>
+<td>解决外部知识和可引用问题；不能自动保证推理正确、权限正确或资料真实。</td>
+</tr>
+<tr>
+<td>Q040</td>
+<td>Embedding 的作用是什么？</td>
+<td>把文本或多模态内容映射到向量空间，用相似度做语义召回。</td>
+</tr>
+<tr>
+<td>Q041</td>
+<td>Chunk 大小如何选择？</td>
+<td>平衡语义完整性、召回精度、上下文成本；文档结构和任务类型决定策略。</td>
+</tr>
+<tr>
+<td>Q042</td>
+<td>固定 chunk 和语义 chunk 各有什么优缺点？</td>
+<td>固定简单稳定；语义更贴合内容但依赖解析质量和成本。</td>
+</tr>
+<tr>
+<td>Q043</td>
+<td>混合检索为什么常比纯向量检索好？</td>
+<td>BM25 擅长关键词和专有名词，向量擅长语义，组合能提升召回覆盖。</td>
+</tr>
+<tr>
+<td>Q044</td>
+<td>Rerank 放在检索链路哪个位置？</td>
+<td>初召回后、送入 LLM 前，用更强模型重排候选片段。</td>
+</tr>
+<tr>
+<td>Q045</td>
+<td>Query rewrite 在 RAG 中有什么作用？</td>
+<td>补全多轮上下文、改写歧义问题、生成多查询、加入过滤条件。</td>
+</tr>
+<tr>
+<td>Q046</td>
+<td>如何处理“知识库没有答案”的问题？</td>
+<td>检索置信度阈值、引用要求、拒答策略、请求补充、人工升级。</td>
+</tr>
+<tr>
+<td>Q047</td>
+<td>RAG 幻觉有哪些来源？</td>
+<td>召回错、上下文不完整、模型过度推断、引用错配、过期文档、权限混入。</td>
+</tr>
+<tr>
+<td>Q048</td>
+<td>如何评测 RAG 系统？</td>
+<td>检索召回、上下文相关性、答案正确性、引用准确率、拒答正确率、延迟和成本。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_2">记忆与上下文工程<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>编号</th>
+<th>面试题</th>
+<th>回答抓手</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Q049</td>
+<td>短期记忆和长期记忆有什么区别？</td>
+<td>短期服务当前会话和任务状态；长期保存跨会话事实、偏好和历史经验。</td>
+</tr>
+<tr>
+<td>Q050</td>
+<td>Session State 应该存什么？</td>
+<td>用户目标、任务阶段、已确认信息、工具结果摘要、审批状态、未解决问题。</td>
+</tr>
+<tr>
+<td>Q051</td>
+<td>长期记忆写入应该满足什么条件？</td>
+<td>用户同意、事实稳定、可溯源、可删除、避免敏感信息滥存。</td>
+</tr>
+<tr>
+<td>Q052</td>
+<td>什么是上下文污染？</td>
+<td>不相关、过期、恶意或低质量信息进入上下文，影响模型判断。</td>
+</tr>
+<tr>
+<td>Q053</td>
+<td>上下文压缩有哪些方法？</td>
+<td>摘要、结构化 state、检索式记忆、窗口滑动、重要性打分、任务分段。</td>
+</tr>
+<tr>
+<td>Q054</td>
+<td>为什么“把所有历史都塞进 prompt”不是好方案？</td>
+<td>成本高、延迟高、噪声多、易污染、超过上下文窗口且难以审计。</td>
+</tr>
+<tr>
+<td>Q055</td>
+<td>如何设计 Agent 的工作记忆？</td>
+<td>明确字段、更新规则、来源、置信度、过期策略和可解释摘要。</td>
+</tr>
+<tr>
+<td>Q056</td>
+<td>如何避免记忆导致隐私风险？</td>
+<td>最小化存储、用户可控、加密、访问控制、脱敏、保留期限和删除机制。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="multi-agent-harness">Multi-Agent 与 Harness<a class="headerlink" href="#multi-agent-harness" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>编号</th>
+<th>面试题</th>
+<th>回答抓手</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Q057</td>
+<td>什么时候需要 multi-agent？</td>
+<td>任务可分解为专业角色、并行子任务、互相审核或权限隔离时。</td>
+</tr>
+<tr>
+<td>Q058</td>
+<td>Multi-agent 一定比 single-agent 好吗？</td>
+<td>不一定；会增加通信成本、协调复杂度、冲突和调试难度。</td>
+</tr>
+<tr>
+<td>Q059</td>
+<td>常见 multi-agent 架构有哪些？</td>
+<td>supervisor、router、orchestrator-workers、peer collaboration、blackboard。</td>
+</tr>
+<tr>
+<td>Q060</td>
+<td>Agent 之间如何通信？</td>
+<td>消息、共享状态、任务队列、artifact、handoff、协议如 A2A 或内部 schema。</td>
+</tr>
+<tr>
+<td>Q061</td>
+<td>多 Agent 冲突如何治理？</td>
+<td>明确角色权限、仲裁器、投票、优先级、证据引用、人工最终决策。</td>
+</tr>
+<tr>
+<td>Q062</td>
+<td>Harness 是什么？</td>
+<td>把模型包装成可行动 Agent 的运行时脚手架，负责 loop、工具、状态、审批、观测和进度。</td>
+</tr>
+<tr>
+<td>Q063</td>
+<td>Harness 和 framework 的区别是什么？</td>
+<td>framework 提供构建块；harness 更像预组装运行时，默认集成循环、上下文、工具和策略。</td>
+</tr>
+<tr>
+<td>Q064</td>
+<td>如何评测 multi-agent 系统？</td>
+<td>子任务成功率、协作开销、冲突率、handoff 正确率、最终完成率和轨迹质量。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_3">安全、评测与可观测<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>编号</th>
+<th>面试题</th>
+<th>回答抓手</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Q065</td>
+<td>Prompt injection 是什么？</td>
+<td>恶意内容试图覆盖系统指令、窃取数据或诱导工具越权。</td>
+</tr>
+<tr>
+<td>Q066</td>
+<td>RAG 场景中 prompt injection 如何出现？</td>
+<td>恶意文档片段、网页内容、用户上传文件、工具返回值都可能携带指令。</td>
+</tr>
+<tr>
+<td>Q067</td>
+<td>如何防御 prompt injection？</td>
+<td>指令和数据分离、来源标注、权限检查、工具白名单、输出校验、人工审批。</td>
+</tr>
+<tr>
+<td>Q068</td>
+<td>什么是最小权限原则？</td>
+<td>Agent 和工具只获得完成当前任务所需的最小数据和动作权限。</td>
+</tr>
+<tr>
+<td>Q069</td>
+<td>哪些动作需要 Human-in-the-Loop？</td>
+<td>付款、删除、发送外部消息、修改生产数据、权限变更、不可逆操作。</td>
+</tr>
+<tr>
+<td>Q070</td>
+<td>Agent eval 应该分哪些层？</td>
+<td>单步、工具、检索、轨迹、最终答案、系统指标、安全指标。</td>
+</tr>
+<tr>
+<td>Q071</td>
+<td>为什么只看最终答案不够？</td>
+<td>中间可能越权、浪费成本、调用错误工具或泄露隐私。</td>
+</tr>
+<tr>
+<td>Q072</td>
+<td>Trace 应该记录什么？</td>
+<td>trace id、模型调用、工具调用、检索、handoff、guardrail、耗时、token、版本和错误。</td>
+</tr>
+<tr>
+<td>Q073</td>
+<td>如何做失败归因？</td>
+<td>按 prompt、模型能力、工具 schema、检索、上下文、权限、外部系统、业务规则分类。</td>
+</tr>
+<tr>
+<td>Q074</td>
+<td>LLM-as-judge 有什么风险？</td>
+<td>不稳定、偏见、与生成模型同源、rubric 模糊；需要人工校准和规则补充。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_4">生产架构、性能与成本<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>编号</th>
+<th>面试题</th>
+<th>回答抓手</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Q075</td>
+<td>生产级 Agent 架构通常包括哪些层？</td>
+<td>API、orchestrator、model gateway、tools、memory/RAG、policy、eval、trace、queue、storage。</td>
+</tr>
+<tr>
+<td>Q076</td>
+<td>如何降低 Agent 延迟？</td>
+<td>并行检索、模型路由、缓存、流式输出、减少轮数、异步工具、预计算。</td>
+</tr>
+<tr>
+<td>Q077</td>
+<td>如何降低 token 成本？</td>
+<td>上下文压缩、prompt cache、小模型路由、检索裁剪、输出预算、批处理。</td>
+</tr>
+<tr>
+<td>Q078</td>
+<td>模型路由怎么设计？</td>
+<td>按任务难度、风险、成本、延迟和模态选择模型，可先小模型分类再升级。</td>
+</tr>
+<tr>
+<td>Q079</td>
+<td>Agent 服务如何做限流？</td>
+<td>用户级、租户级、工具级、模型级限流；配合队列、预算和降级策略。</td>
+</tr>
+<tr>
+<td>Q080</td>
+<td>Agent 如何做灰度和回滚？</td>
+<td>版本化 prompt、工具、模型和检索参数；小流量实验，指标异常自动回滚。</td>
+</tr>
+<tr>
+<td>Q081</td>
+<td>如何处理外部工具不稳定？</td>
+<td>超时、重试、熔断、缓存、降级答案、用户告知、后台补偿任务。</td>
+</tr>
+<tr>
+<td>Q082</td>
+<td>如何衡量 Agent 的生产效果？</td>
+<td>任务完成率、一次解决率、人工介入率、P95 延迟、成本、错误率、用户满意度。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_5">综合系统设计<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>编号</th>
+<th>面试题</th>
+<th>回答抓手</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Q083</td>
+<td>设计一个智能客服 Agent。</td>
+<td>意图识别、知识库、订单工具、退款审批、转人工、eval、trace、安全。</td>
+</tr>
+<tr>
+<td>Q084</td>
+<td>设计一个代码修复 Agent。</td>
+<td>repo 索引、issue 理解、定位、补丁、测试、sandbox、review、PR 摘要。</td>
+</tr>
+<tr>
+<td>Q085</td>
+<td>设计一个企业知识库 Agent。</td>
+<td>文档摄取、权限过滤、混合检索、引用、拒答、更新、反馈闭环。</td>
+</tr>
+<tr>
+<td>Q086</td>
+<td>设计一个数据分析 Agent。</td>
+<td>schema 理解、SQL 生成、只读权限、查询校验、图表、解释和成本控制。</td>
+</tr>
+<tr>
+<td>Q087</td>
+<td>设计一个浏览器操作 Agent。</td>
+<td>页面观察、视觉/DOM grounding、动作执行、状态验证、prompt injection 防御。</td>
+</tr>
+<tr>
+<td>Q088</td>
+<td>设计一个多 Agent 研究写作系统。</td>
+<td>研究、检索、事实核查、写作、编辑、引用审计、冲突解决。</td>
+</tr>
+<tr>
+<td>Q089</td>
+<td>设计一个 Agent eval harness。</td>
+<td>任务集、环境、runner、trace、评分器、报告、回归门禁。</td>
+</tr>
+<tr>
+<td>Q090</td>
+<td>设计一个 MCP 工具平台。</td>
+<td>server registry、工具 schema、权限、审计、版本、沙箱、租户隔离。</td>
+</tr>
+<tr>
+<td>Q091</td>
+<td>设计一个长期记忆系统。</td>
+<td>写入策略、检索、更新、遗忘、隐私、用户控制、质量评估。</td>
+</tr>
+<tr>
+<td>Q092</td>
+<td>设计一个生产级 Agent 网关。</td>
+<td>model routing、policy、rate limit、logging、cost budget、fallback、observability。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_6">自测标准<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
+<p>每道题可以按 0 到 3 分评分：</p>
+<table>
+<thead>
+<tr>
+<th>分数</th>
+<th>标准</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>只能说概念名词，无法解释机制</td>
+</tr>
+<tr>
+<td>1</td>
+<td>能定义，但缺少工程边界和例子</td>
+</tr>
+<tr>
+<td>2</td>
+<td>能讲机制、风险和权衡</td>
+</tr>
+<tr>
+<td>3</td>
+<td>能结合项目、指标、失败模式和生产方案</td>
+</tr>
+</tbody>
+</table>
+<p>目标是在正式面试前：</p>
+<ul>
+<li>基础题平均达到 2.5 分以上。</li>
+<li>系统设计题至少 5 道能完整讲 20 分钟。</li>
+<li>项目题能拿出 trace、eval、架构图和真实改进指标。</li>
+</ul>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../01-40-day-plan/" class="btn btn-neutral float-left" title="40 天学习计划"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../03-system-design/" class="btn btn-neutral float-right" title="系统设计题">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../01-40-day-plan/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../03-system-design/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>06 Agent 循环与规划 - Agent 从入门到精通手册</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "06 Agent \u5faa\u73af\u4e0e\u89c4\u5212";
+        var mkdocs_page_input_path = "06-agent-loop-planning.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Agent 从入门到精通手册
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">首页</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../00-how-to-use/">使用指南</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">基础篇</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../01-what-is-agent/">01 Agent 是什么</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../02-llm-foundations/">02 LLM 基础</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../03-prompt-context/">03 提示词与上下文工程</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">核心篇</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../04-tools-function-calling/">04 工具调用与 MCP</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../05-rag-memory/">05 RAG 与记忆</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">06 Agent 循环与规划</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#agent-loop">Agent loop</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#react">ReAct 思想</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_1">规划模式</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_2">停止条件</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_3">状态设计</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_4">错误恢复</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_5">最小伪代码</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_6">本章练习</a>
+    </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">架构篇</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../07-workflows-orchestration/">07 工作流与编排</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../08-multi-agent-protocols/">08 多 Agent 与协议</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">工程篇</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../09-evaluation-observability/">09 评测与可观测性</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../10-safety-security/">10 安全、权限与护栏</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../11-production-engineering/">11 生产化工程</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">精通篇</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../12-framework-selection/">12 框架选型</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../13-capstone-projects/">13 综合项目路线</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">面试准备</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../interview-prep/00-overview/">总览</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../interview-prep/01-40-day-plan/">40 天学习计划</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../interview-prep/02-question-bank-92/">92 道面试题</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../interview-prep/03-system-design/">系统设计题</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../interview-prep/04-answer-frameworks/">回答框架</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../interview-prep/05-project-and-resume/">项目与简历表达</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../interview-prep/06-mock-interview/">模拟面试</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../interview-prep/07-multimodal-perception-questions/">多模态与感知高频题</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../interview-prep/08-agent-interview-expanded-from-doc/">附件问题扩写与排序</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">附录</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../14-glossary/">14 术语表</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../99-references/">参考资料</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Agent 从入门到精通手册</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">核心篇</li>
+      <li class="breadcrumb-item active">06 Agent 循环与规划</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="06-agent">06. Agent 循环与规划<a class="headerlink" href="#06-agent" title="Permanent link">&para;</a></h1>
+<p>前面几章分别讲了模型、上下文、工具、RAG 和记忆。本章把它们串成一个完整执行系统：Agent 如何一步步推进任务。</p>
+<p>本章目标：理解 Agent loop、规划模式、停止条件和错误恢复。
+下一章：比较更可控的工作流与更灵活的 Agent 编排。</p>
+<h2 id="agent-loop">Agent loop<a class="headerlink" href="#agent-loop" title="Permanent link">&para;</a></h2>
+<p>最小 Agent loop 包含四个动作：</p>
+<pre><code class="language-text">Observe -&gt; Decide -&gt; Act -&gt; Reflect
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>动作</th>
+<th>说明</th>
+<th>例子</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Observe</td>
+<td>读取目标、状态、上下文、工具结果</td>
+<td>“订单状态是已发货”</td>
+</tr>
+<tr>
+<td>Decide</td>
+<td>判断下一步</td>
+<td>“需要检查退款政策”</td>
+</tr>
+<tr>
+<td>Act</td>
+<td>调用工具或生成输出</td>
+<td><code>check_refund_policy(order_id)</code></td>
+</tr>
+<tr>
+<td>Reflect</td>
+<td>根据结果更新状态</td>
+<td>“政策允许退货，但需用户补充照片”</td>
+</tr>
+</tbody>
+</table>
+<p>不是所有系统都需要显式“反思”，但任何 Agent 都需要根据 observation 更新状态。</p>
+<h2 id="react">ReAct 思想<a class="headerlink" href="#react" title="Permanent link">&para;</a></h2>
+<p>ReAct 指 reasoning and acting，即把推理和行动交替进行。现代 Agent 不一定暴露完整推理过程，但工程上仍保留这个结构：</p>
+<pre><code class="language-text">当前问题
+  -&gt; 判断需要什么信息
+  -&gt; 调用工具
+  -&gt; 观察结果
+  -&gt; 更新任务状态
+  -&gt; 决定继续或结束
+</code></pre>
+<p>ReAct 的价值在于让模型不要一次性猜答案，而是通过外部环境获得 ground truth。</p>
+<h2 id="_1">规划模式<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>常见规划模式有三类：</p>
+<table>
+<thead>
+<tr>
+<th>模式</th>
+<th>做法</th>
+<th>适合场景</th>
+<th>风险</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>即时决策</td>
+<td>每一步只决定下一步</td>
+<td>简单任务、工具少</td>
+<td>容易局部最优</td>
+</tr>
+<tr>
+<td>先计划后执行</td>
+<td>先生成计划，再逐步执行</td>
+<td>任务较长、步骤清晰</td>
+<td>计划可能过时</td>
+</tr>
+<tr>
+<td>动态重规划</td>
+<td>执行中根据结果修正计划</td>
+<td>搜索、代码、研究任务</td>
+<td>成本和复杂度高</td>
+</tr>
+</tbody>
+</table>
+<p>工程上常用混合方式：先生成粗计划，再允许每步根据工具结果调整。</p>
+<h2 id="_2">停止条件<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>Agent 必须知道何时停止。常见停止条件：</p>
+<ul>
+<li>模型返回最终答案。</li>
+<li>达到结构化输出要求。</li>
+<li>达到最大轮数。</li>
+<li>达到成本或时间预算。</li>
+<li>工具连续失败。</li>
+<li>需要用户补充信息。</li>
+<li>触发安全规则。</li>
+<li>动作需要人工审批。</li>
+</ul>
+<p>没有停止条件的 Agent 不可上线。</p>
+<h2 id="_3">状态设计<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p>Agent 状态至少包括：</p>
+<pre><code class="language-text">goal: 用户目标
+facts: 已确认事实
+plan: 当前计划
+steps_done: 已完成步骤
+pending_questions: 待确认问题
+tool_history: 工具调用摘要
+budget: 剩余轮数、时间、成本
+final_criteria: 完成标准
+</code></pre>
+<p>状态要服务决策，不是记录一切。工具返回的大对象应保存到外部存储，只把摘要和引用放进模型上下文。</p>
+<h2 id="_4">错误恢复<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<p>Agent 常见错误恢复策略：</p>
+<table>
+<thead>
+<tr>
+<th>情况</th>
+<th>策略</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>参数错误</td>
+<td>根据 schema 重新生成参数</td>
+</tr>
+<tr>
+<td>工具超时</td>
+<td>重试、换工具、降级、告知用户</td>
+</tr>
+<tr>
+<td>信息不足</td>
+<td>向用户提问，不要猜</td>
+</tr>
+<tr>
+<td>结果矛盾</td>
+<td>标记冲突，二次检索或请求人工</td>
+</tr>
+<tr>
+<td>权限不足</td>
+<td>请求审批或停止</td>
+</tr>
+<tr>
+<td>多次失败</td>
+<td>总结已尝试步骤，交给人工</td>
+</tr>
+</tbody>
+</table>
+<p>错误恢复不是让模型无限重试，而是让系统可控地前进或停止。</p>
+<h2 id="_5">最小伪代码<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<pre><code class="language-python">state = init_state(user_goal)
+
+for turn in range(max_turns):
+    decision = model.decide(state, tools)
+
+    if decision.type == &quot;final&quot;:
+        return validate_output(decision.output)
+
+    if decision.type == &quot;tool_call&quot;:
+        checked_args = validate_args(decision.tool, decision.args)
+        if requires_approval(decision.tool, checked_args):
+            return request_human_approval(decision)
+        observation = execute_tool(decision.tool, checked_args)
+        state = update_state(state, decision, observation)
+        continue
+
+    if decision.type == &quot;ask_user&quot;:
+        return ask_user(decision.question)
+
+return fail_with_summary(state)
+</code></pre>
+<h2 id="_6">本章练习<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
+<p>为“代码修复 Agent”写出状态字段和停止条件。至少考虑：</p>
+<ul>
+<li>如何知道修复完成？</li>
+<li>测试失败时如何重试？</li>
+<li>文件编辑权限如何控制？</li>
+<li>连续失败几次后交给人工？</li>
+<li>如何记录每次工具调用？</li>
+</ul>
+<p>下一章会比较两条路线：用固定工作流提高可控性，还是用更自主的 Agent loop 提高灵活性。</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../05-rag-memory/" class="btn btn-neutral float-left" title="05 RAG 与记忆"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../07-workflows-orchestration/" class="btn btn-neutral float-right" title="07 工作流与编排">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../05-rag-memory/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../07-workflows-orchestration/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

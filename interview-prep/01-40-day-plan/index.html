@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>40 天学习计划 - Agent 从入门到精通手册</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "40 \u5929\u5b66\u4e60\u8ba1\u5212";
+        var mkdocs_page_input_path = "interview-prep/01-40-day-plan.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> Agent 从入门到精通手册
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">首页</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../00-how-to-use/">使用指南</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">基础篇</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../01-what-is-agent/">01 Agent 是什么</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../02-llm-foundations/">02 LLM 基础</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../03-prompt-context/">03 提示词与上下文工程</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">核心篇</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../04-tools-function-calling/">04 工具调用与 MCP</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../05-rag-memory/">05 RAG 与记忆</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../06-agent-loop-planning/">06 Agent 循环与规划</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">架构篇</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../07-workflows-orchestration/">07 工作流与编排</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../08-multi-agent-protocols/">08 多 Agent 与协议</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">工程篇</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../09-evaluation-observability/">09 评测与可观测性</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../10-safety-security/">10 安全、权限与护栏</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../11-production-engineering/">11 生产化工程</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">精通篇</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../12-framework-selection/">12 框架选型</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../13-capstone-projects/">13 综合项目路线</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">面试准备</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../00-overview/">总览</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">40 天学习计划</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#1-agent-llm">第 1 阶段：Agent 基础和 LLM 基础</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#2">第 2 阶段：规划、执行和工具</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#3-mcpskillsrag">第 3 阶段：MCP、Skills、RAG 和记忆</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#4-agentharness">第 4 阶段：多 Agent、Harness、评测和安全</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#5">第 5 阶段：生产架构、系统设计和面试冲刺</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_1">每日复盘模板</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_2">每周检查点</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../02-question-bank-92/">92 道面试题</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../03-system-design/">系统设计题</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../04-answer-frameworks/">回答框架</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../05-project-and-resume/">项目与简历表达</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../06-mock-interview/">模拟面试</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../07-multimodal-perception-questions/">多模态与感知高频题</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../08-agent-interview-expanded-from-doc/">附件问题扩写与排序</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">附录</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../14-glossary/">14 术语表</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../99-references/">参考资料</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Agent 从入门到精通手册</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">面试准备</li>
+      <li class="breadcrumb-item active">40 天学习计划</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="40">40 天学习计划<a class="headerlink" href="#40" title="Permanent link">&para;</a></h1>
+<p>这份计划按“概念理解 -&gt; 工程机制 -&gt; 系统设计 -&gt; 模拟面试”的节奏安排。每天建议投入 1.5 到 3 小时：</p>
+<ul>
+<li>40 分钟阅读和整理笔记。</li>
+<li>40 分钟口述 3 到 5 道题。</li>
+<li>40 到 80 分钟做小实验、画架构图或补项目材料。</li>
+</ul>
+<h2 id="1-agent-llm">第 1 阶段：Agent 基础和 LLM 基础<a class="headerlink" href="#1-agent-llm" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>天数</th>
+<th>主题</th>
+<th>当天产出</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Day 1</td>
+<td>Agent 定义与边界</td>
+<td>写一页笔记：Agent、LLM app、chatbot、workflow 的区别</td>
+</tr>
+<tr>
+<td>Day 2</td>
+<td>Agent 核心组成</td>
+<td>画出目标、状态、模型、工具、观察、终止条件的闭环图</td>
+</tr>
+<tr>
+<td>Day 3</td>
+<td>Agent 适用场景</td>
+<td>整理 10 个适合 Agent 和 10 个不适合 Agent 的场景</td>
+</tr>
+<tr>
+<td>Day 4</td>
+<td>Token 与上下文窗口</td>
+<td>解释 token、上下文窗口、上下文溢出、输出截断</td>
+</tr>
+<tr>
+<td>Day 5</td>
+<td>采样参数</td>
+<td>对比 temperature、top_p、max tokens、seed 对行为的影响</td>
+</tr>
+<tr>
+<td>Day 6</td>
+<td>Prompt 层级和 Few-shot</td>
+<td>写 3 个 system/developer/user 层级冲突案例</td>
+</tr>
+<tr>
+<td>Day 7</td>
+<td>结构化输出和缓存</td>
+<td>设计一个 JSON schema 输出，并解释 prompt cache 的收益和限制</td>
+</tr>
+</tbody>
+</table>
+<h2 id="2">第 2 阶段：规划、执行和工具<a class="headerlink" href="#2" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>天数</th>
+<th>主题</th>
+<th>当天产出</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Day 8</td>
+<td>Agent Loop</td>
+<td>写出 observe-think-act-observe 的伪代码</td>
+</tr>
+<tr>
+<td>Day 9</td>
+<td>ReAct</td>
+<td>用 ReAct 解释一个“查资料后写摘要”的任务轨迹</td>
+</tr>
+<tr>
+<td>Day 10</td>
+<td>Plan-and-Execute</td>
+<td>比较一次性规划和边执行边修正的优缺点</td>
+</tr>
+<tr>
+<td>Day 11</td>
+<td>Reflection</td>
+<td>说明 reflection 什么时候有用，什么时候会浪费成本</td>
+</tr>
+<tr>
+<td>Day 12</td>
+<td>状态机和终止条件</td>
+<td>设计最大步数、无进展检测、目标完成检测</td>
+</tr>
+<tr>
+<td>Day 13</td>
+<td>Function Calling</td>
+<td>设计 3 个工具 schema，并写出错误参数处理方式</td>
+</tr>
+<tr>
+<td>Day 14</td>
+<td>工具权限和读写隔离</td>
+<td>给一个退款工具设计 dry-run、approval、audit log</td>
+</tr>
+</tbody>
+</table>
+<h2 id="3-mcpskillsrag">第 3 阶段：MCP、Skills、RAG 和记忆<a class="headerlink" href="#3-mcpskillsrag" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>天数</th>
+<th>主题</th>
+<th>当天产出</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Day 15</td>
+<td>MCP 基础</td>
+<td>画出 Host、Client、Server、Tools、Resources、Prompts 的关系</td>
+</tr>
+<tr>
+<td>Day 16</td>
+<td>Skills</td>
+<td>写一个 Skill 说明：触发条件、能力边界、输入输出、风险</td>
+</tr>
+<tr>
+<td>Day 17</td>
+<td>Embedding 和向量检索</td>
+<td>解释 embedding、相似度、召回率和语义漂移</td>
+</tr>
+<tr>
+<td>Day 18</td>
+<td>Chunk 策略</td>
+<td>对比固定长度、语义切分、标题层级切分和表格切分</td>
+</tr>
+<tr>
+<td>Day 19</td>
+<td>混合检索和 Rerank</td>
+<td>设计 BM25 + vector + reranker 的检索链路</td>
+</tr>
+<tr>
+<td>Day 20</td>
+<td>Query Rewrite</td>
+<td>设计多轮追问、歧义查询和过滤条件的 query rewrite</td>
+</tr>
+<tr>
+<td>Day 21</td>
+<td>RAG 评测</td>
+<td>写 20 条 RAG eval case，覆盖找不到、权限不足、过期资料</td>
+</tr>
+<tr>
+<td>Day 22</td>
+<td>短期记忆和 Session State</td>
+<td>设计一个客服 Agent 的 session state 字段</td>
+</tr>
+<tr>
+<td>Day 23</td>
+<td>长期记忆</td>
+<td>说明用户偏好、事实记忆、任务记忆如何分开存储</td>
+</tr>
+<tr>
+<td>Day 24</td>
+<td>上下文压缩和污染</td>
+<td>写出 5 种上下文污染来源和对应防护</td>
+</tr>
+</tbody>
+</table>
+<h2 id="4-agentharness">第 4 阶段：多 Agent、Harness、评测和安全<a class="headerlink" href="#4-agentharness" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>天数</th>
+<th>主题</th>
+<th>当天产出</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Day 25</td>
+<td>Multi-Agent 编排</td>
+<td>对比 supervisor、router、peer collaboration、blackboard</td>
+</tr>
+<tr>
+<td>Day 26</td>
+<td>Agent 通信和共享状态</td>
+<td>设计共享状态 schema 和冲突解决策略</td>
+</tr>
+<tr>
+<td>Day 27</td>
+<td>Harness</td>
+<td>解释 harness 和 agent framework、workflow runtime 的区别</td>
+</tr>
+<tr>
+<td>Day 28</td>
+<td>Eval 分层</td>
+<td>设计 final response、single-step、trajectory、system eval</td>
+</tr>
+<tr>
+<td>Day 29</td>
+<td>Trace 和失败归因</td>
+<td>画出 trace span：LLM、tool、retrieval、guardrail、handoff</td>
+</tr>
+<tr>
+<td>Day 30</td>
+<td>Prompt Injection</td>
+<td>写出 5 个攻击样例和 5 个防护策略</td>
+</tr>
+<tr>
+<td>Day 31</td>
+<td>Human-in-the-Loop</td>
+<td>给高风险动作设计审批、回滚和审计</td>
+</tr>
+<tr>
+<td>Day 32</td>
+<td>生产可靠性</td>
+<td>设计重试、超时、限流、降级、灰度发布</td>
+</tr>
+</tbody>
+</table>
+<h2 id="5">第 5 阶段：生产架构、系统设计和面试冲刺<a class="headerlink" href="#5" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>天数</th>
+<th>主题</th>
+<th>当天产出</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Day 33</td>
+<td>性能和成本</td>
+<td>估算一次 Agent 任务的 token、工具调用、缓存和并发成本</td>
+</tr>
+<tr>
+<td>Day 34</td>
+<td>模型路由</td>
+<td>设计小模型分类、大模型规划、专用模型检索判断的路由</td>
+</tr>
+<tr>
+<td>Day 35</td>
+<td>智能客服 Agent 系统设计</td>
+<td>完整讲一遍需求、架构、工具、评测、安全、成本</td>
+</tr>
+<tr>
+<td>Day 36</td>
+<td>代码 Agent 系统设计</td>
+<td>完整讲一遍 repo 理解、补丁生成、测试、sandbox、PR</td>
+</tr>
+<tr>
+<td>Day 37</td>
+<td>数据分析 Agent 系统设计</td>
+<td>完整讲一遍 Text-to-SQL、权限、校验、图表、解释</td>
+</tr>
+<tr>
+<td>Day 38</td>
+<td>知识库 Agent 系统设计</td>
+<td>完整讲一遍文档摄取、检索、引用、权限、更新</td>
+</tr>
+<tr>
+<td>Day 39</td>
+<td>项目和简历表达</td>
+<td>写好 GitHub README、架构图说明、3 条简历 bullet</td>
+</tr>
+<tr>
+<td>Day 40</td>
+<td>模拟面试</td>
+<td>做一轮 60 分钟模拟面试，复盘回答卡点和项目短板</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_1">每日复盘模板<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<pre><code class="language-markdown">## Day X
+
+### 今天掌握的概念
+
+- 
+
+### 今天能口述的问题
+
+- 
+
+### 还不稳的问题
+
+- 
+
+### 一个可讲的工程例子
+
+- 场景：
+- 设计：
+- 风险：
+- 指标：
+
+### 明天要补
+
+- 
+</code></pre>
+<h2 id="_2">每周检查点<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>第 1 周结束：</p>
+<ul>
+<li>能在 3 分钟内解释 Agent 和 workflow 的区别。</li>
+<li>能说明模型参数和 prompt 层级如何影响输出稳定性。</li>
+</ul>
+<p>第 2 周结束：</p>
+<ul>
+<li>能画出 Agent loop。</li>
+<li>能为工具设计 schema、权限和错误处理。</li>
+</ul>
+<p>第 3 周结束：</p>
+<ul>
+<li>能讲清 RAG、MCP、Skills 和记忆的边界。</li>
+<li>能设计一套 RAG 评测集。</li>
+</ul>
+<p>第 4 周结束：</p>
+<ul>
+<li>能讲清 harness、multi-agent、eval、trace 和安全。</li>
+<li>能从失败日志中做归因。</li>
+</ul>
+<p>第 5 到 6 周结束：</p>
+<ul>
+<li>能完整回答 2 到 3 个 Agent 系统设计题。</li>
+<li>能把自己的项目讲成工程成果，而不是 demo。</li>
+</ul>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../00-overview/" class="btn btn-neutral float-left" title="总览"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../02-question-bank-92/" class="btn btn-neutral float-right" title="92 道面试题">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../00-overview/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../02-question-bank-92/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

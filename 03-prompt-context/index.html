@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>03 提示词与上下文工程 - Agent 从入门到精通手册</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "03 \u63d0\u793a\u8bcd\u4e0e\u4e0a\u4e0b\u6587\u5de5\u7a0b";
+        var mkdocs_page_input_path = "03-prompt-context.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Agent 从入门到精通手册
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">首页</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../00-how-to-use/">使用指南</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">基础篇</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../01-what-is-agent/">01 Agent 是什么</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../02-llm-foundations/">02 LLM 基础</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">03 提示词与上下文工程</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#_1">从提示词到上下文工程</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_2">指令分层</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#agent">写给 Agent 的任务指令</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_3">上下文预算</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_4">示例的作用</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_5">状态摘要</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_6">常见误区</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_7">本章练习</a>
+    </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">核心篇</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../04-tools-function-calling/">04 工具调用与 MCP</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../05-rag-memory/">05 RAG 与记忆</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../06-agent-loop-planning/">06 Agent 循环与规划</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">架构篇</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../07-workflows-orchestration/">07 工作流与编排</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../08-multi-agent-protocols/">08 多 Agent 与协议</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">工程篇</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../09-evaluation-observability/">09 评测与可观测性</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../10-safety-security/">10 安全、权限与护栏</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../11-production-engineering/">11 生产化工程</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">精通篇</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../12-framework-selection/">12 框架选型</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../13-capstone-projects/">13 综合项目路线</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">面试准备</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../interview-prep/00-overview/">总览</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../interview-prep/01-40-day-plan/">40 天学习计划</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../interview-prep/02-question-bank-92/">92 道面试题</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../interview-prep/03-system-design/">系统设计题</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../interview-prep/04-answer-frameworks/">回答框架</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../interview-prep/05-project-and-resume/">项目与简历表达</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../interview-prep/06-mock-interview/">模拟面试</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../interview-prep/07-multimodal-perception-questions/">多模态与感知高频题</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../interview-prep/08-agent-interview-expanded-from-doc/">附件问题扩写与排序</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">附录</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../14-glossary/">14 术语表</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../99-references/">参考资料</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Agent 从入门到精通手册</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">基础篇</li>
+      <li class="breadcrumb-item active">03 提示词与上下文工程</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="03">03. 提示词与上下文工程<a class="headerlink" href="#03" title="Permanent link">&para;</a></h1>
+<p>上一章解释了 LLM 如何根据上下文生成输出。本章要解决的问题是：如何把任务、规则、资料、工具和状态组织成模型能可靠使用的上下文。</p>
+<p>本章目标：从“写提示词”升级到“设计上下文契约”。
+下一章：当上下文不足以解决问题时，引入工具调用。</p>
+<h2 id="_1">从提示词到上下文工程<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>提示词不是一句神奇咒语，而是模型执行任务的接口说明。上下文工程包括：</p>
+<ul>
+<li>任务目标。</li>
+<li>角色和责任边界。</li>
+<li>输入数据。</li>
+<li>可用工具。</li>
+<li>输出格式。</li>
+<li>约束和禁止事项。</li>
+<li>示例。</li>
+<li>业务规则。</li>
+<li>历史状态。</li>
+<li>当前环境反馈。</li>
+</ul>
+<p>好的上下文像一份清晰的工作单：让模型知道目标、材料、限制、完成标准和失败时该怎么做。</p>
+<h2 id="_2">指令分层<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>常见上下文可以按优先级分层：</p>
+<table>
+<thead>
+<tr>
+<th>层级</th>
+<th>内容</th>
+<th>例子</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>系统层</td>
+<td>长期身份、安全边界</td>
+<td>“你是企业内部知识助手，不得泄露无权限资料”</td>
+</tr>
+<tr>
+<td>开发者层</td>
+<td>应用规则、流程、工具策略</td>
+<td>“需要实时数据时先调用 search_docs”</td>
+</tr>
+<tr>
+<td>用户层</td>
+<td>当前需求</td>
+<td>“帮我总结这份合同的风险”</td>
+</tr>
+<tr>
+<td>数据层</td>
+<td>文档、检索片段、工具结果</td>
+<td>合同文本、数据库记录</td>
+</tr>
+<tr>
+<td>输出层</td>
+<td>格式和验收标准</td>
+<td>JSON schema、报告模板</td>
+</tr>
+</tbody>
+</table>
+<p>如果规则之间冲突，要让更高层规则明确胜出。不要把核心规则散落在长文档中。</p>
+<h2 id="agent">写给 Agent 的任务指令<a class="headerlink" href="#agent" title="Permanent link">&para;</a></h2>
+<p>Agent 指令要比普通聊天提示更明确，因为它会行动。建议至少包含：</p>
+<pre><code class="language-text">目标：你要完成什么。
+边界：你不能做什么。
+工具策略：什么时候用哪个工具，什么时候不要用。
+失败策略：缺信息、工具失败、权限不足时如何处理。
+输出格式：最终结果必须满足什么 schema 或模板。
+质量标准：什么叫完成，什么叫需要继续。
+</code></pre>
+<p>示例：</p>
+<pre><code class="language-text">你是订单售后 Agent。你的目标是根据用户诉求、订单状态和售后政策给出处理结果。
+如果需要订单信息，调用 get_order。
+如果用户要求退款，必须先调用 check_refund_policy。
+任何真实退款动作必须调用 request_human_approval，审批通过后才能调用 issue_refund。
+如果订单号缺失，先向用户询问，不要猜测。
+最终输出必须包含 decision、reason、next_action 三个字段。
+</code></pre>
+<h2 id="_3">上下文预算<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p>Agent 常见上下文来源很多，但不是都该塞进模型。</p>
+<p>优先放入：</p>
+<ul>
+<li>当前目标。</li>
+<li>最近关键对话。</li>
+<li>已确认事实。</li>
+<li>工具返回的最新结果。</li>
+<li>与当前步骤强相关的资料片段。</li>
+<li>输出格式和安全边界。</li>
+</ul>
+<p>谨慎放入：</p>
+<ul>
+<li>大量历史对话。</li>
+<li>未筛选网页。</li>
+<li>用户上传的长文档全文。</li>
+<li>工具返回的调试日志。</li>
+<li>与当前任务无关的记忆。</li>
+</ul>
+<p>不要让模型在一堆无关文本里找关键规则。上下文越乱，Agent 越像在猜。</p>
+<h2 id="_4">示例的作用<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<p>示例可以显著提升稳定性，尤其是：</p>
+<ul>
+<li>输出格式复杂。</li>
+<li>工具选择容易混淆。</li>
+<li>业务规则有边界情况。</li>
+<li>需要固定语气或报告结构。</li>
+</ul>
+<p>示例应覆盖正例和反例。反例尤其重要，例如“没有订单号时不要调用退款工具”。</p>
+<h2 id="_5">状态摘要<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<p>多轮 Agent 不能无限携带完整历史。状态摘要应记录：</p>
+<ul>
+<li>用户目标。</li>
+<li>已完成步骤。</li>
+<li>已获取事实。</li>
+<li>未解决问题。</li>
+<li>工具调用结果。</li>
+<li>当前决策依据。</li>
+<li>下一步候选动作。</li>
+</ul>
+<p>状态摘要不是普通聊天总结，而是任务执行状态。它要服务下一步行动。</p>
+<h2 id="_6">常见误区<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
+<ul>
+<li>把所有业务文档原样塞进 prompt，不做拆分和检索。</li>
+<li>只写角色，不写完成标准。</li>
+<li>只写“认真、准确”，不写可验证规则。</li>
+<li>工具说明过短，导致模型不知道何时调用。</li>
+<li>输出格式没有 schema，后续程序只能脆弱解析自然语言。</li>
+</ul>
+<h2 id="_7">本章练习<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
+<p>为“招聘简历筛选 Agent”写一份上下文契约，包含：</p>
+<ul>
+<li>目标。</li>
+<li>输入。</li>
+<li>可用工具。</li>
+<li>禁止行为。</li>
+<li>缺信息时的策略。</li>
+<li>输出字段。</li>
+<li>3 个边界样例。</li>
+</ul>
+<p>下一章会进入 Agent 的行动能力：工具调用与 MCP。</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../02-llm-foundations/" class="btn btn-neutral float-left" title="02 LLM 基础"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../04-tools-function-calling/" class="btn btn-neutral float-right" title="04 工具调用与 MCP">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../02-llm-foundations/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../04-tools-function-calling/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
